@@ -1,4 +1,4 @@
-import {prisma} from '../src/configs/prisma.config'
+import {prisma} from '../src/configs/prisma.Dbconfig'
 
 async function main() {
     const adminEmail = "ars.code21@gmail.com"

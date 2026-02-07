@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  /* LIGHT MODE */
+  --color-bg: #ffffff;
+
+  --color-heading: #111827;
+  /* h1 */
+  --color-subheading: #1f2937;
+  /* h2 */
+  --color-text: #374151;
+  /* paragraph */
+  --color-muted: #6b7280;
+  /* small text */
+
+  /* DARK MODE */
+  --color-bg-dark: #111827;
+
+  --color-heading-dark: #f9fafb;
+  --color-subheading-dark: #e5e7eb;
+  --color-text-dark: #d1d5db;
+  --color-muted-dark: #9ca3af;
+  --font-paragraph : "Quicksand";
+  --font-primary:"Open sans"
+}
+@layer{
+  h1{
+    @apply text-3xl font-bold text-heading dark:text-heading-dark font-primary
+  }
+
+  h2{
+    @apply text-2xl font-semibold text-subheading dark:text-subheading-dark font-primary
+  }
+
+  p{
+    @apply text-lg  font-semibold  text-text dark:text-text-dark font-paragraph
+  }
+
+  small{
+    @apply text-base font-semibold text-muted dark:text-muted-dark font-paragraph
+  }
+ 
+}
