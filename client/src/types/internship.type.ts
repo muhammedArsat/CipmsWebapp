@@ -1,0 +1,1 @@
+export type MODE = "HYBRID" | "ONLINE" | "OFFLINE"

@@ -1739,14 +1739,14 @@ export namespace Prisma {
    */
 
   export type StudentCountOutputType = {
-    internships: number
     savedInternships: number
+    internships: number
     skills: number
   }
 
   export type StudentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    internships?: boolean | StudentCountOutputTypeCountInternshipsArgs
     savedInternships?: boolean | StudentCountOutputTypeCountSavedInternshipsArgs
+    internships?: boolean | StudentCountOutputTypeCountInternshipsArgs
     skills?: boolean | StudentCountOutputTypeCountSkillsArgs
   }
 
@@ -1764,15 +1764,15 @@ export namespace Prisma {
   /**
    * StudentCountOutputType without action
    */
-  export type StudentCountOutputTypeCountInternshipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StudentInternshipWhereInput
+  export type StudentCountOutputTypeCountSavedInternshipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SavedInternshipWhereInput
   }
 
   /**
    * StudentCountOutputType without action
    */
-  export type StudentCountOutputTypeCountSavedInternshipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SavedInternshipWhereInput
+  export type StudentCountOutputTypeCountInternshipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentInternshipWhereInput
   }
 
   /**
@@ -1850,15 +1850,15 @@ export namespace Prisma {
    */
 
   export type InternshipCountOutputType = {
-    applicants: number
-    savedBy: number
     skills: number
+    savedBy: number
+    applicants: number
   }
 
   export type InternshipCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    applicants?: boolean | InternshipCountOutputTypeCountApplicantsArgs
-    savedBy?: boolean | InternshipCountOutputTypeCountSavedByArgs
     skills?: boolean | InternshipCountOutputTypeCountSkillsArgs
+    savedBy?: boolean | InternshipCountOutputTypeCountSavedByArgs
+    applicants?: boolean | InternshipCountOutputTypeCountApplicantsArgs
   }
 
   // Custom InputTypes
@@ -1875,8 +1875,8 @@ export namespace Prisma {
   /**
    * InternshipCountOutputType without action
    */
-  export type InternshipCountOutputTypeCountApplicantsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StudentInternshipWhereInput
+  export type InternshipCountOutputTypeCountSkillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InternshipSkillWhereInput
   }
 
   /**
@@ -1889,8 +1889,8 @@ export namespace Prisma {
   /**
    * InternshipCountOutputType without action
    */
-  export type InternshipCountOutputTypeCountSkillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: InternshipSkillWhereInput
+  export type InternshipCountOutputTypeCountApplicantsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentInternshipWhereInput
   }
 
 
@@ -1899,13 +1899,13 @@ export namespace Prisma {
    */
 
   export type SkillCountOutputType = {
-    students: number
     internships: number
+    students: number
   }
 
   export type SkillCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    students?: boolean | SkillCountOutputTypeCountStudentsArgs
     internships?: boolean | SkillCountOutputTypeCountInternshipsArgs
+    students?: boolean | SkillCountOutputTypeCountStudentsArgs
   }
 
   // Custom InputTypes
@@ -1922,15 +1922,15 @@ export namespace Prisma {
   /**
    * SkillCountOutputType without action
    */
-  export type SkillCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StudentSkillWhereInput
+  export type SkillCountOutputTypeCountInternshipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InternshipSkillWhereInput
   }
 
   /**
    * SkillCountOutputType without action
    */
-  export type SkillCountOutputTypeCountInternshipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: InternshipSkillWhereInput
+  export type SkillCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentSkillWhereInput
   }
 
 
@@ -1958,6 +1958,7 @@ export namespace Prisma {
     profileUrl: string | null
     isActive: boolean | null
     createdAt: Date | null
+    userId: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1970,6 +1971,7 @@ export namespace Prisma {
     profileUrl: string | null
     isActive: boolean | null
     createdAt: Date | null
+    userId: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1982,6 +1984,7 @@ export namespace Prisma {
     profileUrl: number
     isActive: number
     createdAt: number
+    userId: number
     _all: number
   }
 
@@ -1996,6 +1999,7 @@ export namespace Prisma {
     profileUrl?: true
     isActive?: true
     createdAt?: true
+    userId?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2008,6 +2012,7 @@ export namespace Prisma {
     profileUrl?: true
     isActive?: true
     createdAt?: true
+    userId?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2020,6 +2025,7 @@ export namespace Prisma {
     profileUrl?: true
     isActive?: true
     createdAt?: true
+    userId?: true
     _all?: true
   }
 
@@ -2105,6 +2111,7 @@ export namespace Prisma {
     profileUrl: string | null
     isActive: boolean
     createdAt: Date
+    userId: string
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -2134,9 +2141,10 @@ export namespace Prisma {
     profileUrl?: boolean
     isActive?: boolean
     createdAt?: boolean
-    student?: boolean | User$studentArgs<ExtArgs>
+    userId?: boolean
     mentor?: boolean | User$mentorArgs<ExtArgs>
     placementOfficer?: boolean | User$placementOfficerArgs<ExtArgs>
+    student?: boolean | User$studentArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2149,6 +2157,7 @@ export namespace Prisma {
     profileUrl?: boolean
     isActive?: boolean
     createdAt?: boolean
+    userId?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2161,6 +2170,7 @@ export namespace Prisma {
     profileUrl?: boolean
     isActive?: boolean
     createdAt?: boolean
+    userId?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -2173,13 +2183,14 @@ export namespace Prisma {
     profileUrl?: boolean
     isActive?: boolean
     createdAt?: boolean
+    userId?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phoneNo" | "department" | "role" | "profileUrl" | "isActive" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phoneNo" | "department" | "role" | "profileUrl" | "isActive" | "createdAt" | "userId", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | User$studentArgs<ExtArgs>
     mentor?: boolean | User$mentorArgs<ExtArgs>
     placementOfficer?: boolean | User$placementOfficerArgs<ExtArgs>
+    student?: boolean | User$studentArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2187,9 +2198,9 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      student: Prisma.$StudentPayload<ExtArgs> | null
       mentor: Prisma.$MentorPayload<ExtArgs> | null
       placementOfficer: Prisma.$PlacementOfficerPayload<ExtArgs> | null
+      student: Prisma.$StudentPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2201,6 +2212,7 @@ export namespace Prisma {
       profileUrl: string | null
       isActive: boolean
       createdAt: Date
+      userId: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2595,9 +2607,9 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    student<T extends User$studentArgs<ExtArgs> = {}>(args?: Subset<T, User$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     mentor<T extends User$mentorArgs<ExtArgs> = {}>(args?: Subset<T, User$mentorArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     placementOfficer<T extends User$placementOfficerArgs<ExtArgs> = {}>(args?: Subset<T, User$placementOfficerArgs<ExtArgs>>): Prisma__PlacementOfficerClient<$Result.GetResult<Prisma.$PlacementOfficerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    student<T extends User$studentArgs<ExtArgs> = {}>(args?: Subset<T, User$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2636,6 +2648,7 @@ export namespace Prisma {
     readonly profileUrl: FieldRef<"User", 'String'>
     readonly isActive: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly userId: FieldRef<"User", 'String'>
   }
     
 
@@ -3024,25 +3037,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.student
-   */
-  export type User$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Student
-     */
-    select?: StudentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Student
-     */
-    omit?: StudentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StudentInclude<ExtArgs> | null
-    where?: StudentWhereInput
-  }
-
-  /**
    * User.mentor
    */
   export type User$mentorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3078,6 +3072,25 @@ export namespace Prisma {
      */
     include?: PlacementOfficerInclude<ExtArgs> | null
     where?: PlacementOfficerWhereInput
+  }
+
+  /**
+   * User.student
+   */
+  export type User$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
   }
 
   /**
@@ -3321,11 +3334,11 @@ export namespace Prisma {
     resumeUrl?: boolean
     profileCompleted?: boolean
     mentorId?: boolean
+    savedInternships?: boolean | Student$savedInternshipsArgs<ExtArgs>
+    internships?: boolean | Student$internshipsArgs<ExtArgs>
+    skills?: boolean | Student$skillsArgs<ExtArgs>
     mentor?: boolean | Student$mentorArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    internships?: boolean | Student$internshipsArgs<ExtArgs>
-    savedInternships?: boolean | Student$savedInternshipsArgs<ExtArgs>
-    skills?: boolean | Student$skillsArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
@@ -3365,11 +3378,11 @@ export namespace Prisma {
 
   export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userId" | "semester" | "year" | "cgpa" | "resumeUrl" | "profileCompleted" | "mentorId", ExtArgs["result"]["student"]>
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    savedInternships?: boolean | Student$savedInternshipsArgs<ExtArgs>
+    internships?: boolean | Student$internshipsArgs<ExtArgs>
+    skills?: boolean | Student$skillsArgs<ExtArgs>
     mentor?: boolean | Student$mentorArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    internships?: boolean | Student$internshipsArgs<ExtArgs>
-    savedInternships?: boolean | Student$savedInternshipsArgs<ExtArgs>
-    skills?: boolean | Student$skillsArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StudentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3384,11 +3397,11 @@ export namespace Prisma {
   export type $StudentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Student"
     objects: {
+      savedInternships: Prisma.$SavedInternshipPayload<ExtArgs>[]
+      internships: Prisma.$StudentInternshipPayload<ExtArgs>[]
+      skills: Prisma.$StudentSkillPayload<ExtArgs>[]
       mentor: Prisma.$MentorPayload<ExtArgs> | null
       user: Prisma.$UserPayload<ExtArgs>
-      internships: Prisma.$StudentInternshipPayload<ExtArgs>[]
-      savedInternships: Prisma.$SavedInternshipPayload<ExtArgs>[]
-      skills: Prisma.$StudentSkillPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       userId: string
@@ -3792,11 +3805,11 @@ export namespace Prisma {
    */
   export interface Prisma__StudentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    savedInternships<T extends Student$savedInternshipsArgs<ExtArgs> = {}>(args?: Subset<T, Student$savedInternshipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SavedInternshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    internships<T extends Student$internshipsArgs<ExtArgs> = {}>(args?: Subset<T, Student$internshipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentInternshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    skills<T extends Student$skillsArgs<ExtArgs> = {}>(args?: Subset<T, Student$skillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     mentor<T extends Student$mentorArgs<ExtArgs> = {}>(args?: Subset<T, Student$mentorArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    internships<T extends Student$internshipsArgs<ExtArgs> = {}>(args?: Subset<T, Student$internshipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentInternshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    savedInternships<T extends Student$savedInternshipsArgs<ExtArgs> = {}>(args?: Subset<T, Student$savedInternshipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SavedInternshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    skills<T extends Student$skillsArgs<ExtArgs> = {}>(args?: Subset<T, Student$skillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4229,22 +4242,27 @@ export namespace Prisma {
   }
 
   /**
-   * Student.mentor
+   * Student.savedInternships
    */
-  export type Student$mentorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Student$savedInternshipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Mentor
+     * Select specific fields to fetch from the SavedInternship
      */
-    select?: MentorSelect<ExtArgs> | null
+    select?: SavedInternshipSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Mentor
+     * Omit specific fields from the SavedInternship
      */
-    omit?: MentorOmit<ExtArgs> | null
+    omit?: SavedInternshipOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MentorInclude<ExtArgs> | null
-    where?: MentorWhereInput
+    include?: SavedInternshipInclude<ExtArgs> | null
+    where?: SavedInternshipWhereInput
+    orderBy?: SavedInternshipOrderByWithRelationInput | SavedInternshipOrderByWithRelationInput[]
+    cursor?: SavedInternshipWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SavedInternshipScalarFieldEnum | SavedInternshipScalarFieldEnum[]
   }
 
   /**
@@ -4272,30 +4290,6 @@ export namespace Prisma {
   }
 
   /**
-   * Student.savedInternships
-   */
-  export type Student$savedInternshipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SavedInternship
-     */
-    select?: SavedInternshipSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SavedInternship
-     */
-    omit?: SavedInternshipOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SavedInternshipInclude<ExtArgs> | null
-    where?: SavedInternshipWhereInput
-    orderBy?: SavedInternshipOrderByWithRelationInput | SavedInternshipOrderByWithRelationInput[]
-    cursor?: SavedInternshipWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SavedInternshipScalarFieldEnum | SavedInternshipScalarFieldEnum[]
-  }
-
-  /**
    * Student.skills
    */
   export type Student$skillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4317,6 +4311,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StudentSkillScalarFieldEnum | StudentSkillScalarFieldEnum[]
+  }
+
+  /**
+   * Student.mentor
+   */
+  export type Student$mentorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    where?: MentorWhereInput
   }
 
   /**
@@ -5566,8 +5579,8 @@ export namespace Prisma {
 
   export type PlacementOfficerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     userId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     internships?: boolean | PlacementOfficer$internshipsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | PlacementOfficerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["placementOfficer"]>
 
@@ -5587,8 +5600,8 @@ export namespace Prisma {
 
   export type PlacementOfficerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userId", ExtArgs["result"]["placementOfficer"]>
   export type PlacementOfficerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     internships?: boolean | PlacementOfficer$internshipsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | PlacementOfficerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PlacementOfficerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5601,8 +5614,8 @@ export namespace Prisma {
   export type $PlacementOfficerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PlacementOfficer"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       internships: Prisma.$InternshipPayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       userId: string
@@ -6000,8 +6013,8 @@ export namespace Prisma {
    */
   export interface Prisma__PlacementOfficerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     internships<T extends PlacementOfficer$internshipsArgs<ExtArgs> = {}>(args?: Subset<T, PlacementOfficer$internshipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InternshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6499,6 +6512,9 @@ export namespace Prisma {
     description: string | null
     location: string | null
     mode: $Enums.Mode | null
+    duration: string | null
+    applicationDeadline: Date | null
+    requirement: string | null
     salaryPackage: string | null
     minCgpa: Decimal | null
     status: $Enums.InternshipStatus | null
@@ -6515,6 +6531,9 @@ export namespace Prisma {
     description: string | null
     location: string | null
     mode: $Enums.Mode | null
+    duration: string | null
+    applicationDeadline: Date | null
+    requirement: string | null
     salaryPackage: string | null
     minCgpa: Decimal | null
     status: $Enums.InternshipStatus | null
@@ -6531,6 +6550,9 @@ export namespace Prisma {
     description: number
     location: number
     mode: number
+    duration: number
+    applicationDeadline: number
+    requirement: number
     salaryPackage: number
     minCgpa: number
     status: number
@@ -6557,6 +6579,9 @@ export namespace Prisma {
     description?: true
     location?: true
     mode?: true
+    duration?: true
+    applicationDeadline?: true
+    requirement?: true
     salaryPackage?: true
     minCgpa?: true
     status?: true
@@ -6573,6 +6598,9 @@ export namespace Prisma {
     description?: true
     location?: true
     mode?: true
+    duration?: true
+    applicationDeadline?: true
+    requirement?: true
     salaryPackage?: true
     minCgpa?: true
     status?: true
@@ -6589,6 +6617,9 @@ export namespace Prisma {
     description?: true
     location?: true
     mode?: true
+    duration?: true
+    applicationDeadline?: true
+    requirement?: true
     salaryPackage?: true
     minCgpa?: true
     status?: true
@@ -6692,6 +6723,9 @@ export namespace Prisma {
     description: string | null
     location: string | null
     mode: $Enums.Mode
+    duration: string
+    applicationDeadline: Date | null
+    requirement: string
     salaryPackage: string | null
     minCgpa: Decimal | null
     status: $Enums.InternshipStatus
@@ -6727,15 +6761,18 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     mode?: boolean
+    duration?: boolean
+    applicationDeadline?: boolean
+    requirement?: boolean
     salaryPackage?: boolean
     minCgpa?: boolean
     status?: boolean
     createdAt?: boolean
     postedById?: boolean
-    postedBy?: boolean | PlacementOfficerDefaultArgs<ExtArgs>
-    applicants?: boolean | Internship$applicantsArgs<ExtArgs>
-    savedBy?: boolean | Internship$savedByArgs<ExtArgs>
     skills?: boolean | Internship$skillsArgs<ExtArgs>
+    postedBy?: boolean | PlacementOfficerDefaultArgs<ExtArgs>
+    savedBy?: boolean | Internship$savedByArgs<ExtArgs>
+    applicants?: boolean | Internship$applicantsArgs<ExtArgs>
     _count?: boolean | InternshipCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["internship"]>
 
@@ -6748,6 +6785,9 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     mode?: boolean
+    duration?: boolean
+    applicationDeadline?: boolean
+    requirement?: boolean
     salaryPackage?: boolean
     minCgpa?: boolean
     status?: boolean
@@ -6765,6 +6805,9 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     mode?: boolean
+    duration?: boolean
+    applicationDeadline?: boolean
+    requirement?: boolean
     salaryPackage?: boolean
     minCgpa?: boolean
     status?: boolean
@@ -6782,6 +6825,9 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     mode?: boolean
+    duration?: boolean
+    applicationDeadline?: boolean
+    requirement?: boolean
     salaryPackage?: boolean
     minCgpa?: boolean
     status?: boolean
@@ -6789,12 +6835,12 @@ export namespace Prisma {
     postedById?: boolean
   }
 
-  export type InternshipOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "companyName" | "companyUrl" | "companyLogo" | "description" | "location" | "mode" | "salaryPackage" | "minCgpa" | "status" | "createdAt" | "postedById", ExtArgs["result"]["internship"]>
+  export type InternshipOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "companyName" | "companyUrl" | "companyLogo" | "description" | "location" | "mode" | "duration" | "applicationDeadline" | "requirement" | "salaryPackage" | "minCgpa" | "status" | "createdAt" | "postedById", ExtArgs["result"]["internship"]>
   export type InternshipInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    postedBy?: boolean | PlacementOfficerDefaultArgs<ExtArgs>
-    applicants?: boolean | Internship$applicantsArgs<ExtArgs>
-    savedBy?: boolean | Internship$savedByArgs<ExtArgs>
     skills?: boolean | Internship$skillsArgs<ExtArgs>
+    postedBy?: boolean | PlacementOfficerDefaultArgs<ExtArgs>
+    savedBy?: boolean | Internship$savedByArgs<ExtArgs>
+    applicants?: boolean | Internship$applicantsArgs<ExtArgs>
     _count?: boolean | InternshipCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type InternshipIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6807,10 +6853,10 @@ export namespace Prisma {
   export type $InternshipPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Internship"
     objects: {
-      postedBy: Prisma.$PlacementOfficerPayload<ExtArgs>
-      applicants: Prisma.$StudentInternshipPayload<ExtArgs>[]
-      savedBy: Prisma.$SavedInternshipPayload<ExtArgs>[]
       skills: Prisma.$InternshipSkillPayload<ExtArgs>[]
+      postedBy: Prisma.$PlacementOfficerPayload<ExtArgs>
+      savedBy: Prisma.$SavedInternshipPayload<ExtArgs>[]
+      applicants: Prisma.$StudentInternshipPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6821,6 +6867,9 @@ export namespace Prisma {
       description: string | null
       location: string | null
       mode: $Enums.Mode
+      duration: string
+      applicationDeadline: Date | null
+      requirement: string
       salaryPackage: string | null
       minCgpa: Prisma.Decimal | null
       status: $Enums.InternshipStatus
@@ -7220,10 +7269,10 @@ export namespace Prisma {
    */
   export interface Prisma__InternshipClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    postedBy<T extends PlacementOfficerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PlacementOfficerDefaultArgs<ExtArgs>>): Prisma__PlacementOfficerClient<$Result.GetResult<Prisma.$PlacementOfficerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    applicants<T extends Internship$applicantsArgs<ExtArgs> = {}>(args?: Subset<T, Internship$applicantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentInternshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    savedBy<T extends Internship$savedByArgs<ExtArgs> = {}>(args?: Subset<T, Internship$savedByArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SavedInternshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     skills<T extends Internship$skillsArgs<ExtArgs> = {}>(args?: Subset<T, Internship$skillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InternshipSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    postedBy<T extends PlacementOfficerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PlacementOfficerDefaultArgs<ExtArgs>>): Prisma__PlacementOfficerClient<$Result.GetResult<Prisma.$PlacementOfficerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    savedBy<T extends Internship$savedByArgs<ExtArgs> = {}>(args?: Subset<T, Internship$savedByArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SavedInternshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    applicants<T extends Internship$applicantsArgs<ExtArgs> = {}>(args?: Subset<T, Internship$applicantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentInternshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7261,6 +7310,9 @@ export namespace Prisma {
     readonly description: FieldRef<"Internship", 'String'>
     readonly location: FieldRef<"Internship", 'String'>
     readonly mode: FieldRef<"Internship", 'Mode'>
+    readonly duration: FieldRef<"Internship", 'String'>
+    readonly applicationDeadline: FieldRef<"Internship", 'DateTime'>
+    readonly requirement: FieldRef<"Internship", 'String'>
     readonly salaryPackage: FieldRef<"Internship", 'String'>
     readonly minCgpa: FieldRef<"Internship", 'Decimal'>
     readonly status: FieldRef<"Internship", 'InternshipStatus'>
@@ -7662,27 +7714,27 @@ export namespace Prisma {
   }
 
   /**
-   * Internship.applicants
+   * Internship.skills
    */
-  export type Internship$applicantsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Internship$skillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StudentInternship
+     * Select specific fields to fetch from the InternshipSkill
      */
-    select?: StudentInternshipSelect<ExtArgs> | null
+    select?: InternshipSkillSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StudentInternship
+     * Omit specific fields from the InternshipSkill
      */
-    omit?: StudentInternshipOmit<ExtArgs> | null
+    omit?: InternshipSkillOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StudentInternshipInclude<ExtArgs> | null
-    where?: StudentInternshipWhereInput
-    orderBy?: StudentInternshipOrderByWithRelationInput | StudentInternshipOrderByWithRelationInput[]
-    cursor?: StudentInternshipWhereUniqueInput
+    include?: InternshipSkillInclude<ExtArgs> | null
+    where?: InternshipSkillWhereInput
+    orderBy?: InternshipSkillOrderByWithRelationInput | InternshipSkillOrderByWithRelationInput[]
+    cursor?: InternshipSkillWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: StudentInternshipScalarFieldEnum | StudentInternshipScalarFieldEnum[]
+    distinct?: InternshipSkillScalarFieldEnum | InternshipSkillScalarFieldEnum[]
   }
 
   /**
@@ -7710,27 +7762,27 @@ export namespace Prisma {
   }
 
   /**
-   * Internship.skills
+   * Internship.applicants
    */
-  export type Internship$skillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Internship$applicantsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the InternshipSkill
+     * Select specific fields to fetch from the StudentInternship
      */
-    select?: InternshipSkillSelect<ExtArgs> | null
+    select?: StudentInternshipSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the InternshipSkill
+     * Omit specific fields from the StudentInternship
      */
-    omit?: InternshipSkillOmit<ExtArgs> | null
+    omit?: StudentInternshipOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: InternshipSkillInclude<ExtArgs> | null
-    where?: InternshipSkillWhereInput
-    orderBy?: InternshipSkillOrderByWithRelationInput | InternshipSkillOrderByWithRelationInput[]
-    cursor?: InternshipSkillWhereUniqueInput
+    include?: StudentInternshipInclude<ExtArgs> | null
+    where?: StudentInternshipWhereInput
+    orderBy?: StudentInternshipOrderByWithRelationInput | StudentInternshipOrderByWithRelationInput[]
+    cursor?: StudentInternshipWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: InternshipSkillScalarFieldEnum | InternshipSkillScalarFieldEnum[]
+    distinct?: StudentInternshipScalarFieldEnum | StudentInternshipScalarFieldEnum[]
   }
 
   /**
@@ -7924,8 +7976,8 @@ export namespace Prisma {
     status?: boolean
     certificateUrl?: boolean
     appliedAt?: boolean
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentInternship"]>
 
   export type StudentInternshipSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7935,8 +7987,8 @@ export namespace Prisma {
     status?: boolean
     certificateUrl?: boolean
     appliedAt?: boolean
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentInternship"]>
 
   export type StudentInternshipSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7946,8 +7998,8 @@ export namespace Prisma {
     status?: boolean
     certificateUrl?: boolean
     appliedAt?: boolean
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentInternship"]>
 
   export type StudentInternshipSelectScalar = {
@@ -7961,23 +8013,23 @@ export namespace Prisma {
 
   export type StudentInternshipOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "internshipId" | "status" | "certificateUrl" | "appliedAt", ExtArgs["result"]["studentInternship"]>
   export type StudentInternshipInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }
   export type StudentInternshipIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }
   export type StudentInternshipIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }
 
   export type $StudentInternshipPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "StudentInternship"
     objects: {
-      student: Prisma.$StudentPayload<ExtArgs>
       internship: Prisma.$InternshipPayload<ExtArgs>
+      student: Prisma.$StudentPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8380,8 +8432,8 @@ export namespace Prisma {
    */
   export interface Prisma__StudentInternshipClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     internship<T extends InternshipDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InternshipDefaultArgs<ExtArgs>>): Prisma__InternshipClient<$Result.GetResult<Prisma.$InternshipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8979,24 +9031,24 @@ export namespace Prisma {
     studentId?: boolean
     internshipId?: boolean
     savedAt?: boolean
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["savedInternship"]>
 
   export type SavedInternshipSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     studentId?: boolean
     internshipId?: boolean
     savedAt?: boolean
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["savedInternship"]>
 
   export type SavedInternshipSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     studentId?: boolean
     internshipId?: boolean
     savedAt?: boolean
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["savedInternship"]>
 
   export type SavedInternshipSelectScalar = {
@@ -9007,23 +9059,23 @@ export namespace Prisma {
 
   export type SavedInternshipOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"studentId" | "internshipId" | "savedAt", ExtArgs["result"]["savedInternship"]>
   export type SavedInternshipInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }
   export type SavedInternshipIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }
   export type SavedInternshipIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     internship?: boolean | InternshipDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }
 
   export type $SavedInternshipPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "SavedInternship"
     objects: {
-      student: Prisma.$StudentPayload<ExtArgs>
       internship: Prisma.$InternshipPayload<ExtArgs>
+      student: Prisma.$StudentPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       studentId: string
@@ -9423,8 +9475,8 @@ export namespace Prisma {
    */
   export interface Prisma__SavedInternshipClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     internship<T extends InternshipDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InternshipDefaultArgs<ExtArgs>>): Prisma__InternshipClient<$Result.GetResult<Prisma.$InternshipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10045,8 +10097,8 @@ export namespace Prisma {
   export type SkillSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    students?: boolean | Skill$studentsArgs<ExtArgs>
     internships?: boolean | Skill$internshipsArgs<ExtArgs>
+    students?: boolean | Skill$studentsArgs<ExtArgs>
     _count?: boolean | SkillCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["skill"]>
 
@@ -10067,8 +10119,8 @@ export namespace Prisma {
 
   export type SkillOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["skill"]>
   export type SkillInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    students?: boolean | Skill$studentsArgs<ExtArgs>
     internships?: boolean | Skill$internshipsArgs<ExtArgs>
+    students?: boolean | Skill$studentsArgs<ExtArgs>
     _count?: boolean | SkillCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SkillIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -10077,8 +10129,8 @@ export namespace Prisma {
   export type $SkillPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Skill"
     objects: {
-      students: Prisma.$StudentSkillPayload<ExtArgs>[]
       internships: Prisma.$InternshipSkillPayload<ExtArgs>[]
+      students: Prisma.$StudentSkillPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -10477,8 +10529,8 @@ export namespace Prisma {
    */
   export interface Prisma__SkillClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    students<T extends Skill$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Skill$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     internships<T extends Skill$internshipsArgs<ExtArgs> = {}>(args?: Subset<T, Skill$internshipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InternshipSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    students<T extends Skill$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Skill$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10898,30 +10950,6 @@ export namespace Prisma {
   }
 
   /**
-   * Skill.students
-   */
-  export type Skill$studentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the StudentSkill
-     */
-    select?: StudentSkillSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the StudentSkill
-     */
-    omit?: StudentSkillOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StudentSkillInclude<ExtArgs> | null
-    where?: StudentSkillWhereInput
-    orderBy?: StudentSkillOrderByWithRelationInput | StudentSkillOrderByWithRelationInput[]
-    cursor?: StudentSkillWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StudentSkillScalarFieldEnum | StudentSkillScalarFieldEnum[]
-  }
-
-  /**
    * Skill.internships
    */
   export type Skill$internshipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10943,6 +10971,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: InternshipSkillScalarFieldEnum | InternshipSkillScalarFieldEnum[]
+  }
+
+  /**
+   * Skill.students
+   */
+  export type Skill$studentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentSkill
+     */
+    select?: StudentSkillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentSkill
+     */
+    omit?: StudentSkillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentSkillInclude<ExtArgs> | null
+    where?: StudentSkillWhereInput
+    orderBy?: StudentSkillOrderByWithRelationInput | StudentSkillOrderByWithRelationInput[]
+    cursor?: StudentSkillWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentSkillScalarFieldEnum | StudentSkillScalarFieldEnum[]
   }
 
   /**
@@ -11138,22 +11190,22 @@ export namespace Prisma {
   export type StudentSkillSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     studentId?: boolean
     skillId?: boolean
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     skill?: boolean | SkillDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentSkill"]>
 
   export type StudentSkillSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     studentId?: boolean
     skillId?: boolean
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     skill?: boolean | SkillDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentSkill"]>
 
   export type StudentSkillSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     studentId?: boolean
     skillId?: boolean
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     skill?: boolean | SkillDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentSkill"]>
 
   export type StudentSkillSelectScalar = {
@@ -11163,23 +11215,23 @@ export namespace Prisma {
 
   export type StudentSkillOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"studentId" | "skillId", ExtArgs["result"]["studentSkill"]>
   export type StudentSkillInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     skill?: boolean | SkillDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }
   export type StudentSkillIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     skill?: boolean | SkillDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }
   export type StudentSkillIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | StudentDefaultArgs<ExtArgs>
     skill?: boolean | SkillDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
   }
 
   export type $StudentSkillPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "StudentSkill"
     objects: {
-      student: Prisma.$StudentPayload<ExtArgs>
       skill: Prisma.$SkillPayload<ExtArgs>
+      student: Prisma.$StudentPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       studentId: string
@@ -11578,8 +11630,8 @@ export namespace Prisma {
    */
   export interface Prisma__StudentSkillClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     skill<T extends SkillDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SkillDefaultArgs<ExtArgs>>): Prisma__SkillClient<$Result.GetResult<Prisma.$SkillPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13109,7 +13161,8 @@ export namespace Prisma {
     role: 'role',
     profileUrl: 'profileUrl',
     isActive: 'isActive',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    userId: 'userId'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -13153,6 +13206,9 @@ export namespace Prisma {
     description: 'description',
     location: 'location',
     mode: 'mode',
+    duration: 'duration',
+    applicationDeadline: 'applicationDeadline',
+    requirement: 'requirement',
     salaryPackage: 'salaryPackage',
     minCgpa: 'minCgpa',
     status: 'status',
@@ -13386,9 +13442,10 @@ export namespace Prisma {
     profileUrl?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
-    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+    userId?: StringFilter<"User"> | string
     mentor?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
     placementOfficer?: XOR<PlacementOfficerNullableScalarRelationFilter, PlacementOfficerWhereInput> | null
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -13401,14 +13458,16 @@ export namespace Prisma {
     profileUrl?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
-    student?: StudentOrderByWithRelationInput
+    userId?: SortOrder
     mentor?: MentorOrderByWithRelationInput
     placementOfficer?: PlacementOfficerOrderByWithRelationInput
+    student?: StudentOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
+    userId?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -13419,10 +13478,10 @@ export namespace Prisma {
     profileUrl?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
-    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     mentor?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
     placementOfficer?: XOR<PlacementOfficerNullableScalarRelationFilter, PlacementOfficerWhereInput> | null
-  }, "id" | "email">
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+  }, "id" | "email" | "userId">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -13434,6 +13493,7 @@ export namespace Prisma {
     profileUrl?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    userId?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -13452,6 +13512,7 @@ export namespace Prisma {
     profileUrl?: StringNullableWithAggregatesFilter<"User"> | string | null
     isActive?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    userId?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type StudentWhereInput = {
@@ -13465,11 +13526,11 @@ export namespace Prisma {
     resumeUrl?: StringNullableFilter<"Student"> | string | null
     profileCompleted?: BoolFilter<"Student"> | boolean
     mentorId?: StringNullableFilter<"Student"> | string | null
+    savedInternships?: SavedInternshipListRelationFilter
+    internships?: StudentInternshipListRelationFilter
+    skills?: StudentSkillListRelationFilter
     mentor?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    internships?: StudentInternshipListRelationFilter
-    savedInternships?: SavedInternshipListRelationFilter
-    skills?: StudentSkillListRelationFilter
   }
 
   export type StudentOrderByWithRelationInput = {
@@ -13480,11 +13541,11 @@ export namespace Prisma {
     resumeUrl?: SortOrderInput | SortOrder
     profileCompleted?: SortOrder
     mentorId?: SortOrderInput | SortOrder
+    savedInternships?: SavedInternshipOrderByRelationAggregateInput
+    internships?: StudentInternshipOrderByRelationAggregateInput
+    skills?: StudentSkillOrderByRelationAggregateInput
     mentor?: MentorOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
-    internships?: StudentInternshipOrderByRelationAggregateInput
-    savedInternships?: SavedInternshipOrderByRelationAggregateInput
-    skills?: StudentSkillOrderByRelationAggregateInput
   }
 
   export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -13498,11 +13559,11 @@ export namespace Prisma {
     resumeUrl?: StringNullableFilter<"Student"> | string | null
     profileCompleted?: BoolFilter<"Student"> | boolean
     mentorId?: StringNullableFilter<"Student"> | string | null
+    savedInternships?: SavedInternshipListRelationFilter
+    internships?: StudentInternshipListRelationFilter
+    skills?: StudentSkillListRelationFilter
     mentor?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    internships?: StudentInternshipListRelationFilter
-    savedInternships?: SavedInternshipListRelationFilter
-    skills?: StudentSkillListRelationFilter
   }, "userId">
 
   export type StudentOrderByWithAggregationInput = {
@@ -13588,14 +13649,14 @@ export namespace Prisma {
     OR?: PlacementOfficerWhereInput[]
     NOT?: PlacementOfficerWhereInput | PlacementOfficerWhereInput[]
     userId?: StringFilter<"PlacementOfficer"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     internships?: InternshipListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type PlacementOfficerOrderByWithRelationInput = {
     userId?: SortOrder
-    user?: UserOrderByWithRelationInput
     internships?: InternshipOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type PlacementOfficerWhereUniqueInput = Prisma.AtLeast<{
@@ -13603,8 +13664,8 @@ export namespace Prisma {
     AND?: PlacementOfficerWhereInput | PlacementOfficerWhereInput[]
     OR?: PlacementOfficerWhereInput[]
     NOT?: PlacementOfficerWhereInput | PlacementOfficerWhereInput[]
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     internships?: InternshipListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "userId">
 
   export type PlacementOfficerOrderByWithAggregationInput = {
@@ -13633,15 +13694,18 @@ export namespace Prisma {
     description?: StringNullableFilter<"Internship"> | string | null
     location?: StringNullableFilter<"Internship"> | string | null
     mode?: EnumModeFilter<"Internship"> | $Enums.Mode
+    duration?: StringFilter<"Internship"> | string
+    applicationDeadline?: DateTimeNullableFilter<"Internship"> | Date | string | null
+    requirement?: StringFilter<"Internship"> | string
     salaryPackage?: StringNullableFilter<"Internship"> | string | null
     minCgpa?: DecimalNullableFilter<"Internship"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFilter<"Internship"> | $Enums.InternshipStatus
     createdAt?: DateTimeFilter<"Internship"> | Date | string
     postedById?: StringFilter<"Internship"> | string
-    postedBy?: XOR<PlacementOfficerScalarRelationFilter, PlacementOfficerWhereInput>
-    applicants?: StudentInternshipListRelationFilter
-    savedBy?: SavedInternshipListRelationFilter
     skills?: InternshipSkillListRelationFilter
+    postedBy?: XOR<PlacementOfficerScalarRelationFilter, PlacementOfficerWhereInput>
+    savedBy?: SavedInternshipListRelationFilter
+    applicants?: StudentInternshipListRelationFilter
   }
 
   export type InternshipOrderByWithRelationInput = {
@@ -13653,15 +13717,18 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     mode?: SortOrder
+    duration?: SortOrder
+    applicationDeadline?: SortOrderInput | SortOrder
+    requirement?: SortOrder
     salaryPackage?: SortOrderInput | SortOrder
     minCgpa?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     postedById?: SortOrder
-    postedBy?: PlacementOfficerOrderByWithRelationInput
-    applicants?: StudentInternshipOrderByRelationAggregateInput
-    savedBy?: SavedInternshipOrderByRelationAggregateInput
     skills?: InternshipSkillOrderByRelationAggregateInput
+    postedBy?: PlacementOfficerOrderByWithRelationInput
+    savedBy?: SavedInternshipOrderByRelationAggregateInput
+    applicants?: StudentInternshipOrderByRelationAggregateInput
   }
 
   export type InternshipWhereUniqueInput = Prisma.AtLeast<{
@@ -13676,15 +13743,18 @@ export namespace Prisma {
     description?: StringNullableFilter<"Internship"> | string | null
     location?: StringNullableFilter<"Internship"> | string | null
     mode?: EnumModeFilter<"Internship"> | $Enums.Mode
+    duration?: StringFilter<"Internship"> | string
+    applicationDeadline?: DateTimeNullableFilter<"Internship"> | Date | string | null
+    requirement?: StringFilter<"Internship"> | string
     salaryPackage?: StringNullableFilter<"Internship"> | string | null
     minCgpa?: DecimalNullableFilter<"Internship"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFilter<"Internship"> | $Enums.InternshipStatus
     createdAt?: DateTimeFilter<"Internship"> | Date | string
     postedById?: StringFilter<"Internship"> | string
-    postedBy?: XOR<PlacementOfficerScalarRelationFilter, PlacementOfficerWhereInput>
-    applicants?: StudentInternshipListRelationFilter
-    savedBy?: SavedInternshipListRelationFilter
     skills?: InternshipSkillListRelationFilter
+    postedBy?: XOR<PlacementOfficerScalarRelationFilter, PlacementOfficerWhereInput>
+    savedBy?: SavedInternshipListRelationFilter
+    applicants?: StudentInternshipListRelationFilter
   }, "id">
 
   export type InternshipOrderByWithAggregationInput = {
@@ -13696,6 +13766,9 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     mode?: SortOrder
+    duration?: SortOrder
+    applicationDeadline?: SortOrderInput | SortOrder
+    requirement?: SortOrder
     salaryPackage?: SortOrderInput | SortOrder
     minCgpa?: SortOrderInput | SortOrder
     status?: SortOrder
@@ -13720,6 +13793,9 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Internship"> | string | null
     location?: StringNullableWithAggregatesFilter<"Internship"> | string | null
     mode?: EnumModeWithAggregatesFilter<"Internship"> | $Enums.Mode
+    duration?: StringWithAggregatesFilter<"Internship"> | string
+    applicationDeadline?: DateTimeNullableWithAggregatesFilter<"Internship"> | Date | string | null
+    requirement?: StringWithAggregatesFilter<"Internship"> | string
     salaryPackage?: StringNullableWithAggregatesFilter<"Internship"> | string | null
     minCgpa?: DecimalNullableWithAggregatesFilter<"Internship"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusWithAggregatesFilter<"Internship"> | $Enums.InternshipStatus
@@ -13737,8 +13813,8 @@ export namespace Prisma {
     status?: EnumStudentInternshipStatusFilter<"StudentInternship"> | $Enums.StudentInternshipStatus
     certificateUrl?: StringNullableFilter<"StudentInternship"> | string | null
     appliedAt?: DateTimeFilter<"StudentInternship"> | Date | string
-    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     internship?: XOR<InternshipScalarRelationFilter, InternshipWhereInput>
+    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }
 
   export type StudentInternshipOrderByWithRelationInput = {
@@ -13748,8 +13824,8 @@ export namespace Prisma {
     status?: SortOrder
     certificateUrl?: SortOrderInput | SortOrder
     appliedAt?: SortOrder
-    student?: StudentOrderByWithRelationInput
     internship?: InternshipOrderByWithRelationInput
+    student?: StudentOrderByWithRelationInput
   }
 
   export type StudentInternshipWhereUniqueInput = Prisma.AtLeast<{
@@ -13763,8 +13839,8 @@ export namespace Prisma {
     status?: EnumStudentInternshipStatusFilter<"StudentInternship"> | $Enums.StudentInternshipStatus
     certificateUrl?: StringNullableFilter<"StudentInternship"> | string | null
     appliedAt?: DateTimeFilter<"StudentInternship"> | Date | string
-    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     internship?: XOR<InternshipScalarRelationFilter, InternshipWhereInput>
+    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }, "id" | "studentId_internshipId">
 
   export type StudentInternshipOrderByWithAggregationInput = {
@@ -13798,16 +13874,16 @@ export namespace Prisma {
     studentId?: StringFilter<"SavedInternship"> | string
     internshipId?: StringFilter<"SavedInternship"> | string
     savedAt?: DateTimeFilter<"SavedInternship"> | Date | string
-    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     internship?: XOR<InternshipScalarRelationFilter, InternshipWhereInput>
+    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }
 
   export type SavedInternshipOrderByWithRelationInput = {
     studentId?: SortOrder
     internshipId?: SortOrder
     savedAt?: SortOrder
-    student?: StudentOrderByWithRelationInput
     internship?: InternshipOrderByWithRelationInput
+    student?: StudentOrderByWithRelationInput
   }
 
   export type SavedInternshipWhereUniqueInput = Prisma.AtLeast<{
@@ -13818,8 +13894,8 @@ export namespace Prisma {
     studentId?: StringFilter<"SavedInternship"> | string
     internshipId?: StringFilter<"SavedInternship"> | string
     savedAt?: DateTimeFilter<"SavedInternship"> | Date | string
-    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     internship?: XOR<InternshipScalarRelationFilter, InternshipWhereInput>
+    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }, "studentId_internshipId">
 
   export type SavedInternshipOrderByWithAggregationInput = {
@@ -13846,15 +13922,15 @@ export namespace Prisma {
     NOT?: SkillWhereInput | SkillWhereInput[]
     id?: IntFilter<"Skill"> | number
     name?: StringFilter<"Skill"> | string
-    students?: StudentSkillListRelationFilter
     internships?: InternshipSkillListRelationFilter
+    students?: StudentSkillListRelationFilter
   }
 
   export type SkillOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    students?: StudentSkillOrderByRelationAggregateInput
     internships?: InternshipSkillOrderByRelationAggregateInput
+    students?: StudentSkillOrderByRelationAggregateInput
   }
 
   export type SkillWhereUniqueInput = Prisma.AtLeast<{
@@ -13863,8 +13939,8 @@ export namespace Prisma {
     AND?: SkillWhereInput | SkillWhereInput[]
     OR?: SkillWhereInput[]
     NOT?: SkillWhereInput | SkillWhereInput[]
-    students?: StudentSkillListRelationFilter
     internships?: InternshipSkillListRelationFilter
+    students?: StudentSkillListRelationFilter
   }, "id" | "name">
 
   export type SkillOrderByWithAggregationInput = {
@@ -13891,15 +13967,15 @@ export namespace Prisma {
     NOT?: StudentSkillWhereInput | StudentSkillWhereInput[]
     studentId?: StringFilter<"StudentSkill"> | string
     skillId?: IntFilter<"StudentSkill"> | number
-    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     skill?: XOR<SkillScalarRelationFilter, SkillWhereInput>
+    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }
 
   export type StudentSkillOrderByWithRelationInput = {
     studentId?: SortOrder
     skillId?: SortOrder
-    student?: StudentOrderByWithRelationInput
     skill?: SkillOrderByWithRelationInput
+    student?: StudentOrderByWithRelationInput
   }
 
   export type StudentSkillWhereUniqueInput = Prisma.AtLeast<{
@@ -13909,8 +13985,8 @@ export namespace Prisma {
     NOT?: StudentSkillWhereInput | StudentSkillWhereInput[]
     studentId?: StringFilter<"StudentSkill"> | string
     skillId?: IntFilter<"StudentSkill"> | number
-    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     skill?: XOR<SkillScalarRelationFilter, SkillWhereInput>
+    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }, "studentId_skillId">
 
   export type StudentSkillOrderByWithAggregationInput = {
@@ -13987,9 +14063,10 @@ export namespace Prisma {
     profileUrl?: string | null
     isActive?: boolean
     createdAt?: Date | string
-    student?: StudentCreateNestedOneWithoutUserInput
+    userId: string
     mentor?: MentorCreateNestedOneWithoutUserInput
     placementOfficer?: PlacementOfficerCreateNestedOneWithoutUserInput
+    student?: StudentCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -14002,9 +14079,10 @@ export namespace Prisma {
     profileUrl?: string | null
     isActive?: boolean
     createdAt?: Date | string
-    student?: StudentUncheckedCreateNestedOneWithoutUserInput
+    userId: string
     mentor?: MentorUncheckedCreateNestedOneWithoutUserInput
     placementOfficer?: PlacementOfficerUncheckedCreateNestedOneWithoutUserInput
+    student?: StudentUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -14017,9 +14095,10 @@ export namespace Prisma {
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUpdateOneWithoutUserNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
     mentor?: MentorUpdateOneWithoutUserNestedInput
     placementOfficer?: PlacementOfficerUpdateOneWithoutUserNestedInput
+    student?: StudentUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -14032,9 +14111,10 @@ export namespace Prisma {
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUncheckedUpdateOneWithoutUserNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
     mentor?: MentorUncheckedUpdateOneWithoutUserNestedInput
     placementOfficer?: PlacementOfficerUncheckedUpdateOneWithoutUserNestedInput
+    student?: StudentUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -14047,6 +14127,7 @@ export namespace Prisma {
     profileUrl?: string | null
     isActive?: boolean
     createdAt?: Date | string
+    userId: string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -14059,6 +14140,7 @@ export namespace Prisma {
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -14071,6 +14153,7 @@ export namespace Prisma {
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentCreateInput = {
@@ -14079,11 +14162,11 @@ export namespace Prisma {
     cgpa?: Decimal | DecimalJsLike | number | string | null
     resumeUrl?: string | null
     profileCompleted?: boolean
+    savedInternships?: SavedInternshipCreateNestedManyWithoutStudentInput
+    internships?: StudentInternshipCreateNestedManyWithoutStudentInput
+    skills?: StudentSkillCreateNestedManyWithoutStudentInput
     mentor?: MentorCreateNestedOneWithoutStudentsInput
     user: UserCreateNestedOneWithoutStudentInput
-    internships?: StudentInternshipCreateNestedManyWithoutStudentInput
-    savedInternships?: SavedInternshipCreateNestedManyWithoutStudentInput
-    skills?: StudentSkillCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateInput = {
@@ -14094,8 +14177,8 @@ export namespace Prisma {
     resumeUrl?: string | null
     profileCompleted?: boolean
     mentorId?: string | null
-    internships?: StudentInternshipUncheckedCreateNestedManyWithoutStudentInput
     savedInternships?: SavedInternshipUncheckedCreateNestedManyWithoutStudentInput
+    internships?: StudentInternshipUncheckedCreateNestedManyWithoutStudentInput
     skills?: StudentSkillUncheckedCreateNestedManyWithoutStudentInput
   }
 
@@ -14105,11 +14188,11 @@ export namespace Prisma {
     cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileCompleted?: BoolFieldUpdateOperationsInput | boolean
+    savedInternships?: SavedInternshipUpdateManyWithoutStudentNestedInput
+    internships?: StudentInternshipUpdateManyWithoutStudentNestedInput
+    skills?: StudentSkillUpdateManyWithoutStudentNestedInput
     mentor?: MentorUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
-    internships?: StudentInternshipUpdateManyWithoutStudentNestedInput
-    savedInternships?: SavedInternshipUpdateManyWithoutStudentNestedInput
-    skills?: StudentSkillUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
@@ -14120,8 +14203,8 @@ export namespace Prisma {
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileCompleted?: BoolFieldUpdateOperationsInput | boolean
     mentorId?: NullableStringFieldUpdateOperationsInput | string | null
-    internships?: StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput
     savedInternships?: SavedInternshipUncheckedUpdateManyWithoutStudentNestedInput
+    internships?: StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput
     skills?: StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
   }
 
@@ -14199,8 +14282,8 @@ export namespace Prisma {
   }
 
   export type PlacementOfficerCreateInput = {
-    user: UserCreateNestedOneWithoutPlacementOfficerInput
     internships?: InternshipCreateNestedManyWithoutPostedByInput
+    user: UserCreateNestedOneWithoutPlacementOfficerInput
   }
 
   export type PlacementOfficerUncheckedCreateInput = {
@@ -14209,8 +14292,8 @@ export namespace Prisma {
   }
 
   export type PlacementOfficerUpdateInput = {
-    user?: UserUpdateOneRequiredWithoutPlacementOfficerNestedInput
     internships?: InternshipUpdateManyWithoutPostedByNestedInput
+    user?: UserUpdateOneRequiredWithoutPlacementOfficerNestedInput
   }
 
   export type PlacementOfficerUncheckedUpdateInput = {
@@ -14239,14 +14322,17 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
     salaryPackage?: string | null
     minCgpa?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.InternshipStatus
     createdAt?: Date | string
-    postedBy: PlacementOfficerCreateNestedOneWithoutInternshipsInput
-    applicants?: StudentInternshipCreateNestedManyWithoutInternshipInput
-    savedBy?: SavedInternshipCreateNestedManyWithoutInternshipInput
     skills?: InternshipSkillCreateNestedManyWithoutInternshipInput
+    postedBy: PlacementOfficerCreateNestedOneWithoutInternshipsInput
+    savedBy?: SavedInternshipCreateNestedManyWithoutInternshipInput
+    applicants?: StudentInternshipCreateNestedManyWithoutInternshipInput
   }
 
   export type InternshipUncheckedCreateInput = {
@@ -14258,14 +14344,17 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
     salaryPackage?: string | null
     minCgpa?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.InternshipStatus
     createdAt?: Date | string
     postedById: string
-    applicants?: StudentInternshipUncheckedCreateNestedManyWithoutInternshipInput
-    savedBy?: SavedInternshipUncheckedCreateNestedManyWithoutInternshipInput
     skills?: InternshipSkillUncheckedCreateNestedManyWithoutInternshipInput
+    savedBy?: SavedInternshipUncheckedCreateNestedManyWithoutInternshipInput
+    applicants?: StudentInternshipUncheckedCreateNestedManyWithoutInternshipInput
   }
 
   export type InternshipUpdateInput = {
@@ -14277,14 +14366,17 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    postedBy?: PlacementOfficerUpdateOneRequiredWithoutInternshipsNestedInput
-    applicants?: StudentInternshipUpdateManyWithoutInternshipNestedInput
-    savedBy?: SavedInternshipUpdateManyWithoutInternshipNestedInput
     skills?: InternshipSkillUpdateManyWithoutInternshipNestedInput
+    postedBy?: PlacementOfficerUpdateOneRequiredWithoutInternshipsNestedInput
+    savedBy?: SavedInternshipUpdateManyWithoutInternshipNestedInput
+    applicants?: StudentInternshipUpdateManyWithoutInternshipNestedInput
   }
 
   export type InternshipUncheckedUpdateInput = {
@@ -14296,14 +14388,17 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     postedById?: StringFieldUpdateOperationsInput | string
-    applicants?: StudentInternshipUncheckedUpdateManyWithoutInternshipNestedInput
-    savedBy?: SavedInternshipUncheckedUpdateManyWithoutInternshipNestedInput
     skills?: InternshipSkillUncheckedUpdateManyWithoutInternshipNestedInput
+    savedBy?: SavedInternshipUncheckedUpdateManyWithoutInternshipNestedInput
+    applicants?: StudentInternshipUncheckedUpdateManyWithoutInternshipNestedInput
   }
 
   export type InternshipCreateManyInput = {
@@ -14315,6 +14410,9 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
     salaryPackage?: string | null
     minCgpa?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.InternshipStatus
@@ -14331,6 +14429,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
@@ -14346,6 +14447,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
@@ -14358,8 +14462,8 @@ export namespace Prisma {
     status?: $Enums.StudentInternshipStatus
     certificateUrl?: string | null
     appliedAt?: Date | string
-    student: StudentCreateNestedOneWithoutInternshipsInput
     internship: InternshipCreateNestedOneWithoutApplicantsInput
+    student: StudentCreateNestedOneWithoutInternshipsInput
   }
 
   export type StudentInternshipUncheckedCreateInput = {
@@ -14376,8 +14480,8 @@ export namespace Prisma {
     status?: EnumStudentInternshipStatusFieldUpdateOperationsInput | $Enums.StudentInternshipStatus
     certificateUrl?: NullableStringFieldUpdateOperationsInput | string | null
     appliedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUpdateOneRequiredWithoutInternshipsNestedInput
     internship?: InternshipUpdateOneRequiredWithoutApplicantsNestedInput
+    student?: StudentUpdateOneRequiredWithoutInternshipsNestedInput
   }
 
   export type StudentInternshipUncheckedUpdateInput = {
@@ -14416,8 +14520,8 @@ export namespace Prisma {
 
   export type SavedInternshipCreateInput = {
     savedAt?: Date | string
-    student: StudentCreateNestedOneWithoutSavedInternshipsInput
     internship: InternshipCreateNestedOneWithoutSavedByInput
+    student: StudentCreateNestedOneWithoutSavedInternshipsInput
   }
 
   export type SavedInternshipUncheckedCreateInput = {
@@ -14428,8 +14532,8 @@ export namespace Prisma {
 
   export type SavedInternshipUpdateInput = {
     savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUpdateOneRequiredWithoutSavedInternshipsNestedInput
     internship?: InternshipUpdateOneRequiredWithoutSavedByNestedInput
+    student?: StudentUpdateOneRequiredWithoutSavedInternshipsNestedInput
   }
 
   export type SavedInternshipUncheckedUpdateInput = {
@@ -14456,28 +14560,28 @@ export namespace Prisma {
 
   export type SkillCreateInput = {
     name: string
-    students?: StudentSkillCreateNestedManyWithoutSkillInput
     internships?: InternshipSkillCreateNestedManyWithoutSkillInput
+    students?: StudentSkillCreateNestedManyWithoutSkillInput
   }
 
   export type SkillUncheckedCreateInput = {
     id?: number
     name: string
-    students?: StudentSkillUncheckedCreateNestedManyWithoutSkillInput
     internships?: InternshipSkillUncheckedCreateNestedManyWithoutSkillInput
+    students?: StudentSkillUncheckedCreateNestedManyWithoutSkillInput
   }
 
   export type SkillUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    students?: StudentSkillUpdateManyWithoutSkillNestedInput
     internships?: InternshipSkillUpdateManyWithoutSkillNestedInput
+    students?: StudentSkillUpdateManyWithoutSkillNestedInput
   }
 
   export type SkillUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    students?: StudentSkillUncheckedUpdateManyWithoutSkillNestedInput
     internships?: InternshipSkillUncheckedUpdateManyWithoutSkillNestedInput
+    students?: StudentSkillUncheckedUpdateManyWithoutSkillNestedInput
   }
 
   export type SkillCreateManyInput = {
@@ -14495,8 +14599,8 @@ export namespace Prisma {
   }
 
   export type StudentSkillCreateInput = {
-    student: StudentCreateNestedOneWithoutSkillsInput
     skill: SkillCreateNestedOneWithoutStudentsInput
+    student: StudentCreateNestedOneWithoutSkillsInput
   }
 
   export type StudentSkillUncheckedCreateInput = {
@@ -14505,8 +14609,8 @@ export namespace Prisma {
   }
 
   export type StudentSkillUpdateInput = {
-    student?: StudentUpdateOneRequiredWithoutSkillsNestedInput
     skill?: SkillUpdateOneRequiredWithoutStudentsNestedInput
+    student?: StudentUpdateOneRequiredWithoutSkillsNestedInput
   }
 
   export type StudentSkillUncheckedUpdateInput = {
@@ -14615,11 +14719,6 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type StudentNullableScalarRelationFilter = {
-    is?: StudentWhereInput | null
-    isNot?: StudentWhereInput | null
-  }
-
   export type MentorNullableScalarRelationFilter = {
     is?: MentorWhereInput | null
     isNot?: MentorWhereInput | null
@@ -14628,6 +14727,11 @@ export namespace Prisma {
   export type PlacementOfficerNullableScalarRelationFilter = {
     is?: PlacementOfficerWhereInput | null
     isNot?: PlacementOfficerWhereInput | null
+  }
+
+  export type StudentNullableScalarRelationFilter = {
+    is?: StudentWhereInput | null
+    isNot?: StudentWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -14645,6 +14749,7 @@ export namespace Prisma {
     profileUrl?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -14657,6 +14762,7 @@ export namespace Prisma {
     profileUrl?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -14669,6 +14775,7 @@ export namespace Prisma {
     profileUrl?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -14761,9 +14868,10 @@ export namespace Prisma {
     not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
+  export type SavedInternshipListRelationFilter = {
+    every?: SavedInternshipWhereInput
+    some?: SavedInternshipWhereInput
+    none?: SavedInternshipWhereInput
   }
 
   export type StudentInternshipListRelationFilter = {
@@ -14772,23 +14880,22 @@ export namespace Prisma {
     none?: StudentInternshipWhereInput
   }
 
-  export type SavedInternshipListRelationFilter = {
-    every?: SavedInternshipWhereInput
-    some?: SavedInternshipWhereInput
-    none?: SavedInternshipWhereInput
-  }
-
   export type StudentSkillListRelationFilter = {
     every?: StudentSkillWhereInput
     some?: StudentSkillWhereInput
     none?: StudentSkillWhereInput
   }
 
-  export type StudentInternshipOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type SavedInternshipOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StudentInternshipOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14935,6 +15042,17 @@ export namespace Prisma {
     not?: NestedEnumModeFilter<$PrismaModel> | $Enums.Mode
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type EnumInternshipStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.InternshipStatus | EnumInternshipStatusFieldRefInput<$PrismaModel>
     in?: $Enums.InternshipStatus[] | ListEnumInternshipStatusFieldRefInput<$PrismaModel>
@@ -14942,15 +15060,15 @@ export namespace Prisma {
     not?: NestedEnumInternshipStatusFilter<$PrismaModel> | $Enums.InternshipStatus
   }
 
-  export type PlacementOfficerScalarRelationFilter = {
-    is?: PlacementOfficerWhereInput
-    isNot?: PlacementOfficerWhereInput
-  }
-
   export type InternshipSkillListRelationFilter = {
     every?: InternshipSkillWhereInput
     some?: InternshipSkillWhereInput
     none?: InternshipSkillWhereInput
+  }
+
+  export type PlacementOfficerScalarRelationFilter = {
+    is?: PlacementOfficerWhereInput
+    isNot?: PlacementOfficerWhereInput
   }
 
   export type InternshipSkillOrderByRelationAggregateInput = {
@@ -14966,6 +15084,9 @@ export namespace Prisma {
     description?: SortOrder
     location?: SortOrder
     mode?: SortOrder
+    duration?: SortOrder
+    applicationDeadline?: SortOrder
+    requirement?: SortOrder
     salaryPackage?: SortOrder
     minCgpa?: SortOrder
     status?: SortOrder
@@ -14986,6 +15107,9 @@ export namespace Prisma {
     description?: SortOrder
     location?: SortOrder
     mode?: SortOrder
+    duration?: SortOrder
+    applicationDeadline?: SortOrder
+    requirement?: SortOrder
     salaryPackage?: SortOrder
     minCgpa?: SortOrder
     status?: SortOrder
@@ -15002,6 +15126,9 @@ export namespace Prisma {
     description?: SortOrder
     location?: SortOrder
     mode?: SortOrder
+    duration?: SortOrder
+    applicationDeadline?: SortOrder
+    requirement?: SortOrder
     salaryPackage?: SortOrder
     minCgpa?: SortOrder
     status?: SortOrder
@@ -15023,6 +15150,20 @@ export namespace Prisma {
     _max?: NestedEnumModeFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type EnumInternshipStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.InternshipStatus | EnumInternshipStatusFieldRefInput<$PrismaModel>
     in?: $Enums.InternshipStatus[] | ListEnumInternshipStatusFieldRefInput<$PrismaModel>
@@ -15040,14 +15181,14 @@ export namespace Prisma {
     not?: NestedEnumStudentInternshipStatusFilter<$PrismaModel> | $Enums.StudentInternshipStatus
   }
 
-  export type StudentScalarRelationFilter = {
-    is?: StudentWhereInput
-    isNot?: StudentWhereInput
-  }
-
   export type InternshipScalarRelationFilter = {
     is?: InternshipWhereInput
     isNot?: InternshipWhereInput
+  }
+
+  export type StudentScalarRelationFilter = {
+    is?: StudentWhereInput
+    isNot?: StudentWhereInput
   }
 
   export type StudentInternshipStudentIdInternshipIdCompoundUniqueInput = {
@@ -15226,12 +15367,6 @@ export namespace Prisma {
     skillId?: SortOrder
   }
 
-  export type StudentCreateNestedOneWithoutUserInput = {
-    create?: XOR<StudentCreateWithoutUserInput, StudentUncheckedCreateWithoutUserInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutUserInput
-    connect?: StudentWhereUniqueInput
-  }
-
   export type MentorCreateNestedOneWithoutUserInput = {
     create?: XOR<MentorCreateWithoutUserInput, MentorUncheckedCreateWithoutUserInput>
     connectOrCreate?: MentorCreateOrConnectWithoutUserInput
@@ -15244,7 +15379,7 @@ export namespace Prisma {
     connect?: PlacementOfficerWhereUniqueInput
   }
 
-  export type StudentUncheckedCreateNestedOneWithoutUserInput = {
+  export type StudentCreateNestedOneWithoutUserInput = {
     create?: XOR<StudentCreateWithoutUserInput, StudentUncheckedCreateWithoutUserInput>
     connectOrCreate?: StudentCreateOrConnectWithoutUserInput
     connect?: StudentWhereUniqueInput
@@ -15260,6 +15395,12 @@ export namespace Prisma {
     create?: XOR<PlacementOfficerCreateWithoutUserInput, PlacementOfficerUncheckedCreateWithoutUserInput>
     connectOrCreate?: PlacementOfficerCreateOrConnectWithoutUserInput
     connect?: PlacementOfficerWhereUniqueInput
+  }
+
+  export type StudentUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<StudentCreateWithoutUserInput, StudentUncheckedCreateWithoutUserInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutUserInput
+    connect?: StudentWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -15282,16 +15423,6 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type StudentUpdateOneWithoutUserNestedInput = {
-    create?: XOR<StudentCreateWithoutUserInput, StudentUncheckedCreateWithoutUserInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutUserInput
-    upsert?: StudentUpsertWithoutUserInput
-    disconnect?: StudentWhereInput | boolean
-    delete?: StudentWhereInput | boolean
-    connect?: StudentWhereUniqueInput
-    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutUserInput, StudentUpdateWithoutUserInput>, StudentUncheckedUpdateWithoutUserInput>
-  }
-
   export type MentorUpdateOneWithoutUserNestedInput = {
     create?: XOR<MentorCreateWithoutUserInput, MentorUncheckedCreateWithoutUserInput>
     connectOrCreate?: MentorCreateOrConnectWithoutUserInput
@@ -15312,7 +15443,7 @@ export namespace Prisma {
     update?: XOR<XOR<PlacementOfficerUpdateToOneWithWhereWithoutUserInput, PlacementOfficerUpdateWithoutUserInput>, PlacementOfficerUncheckedUpdateWithoutUserInput>
   }
 
-  export type StudentUncheckedUpdateOneWithoutUserNestedInput = {
+  export type StudentUpdateOneWithoutUserNestedInput = {
     create?: XOR<StudentCreateWithoutUserInput, StudentUncheckedCreateWithoutUserInput>
     connectOrCreate?: StudentCreateOrConnectWithoutUserInput
     upsert?: StudentUpsertWithoutUserInput
@@ -15342,6 +15473,37 @@ export namespace Prisma {
     update?: XOR<XOR<PlacementOfficerUpdateToOneWithWhereWithoutUserInput, PlacementOfficerUpdateWithoutUserInput>, PlacementOfficerUncheckedUpdateWithoutUserInput>
   }
 
+  export type StudentUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<StudentCreateWithoutUserInput, StudentUncheckedCreateWithoutUserInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutUserInput
+    upsert?: StudentUpsertWithoutUserInput
+    disconnect?: StudentWhereInput | boolean
+    delete?: StudentWhereInput | boolean
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutUserInput, StudentUpdateWithoutUserInput>, StudentUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SavedInternshipCreateNestedManyWithoutStudentInput = {
+    create?: XOR<SavedInternshipCreateWithoutStudentInput, SavedInternshipUncheckedCreateWithoutStudentInput> | SavedInternshipCreateWithoutStudentInput[] | SavedInternshipUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: SavedInternshipCreateOrConnectWithoutStudentInput | SavedInternshipCreateOrConnectWithoutStudentInput[]
+    createMany?: SavedInternshipCreateManyStudentInputEnvelope
+    connect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
+  }
+
+  export type StudentInternshipCreateNestedManyWithoutStudentInput = {
+    create?: XOR<StudentInternshipCreateWithoutStudentInput, StudentInternshipUncheckedCreateWithoutStudentInput> | StudentInternshipCreateWithoutStudentInput[] | StudentInternshipUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentInternshipCreateOrConnectWithoutStudentInput | StudentInternshipCreateOrConnectWithoutStudentInput[]
+    createMany?: StudentInternshipCreateManyStudentInputEnvelope
+    connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+  }
+
+  export type StudentSkillCreateNestedManyWithoutStudentInput = {
+    create?: XOR<StudentSkillCreateWithoutStudentInput, StudentSkillUncheckedCreateWithoutStudentInput> | StudentSkillCreateWithoutStudentInput[] | StudentSkillUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentSkillCreateOrConnectWithoutStudentInput | StudentSkillCreateOrConnectWithoutStudentInput[]
+    createMany?: StudentSkillCreateManyStudentInputEnvelope
+    connect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
+  }
+
   export type MentorCreateNestedOneWithoutStudentsInput = {
     create?: XOR<MentorCreateWithoutStudentsInput, MentorUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: MentorCreateOrConnectWithoutStudentsInput
@@ -15354,25 +15516,11 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type StudentInternshipCreateNestedManyWithoutStudentInput = {
-    create?: XOR<StudentInternshipCreateWithoutStudentInput, StudentInternshipUncheckedCreateWithoutStudentInput> | StudentInternshipCreateWithoutStudentInput[] | StudentInternshipUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: StudentInternshipCreateOrConnectWithoutStudentInput | StudentInternshipCreateOrConnectWithoutStudentInput[]
-    createMany?: StudentInternshipCreateManyStudentInputEnvelope
-    connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-  }
-
-  export type SavedInternshipCreateNestedManyWithoutStudentInput = {
+  export type SavedInternshipUncheckedCreateNestedManyWithoutStudentInput = {
     create?: XOR<SavedInternshipCreateWithoutStudentInput, SavedInternshipUncheckedCreateWithoutStudentInput> | SavedInternshipCreateWithoutStudentInput[] | SavedInternshipUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: SavedInternshipCreateOrConnectWithoutStudentInput | SavedInternshipCreateOrConnectWithoutStudentInput[]
     createMany?: SavedInternshipCreateManyStudentInputEnvelope
     connect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
-  }
-
-  export type StudentSkillCreateNestedManyWithoutStudentInput = {
-    create?: XOR<StudentSkillCreateWithoutStudentInput, StudentSkillUncheckedCreateWithoutStudentInput> | StudentSkillCreateWithoutStudentInput[] | StudentSkillUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: StudentSkillCreateOrConnectWithoutStudentInput | StudentSkillCreateOrConnectWithoutStudentInput[]
-    createMany?: StudentSkillCreateManyStudentInputEnvelope
-    connect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
   }
 
   export type StudentInternshipUncheckedCreateNestedManyWithoutStudentInput = {
@@ -15380,13 +15528,6 @@ export namespace Prisma {
     connectOrCreate?: StudentInternshipCreateOrConnectWithoutStudentInput | StudentInternshipCreateOrConnectWithoutStudentInput[]
     createMany?: StudentInternshipCreateManyStudentInputEnvelope
     connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-  }
-
-  export type SavedInternshipUncheckedCreateNestedManyWithoutStudentInput = {
-    create?: XOR<SavedInternshipCreateWithoutStudentInput, SavedInternshipUncheckedCreateWithoutStudentInput> | SavedInternshipCreateWithoutStudentInput[] | SavedInternshipUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: SavedInternshipCreateOrConnectWithoutStudentInput | SavedInternshipCreateOrConnectWithoutStudentInput[]
-    createMany?: SavedInternshipCreateManyStudentInputEnvelope
-    connect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
   }
 
   export type StudentSkillUncheckedCreateNestedManyWithoutStudentInput = {
@@ -15412,6 +15553,48 @@ export namespace Prisma {
     divide?: Decimal | DecimalJsLike | number | string
   }
 
+  export type SavedInternshipUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<SavedInternshipCreateWithoutStudentInput, SavedInternshipUncheckedCreateWithoutStudentInput> | SavedInternshipCreateWithoutStudentInput[] | SavedInternshipUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: SavedInternshipCreateOrConnectWithoutStudentInput | SavedInternshipCreateOrConnectWithoutStudentInput[]
+    upsert?: SavedInternshipUpsertWithWhereUniqueWithoutStudentInput | SavedInternshipUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: SavedInternshipCreateManyStudentInputEnvelope
+    set?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
+    disconnect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
+    delete?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
+    connect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
+    update?: SavedInternshipUpdateWithWhereUniqueWithoutStudentInput | SavedInternshipUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: SavedInternshipUpdateManyWithWhereWithoutStudentInput | SavedInternshipUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: SavedInternshipScalarWhereInput | SavedInternshipScalarWhereInput[]
+  }
+
+  export type StudentInternshipUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<StudentInternshipCreateWithoutStudentInput, StudentInternshipUncheckedCreateWithoutStudentInput> | StudentInternshipCreateWithoutStudentInput[] | StudentInternshipUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentInternshipCreateOrConnectWithoutStudentInput | StudentInternshipCreateOrConnectWithoutStudentInput[]
+    upsert?: StudentInternshipUpsertWithWhereUniqueWithoutStudentInput | StudentInternshipUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: StudentInternshipCreateManyStudentInputEnvelope
+    set?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    disconnect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    delete?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    update?: StudentInternshipUpdateWithWhereUniqueWithoutStudentInput | StudentInternshipUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: StudentInternshipUpdateManyWithWhereWithoutStudentInput | StudentInternshipUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
+  }
+
+  export type StudentSkillUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<StudentSkillCreateWithoutStudentInput, StudentSkillUncheckedCreateWithoutStudentInput> | StudentSkillCreateWithoutStudentInput[] | StudentSkillUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentSkillCreateOrConnectWithoutStudentInput | StudentSkillCreateOrConnectWithoutStudentInput[]
+    upsert?: StudentSkillUpsertWithWhereUniqueWithoutStudentInput | StudentSkillUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: StudentSkillCreateManyStudentInputEnvelope
+    set?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
+    disconnect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
+    delete?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
+    connect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
+    update?: StudentSkillUpdateWithWhereUniqueWithoutStudentInput | StudentSkillUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: StudentSkillUpdateManyWithWhereWithoutStudentInput | StudentSkillUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
+  }
+
   export type MentorUpdateOneWithoutStudentsNestedInput = {
     create?: XOR<MentorCreateWithoutStudentsInput, MentorUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: MentorCreateOrConnectWithoutStudentsInput
@@ -15430,21 +15613,7 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStudentInput, UserUpdateWithoutStudentInput>, UserUncheckedUpdateWithoutStudentInput>
   }
 
-  export type StudentInternshipUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<StudentInternshipCreateWithoutStudentInput, StudentInternshipUncheckedCreateWithoutStudentInput> | StudentInternshipCreateWithoutStudentInput[] | StudentInternshipUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: StudentInternshipCreateOrConnectWithoutStudentInput | StudentInternshipCreateOrConnectWithoutStudentInput[]
-    upsert?: StudentInternshipUpsertWithWhereUniqueWithoutStudentInput | StudentInternshipUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: StudentInternshipCreateManyStudentInputEnvelope
-    set?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    disconnect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    delete?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    update?: StudentInternshipUpdateWithWhereUniqueWithoutStudentInput | StudentInternshipUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: StudentInternshipUpdateManyWithWhereWithoutStudentInput | StudentInternshipUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
-  }
-
-  export type SavedInternshipUpdateManyWithoutStudentNestedInput = {
+  export type SavedInternshipUncheckedUpdateManyWithoutStudentNestedInput = {
     create?: XOR<SavedInternshipCreateWithoutStudentInput, SavedInternshipUncheckedCreateWithoutStudentInput> | SavedInternshipCreateWithoutStudentInput[] | SavedInternshipUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: SavedInternshipCreateOrConnectWithoutStudentInput | SavedInternshipCreateOrConnectWithoutStudentInput[]
     upsert?: SavedInternshipUpsertWithWhereUniqueWithoutStudentInput | SavedInternshipUpsertWithWhereUniqueWithoutStudentInput[]
@@ -15456,20 +15625,6 @@ export namespace Prisma {
     update?: SavedInternshipUpdateWithWhereUniqueWithoutStudentInput | SavedInternshipUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: SavedInternshipUpdateManyWithWhereWithoutStudentInput | SavedInternshipUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: SavedInternshipScalarWhereInput | SavedInternshipScalarWhereInput[]
-  }
-
-  export type StudentSkillUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<StudentSkillCreateWithoutStudentInput, StudentSkillUncheckedCreateWithoutStudentInput> | StudentSkillCreateWithoutStudentInput[] | StudentSkillUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: StudentSkillCreateOrConnectWithoutStudentInput | StudentSkillCreateOrConnectWithoutStudentInput[]
-    upsert?: StudentSkillUpsertWithWhereUniqueWithoutStudentInput | StudentSkillUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: StudentSkillCreateManyStudentInputEnvelope
-    set?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
-    disconnect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
-    delete?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
-    connect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
-    update?: StudentSkillUpdateWithWhereUniqueWithoutStudentInput | StudentSkillUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: StudentSkillUpdateManyWithWhereWithoutStudentInput | StudentSkillUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
   }
 
   export type StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -15484,20 +15639,6 @@ export namespace Prisma {
     update?: StudentInternshipUpdateWithWhereUniqueWithoutStudentInput | StudentInternshipUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: StudentInternshipUpdateManyWithWhereWithoutStudentInput | StudentInternshipUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
-  }
-
-  export type SavedInternshipUncheckedUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<SavedInternshipCreateWithoutStudentInput, SavedInternshipUncheckedCreateWithoutStudentInput> | SavedInternshipCreateWithoutStudentInput[] | SavedInternshipUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: SavedInternshipCreateOrConnectWithoutStudentInput | SavedInternshipCreateOrConnectWithoutStudentInput[]
-    upsert?: SavedInternshipUpsertWithWhereUniqueWithoutStudentInput | SavedInternshipUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: SavedInternshipCreateManyStudentInputEnvelope
-    set?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
-    disconnect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
-    delete?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
-    connect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
-    update?: SavedInternshipUpdateWithWhereUniqueWithoutStudentInput | SavedInternshipUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: SavedInternshipUpdateManyWithWhereWithoutStudentInput | SavedInternshipUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: SavedInternshipScalarWhereInput | SavedInternshipScalarWhereInput[]
   }
 
   export type StudentSkillUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -15570,12 +15711,6 @@ export namespace Prisma {
     deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutPlacementOfficerInput = {
-    create?: XOR<UserCreateWithoutPlacementOfficerInput, UserUncheckedCreateWithoutPlacementOfficerInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPlacementOfficerInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type InternshipCreateNestedManyWithoutPostedByInput = {
     create?: XOR<InternshipCreateWithoutPostedByInput, InternshipUncheckedCreateWithoutPostedByInput> | InternshipCreateWithoutPostedByInput[] | InternshipUncheckedCreateWithoutPostedByInput[]
     connectOrCreate?: InternshipCreateOrConnectWithoutPostedByInput | InternshipCreateOrConnectWithoutPostedByInput[]
@@ -15583,19 +15718,17 @@ export namespace Prisma {
     connect?: InternshipWhereUniqueInput | InternshipWhereUniqueInput[]
   }
 
+  export type UserCreateNestedOneWithoutPlacementOfficerInput = {
+    create?: XOR<UserCreateWithoutPlacementOfficerInput, UserUncheckedCreateWithoutPlacementOfficerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPlacementOfficerInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type InternshipUncheckedCreateNestedManyWithoutPostedByInput = {
     create?: XOR<InternshipCreateWithoutPostedByInput, InternshipUncheckedCreateWithoutPostedByInput> | InternshipCreateWithoutPostedByInput[] | InternshipUncheckedCreateWithoutPostedByInput[]
     connectOrCreate?: InternshipCreateOrConnectWithoutPostedByInput | InternshipCreateOrConnectWithoutPostedByInput[]
     createMany?: InternshipCreateManyPostedByInputEnvelope
     connect?: InternshipWhereUniqueInput | InternshipWhereUniqueInput[]
-  }
-
-  export type UserUpdateOneRequiredWithoutPlacementOfficerNestedInput = {
-    create?: XOR<UserCreateWithoutPlacementOfficerInput, UserUncheckedCreateWithoutPlacementOfficerInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPlacementOfficerInput
-    upsert?: UserUpsertWithoutPlacementOfficerInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPlacementOfficerInput, UserUpdateWithoutPlacementOfficerInput>, UserUncheckedUpdateWithoutPlacementOfficerInput>
   }
 
   export type InternshipUpdateManyWithoutPostedByNestedInput = {
@@ -15612,6 +15745,14 @@ export namespace Prisma {
     deleteMany?: InternshipScalarWhereInput | InternshipScalarWhereInput[]
   }
 
+  export type UserUpdateOneRequiredWithoutPlacementOfficerNestedInput = {
+    create?: XOR<UserCreateWithoutPlacementOfficerInput, UserUncheckedCreateWithoutPlacementOfficerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPlacementOfficerInput
+    upsert?: UserUpsertWithoutPlacementOfficerInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPlacementOfficerInput, UserUpdateWithoutPlacementOfficerInput>, UserUncheckedUpdateWithoutPlacementOfficerInput>
+  }
+
   export type InternshipUncheckedUpdateManyWithoutPostedByNestedInput = {
     create?: XOR<InternshipCreateWithoutPostedByInput, InternshipUncheckedCreateWithoutPostedByInput> | InternshipCreateWithoutPostedByInput[] | InternshipUncheckedCreateWithoutPostedByInput[]
     connectOrCreate?: InternshipCreateOrConnectWithoutPostedByInput | InternshipCreateOrConnectWithoutPostedByInput[]
@@ -15626,17 +15767,17 @@ export namespace Prisma {
     deleteMany?: InternshipScalarWhereInput | InternshipScalarWhereInput[]
   }
 
+  export type InternshipSkillCreateNestedManyWithoutInternshipInput = {
+    create?: XOR<InternshipSkillCreateWithoutInternshipInput, InternshipSkillUncheckedCreateWithoutInternshipInput> | InternshipSkillCreateWithoutInternshipInput[] | InternshipSkillUncheckedCreateWithoutInternshipInput[]
+    connectOrCreate?: InternshipSkillCreateOrConnectWithoutInternshipInput | InternshipSkillCreateOrConnectWithoutInternshipInput[]
+    createMany?: InternshipSkillCreateManyInternshipInputEnvelope
+    connect?: InternshipSkillWhereUniqueInput | InternshipSkillWhereUniqueInput[]
+  }
+
   export type PlacementOfficerCreateNestedOneWithoutInternshipsInput = {
     create?: XOR<PlacementOfficerCreateWithoutInternshipsInput, PlacementOfficerUncheckedCreateWithoutInternshipsInput>
     connectOrCreate?: PlacementOfficerCreateOrConnectWithoutInternshipsInput
     connect?: PlacementOfficerWhereUniqueInput
-  }
-
-  export type StudentInternshipCreateNestedManyWithoutInternshipInput = {
-    create?: XOR<StudentInternshipCreateWithoutInternshipInput, StudentInternshipUncheckedCreateWithoutInternshipInput> | StudentInternshipCreateWithoutInternshipInput[] | StudentInternshipUncheckedCreateWithoutInternshipInput[]
-    connectOrCreate?: StudentInternshipCreateOrConnectWithoutInternshipInput | StudentInternshipCreateOrConnectWithoutInternshipInput[]
-    createMany?: StudentInternshipCreateManyInternshipInputEnvelope
-    connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
   }
 
   export type SavedInternshipCreateNestedManyWithoutInternshipInput = {
@@ -15646,25 +15787,11 @@ export namespace Prisma {
     connect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
   }
 
-  export type InternshipSkillCreateNestedManyWithoutInternshipInput = {
-    create?: XOR<InternshipSkillCreateWithoutInternshipInput, InternshipSkillUncheckedCreateWithoutInternshipInput> | InternshipSkillCreateWithoutInternshipInput[] | InternshipSkillUncheckedCreateWithoutInternshipInput[]
-    connectOrCreate?: InternshipSkillCreateOrConnectWithoutInternshipInput | InternshipSkillCreateOrConnectWithoutInternshipInput[]
-    createMany?: InternshipSkillCreateManyInternshipInputEnvelope
-    connect?: InternshipSkillWhereUniqueInput | InternshipSkillWhereUniqueInput[]
-  }
-
-  export type StudentInternshipUncheckedCreateNestedManyWithoutInternshipInput = {
+  export type StudentInternshipCreateNestedManyWithoutInternshipInput = {
     create?: XOR<StudentInternshipCreateWithoutInternshipInput, StudentInternshipUncheckedCreateWithoutInternshipInput> | StudentInternshipCreateWithoutInternshipInput[] | StudentInternshipUncheckedCreateWithoutInternshipInput[]
     connectOrCreate?: StudentInternshipCreateOrConnectWithoutInternshipInput | StudentInternshipCreateOrConnectWithoutInternshipInput[]
     createMany?: StudentInternshipCreateManyInternshipInputEnvelope
     connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-  }
-
-  export type SavedInternshipUncheckedCreateNestedManyWithoutInternshipInput = {
-    create?: XOR<SavedInternshipCreateWithoutInternshipInput, SavedInternshipUncheckedCreateWithoutInternshipInput> | SavedInternshipCreateWithoutInternshipInput[] | SavedInternshipUncheckedCreateWithoutInternshipInput[]
-    connectOrCreate?: SavedInternshipCreateOrConnectWithoutInternshipInput | SavedInternshipCreateOrConnectWithoutInternshipInput[]
-    createMany?: SavedInternshipCreateManyInternshipInputEnvelope
-    connect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
   }
 
   export type InternshipSkillUncheckedCreateNestedManyWithoutInternshipInput = {
@@ -15674,48 +15801,30 @@ export namespace Prisma {
     connect?: InternshipSkillWhereUniqueInput | InternshipSkillWhereUniqueInput[]
   }
 
+  export type SavedInternshipUncheckedCreateNestedManyWithoutInternshipInput = {
+    create?: XOR<SavedInternshipCreateWithoutInternshipInput, SavedInternshipUncheckedCreateWithoutInternshipInput> | SavedInternshipCreateWithoutInternshipInput[] | SavedInternshipUncheckedCreateWithoutInternshipInput[]
+    connectOrCreate?: SavedInternshipCreateOrConnectWithoutInternshipInput | SavedInternshipCreateOrConnectWithoutInternshipInput[]
+    createMany?: SavedInternshipCreateManyInternshipInputEnvelope
+    connect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
+  }
+
+  export type StudentInternshipUncheckedCreateNestedManyWithoutInternshipInput = {
+    create?: XOR<StudentInternshipCreateWithoutInternshipInput, StudentInternshipUncheckedCreateWithoutInternshipInput> | StudentInternshipCreateWithoutInternshipInput[] | StudentInternshipUncheckedCreateWithoutInternshipInput[]
+    connectOrCreate?: StudentInternshipCreateOrConnectWithoutInternshipInput | StudentInternshipCreateOrConnectWithoutInternshipInput[]
+    createMany?: StudentInternshipCreateManyInternshipInputEnvelope
+    connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+  }
+
   export type EnumModeFieldUpdateOperationsInput = {
     set?: $Enums.Mode
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type EnumInternshipStatusFieldUpdateOperationsInput = {
     set?: $Enums.InternshipStatus
-  }
-
-  export type PlacementOfficerUpdateOneRequiredWithoutInternshipsNestedInput = {
-    create?: XOR<PlacementOfficerCreateWithoutInternshipsInput, PlacementOfficerUncheckedCreateWithoutInternshipsInput>
-    connectOrCreate?: PlacementOfficerCreateOrConnectWithoutInternshipsInput
-    upsert?: PlacementOfficerUpsertWithoutInternshipsInput
-    connect?: PlacementOfficerWhereUniqueInput
-    update?: XOR<XOR<PlacementOfficerUpdateToOneWithWhereWithoutInternshipsInput, PlacementOfficerUpdateWithoutInternshipsInput>, PlacementOfficerUncheckedUpdateWithoutInternshipsInput>
-  }
-
-  export type StudentInternshipUpdateManyWithoutInternshipNestedInput = {
-    create?: XOR<StudentInternshipCreateWithoutInternshipInput, StudentInternshipUncheckedCreateWithoutInternshipInput> | StudentInternshipCreateWithoutInternshipInput[] | StudentInternshipUncheckedCreateWithoutInternshipInput[]
-    connectOrCreate?: StudentInternshipCreateOrConnectWithoutInternshipInput | StudentInternshipCreateOrConnectWithoutInternshipInput[]
-    upsert?: StudentInternshipUpsertWithWhereUniqueWithoutInternshipInput | StudentInternshipUpsertWithWhereUniqueWithoutInternshipInput[]
-    createMany?: StudentInternshipCreateManyInternshipInputEnvelope
-    set?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    disconnect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    delete?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    update?: StudentInternshipUpdateWithWhereUniqueWithoutInternshipInput | StudentInternshipUpdateWithWhereUniqueWithoutInternshipInput[]
-    updateMany?: StudentInternshipUpdateManyWithWhereWithoutInternshipInput | StudentInternshipUpdateManyWithWhereWithoutInternshipInput[]
-    deleteMany?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
-  }
-
-  export type SavedInternshipUpdateManyWithoutInternshipNestedInput = {
-    create?: XOR<SavedInternshipCreateWithoutInternshipInput, SavedInternshipUncheckedCreateWithoutInternshipInput> | SavedInternshipCreateWithoutInternshipInput[] | SavedInternshipUncheckedCreateWithoutInternshipInput[]
-    connectOrCreate?: SavedInternshipCreateOrConnectWithoutInternshipInput | SavedInternshipCreateOrConnectWithoutInternshipInput[]
-    upsert?: SavedInternshipUpsertWithWhereUniqueWithoutInternshipInput | SavedInternshipUpsertWithWhereUniqueWithoutInternshipInput[]
-    createMany?: SavedInternshipCreateManyInternshipInputEnvelope
-    set?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
-    disconnect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
-    delete?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
-    connect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
-    update?: SavedInternshipUpdateWithWhereUniqueWithoutInternshipInput | SavedInternshipUpdateWithWhereUniqueWithoutInternshipInput[]
-    updateMany?: SavedInternshipUpdateManyWithWhereWithoutInternshipInput | SavedInternshipUpdateManyWithWhereWithoutInternshipInput[]
-    deleteMany?: SavedInternshipScalarWhereInput | SavedInternshipScalarWhereInput[]
   }
 
   export type InternshipSkillUpdateManyWithoutInternshipNestedInput = {
@@ -15732,21 +15841,15 @@ export namespace Prisma {
     deleteMany?: InternshipSkillScalarWhereInput | InternshipSkillScalarWhereInput[]
   }
 
-  export type StudentInternshipUncheckedUpdateManyWithoutInternshipNestedInput = {
-    create?: XOR<StudentInternshipCreateWithoutInternshipInput, StudentInternshipUncheckedCreateWithoutInternshipInput> | StudentInternshipCreateWithoutInternshipInput[] | StudentInternshipUncheckedCreateWithoutInternshipInput[]
-    connectOrCreate?: StudentInternshipCreateOrConnectWithoutInternshipInput | StudentInternshipCreateOrConnectWithoutInternshipInput[]
-    upsert?: StudentInternshipUpsertWithWhereUniqueWithoutInternshipInput | StudentInternshipUpsertWithWhereUniqueWithoutInternshipInput[]
-    createMany?: StudentInternshipCreateManyInternshipInputEnvelope
-    set?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    disconnect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    delete?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
-    update?: StudentInternshipUpdateWithWhereUniqueWithoutInternshipInput | StudentInternshipUpdateWithWhereUniqueWithoutInternshipInput[]
-    updateMany?: StudentInternshipUpdateManyWithWhereWithoutInternshipInput | StudentInternshipUpdateManyWithWhereWithoutInternshipInput[]
-    deleteMany?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
+  export type PlacementOfficerUpdateOneRequiredWithoutInternshipsNestedInput = {
+    create?: XOR<PlacementOfficerCreateWithoutInternshipsInput, PlacementOfficerUncheckedCreateWithoutInternshipsInput>
+    connectOrCreate?: PlacementOfficerCreateOrConnectWithoutInternshipsInput
+    upsert?: PlacementOfficerUpsertWithoutInternshipsInput
+    connect?: PlacementOfficerWhereUniqueInput
+    update?: XOR<XOR<PlacementOfficerUpdateToOneWithWhereWithoutInternshipsInput, PlacementOfficerUpdateWithoutInternshipsInput>, PlacementOfficerUncheckedUpdateWithoutInternshipsInput>
   }
 
-  export type SavedInternshipUncheckedUpdateManyWithoutInternshipNestedInput = {
+  export type SavedInternshipUpdateManyWithoutInternshipNestedInput = {
     create?: XOR<SavedInternshipCreateWithoutInternshipInput, SavedInternshipUncheckedCreateWithoutInternshipInput> | SavedInternshipCreateWithoutInternshipInput[] | SavedInternshipUncheckedCreateWithoutInternshipInput[]
     connectOrCreate?: SavedInternshipCreateOrConnectWithoutInternshipInput | SavedInternshipCreateOrConnectWithoutInternshipInput[]
     upsert?: SavedInternshipUpsertWithWhereUniqueWithoutInternshipInput | SavedInternshipUpsertWithWhereUniqueWithoutInternshipInput[]
@@ -15758,6 +15861,20 @@ export namespace Prisma {
     update?: SavedInternshipUpdateWithWhereUniqueWithoutInternshipInput | SavedInternshipUpdateWithWhereUniqueWithoutInternshipInput[]
     updateMany?: SavedInternshipUpdateManyWithWhereWithoutInternshipInput | SavedInternshipUpdateManyWithWhereWithoutInternshipInput[]
     deleteMany?: SavedInternshipScalarWhereInput | SavedInternshipScalarWhereInput[]
+  }
+
+  export type StudentInternshipUpdateManyWithoutInternshipNestedInput = {
+    create?: XOR<StudentInternshipCreateWithoutInternshipInput, StudentInternshipUncheckedCreateWithoutInternshipInput> | StudentInternshipCreateWithoutInternshipInput[] | StudentInternshipUncheckedCreateWithoutInternshipInput[]
+    connectOrCreate?: StudentInternshipCreateOrConnectWithoutInternshipInput | StudentInternshipCreateOrConnectWithoutInternshipInput[]
+    upsert?: StudentInternshipUpsertWithWhereUniqueWithoutInternshipInput | StudentInternshipUpsertWithWhereUniqueWithoutInternshipInput[]
+    createMany?: StudentInternshipCreateManyInternshipInputEnvelope
+    set?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    disconnect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    delete?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    update?: StudentInternshipUpdateWithWhereUniqueWithoutInternshipInput | StudentInternshipUpdateWithWhereUniqueWithoutInternshipInput[]
+    updateMany?: StudentInternshipUpdateManyWithWhereWithoutInternshipInput | StudentInternshipUpdateManyWithWhereWithoutInternshipInput[]
+    deleteMany?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
   }
 
   export type InternshipSkillUncheckedUpdateManyWithoutInternshipNestedInput = {
@@ -15774,10 +15891,32 @@ export namespace Prisma {
     deleteMany?: InternshipSkillScalarWhereInput | InternshipSkillScalarWhereInput[]
   }
 
-  export type StudentCreateNestedOneWithoutInternshipsInput = {
-    create?: XOR<StudentCreateWithoutInternshipsInput, StudentUncheckedCreateWithoutInternshipsInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutInternshipsInput
-    connect?: StudentWhereUniqueInput
+  export type SavedInternshipUncheckedUpdateManyWithoutInternshipNestedInput = {
+    create?: XOR<SavedInternshipCreateWithoutInternshipInput, SavedInternshipUncheckedCreateWithoutInternshipInput> | SavedInternshipCreateWithoutInternshipInput[] | SavedInternshipUncheckedCreateWithoutInternshipInput[]
+    connectOrCreate?: SavedInternshipCreateOrConnectWithoutInternshipInput | SavedInternshipCreateOrConnectWithoutInternshipInput[]
+    upsert?: SavedInternshipUpsertWithWhereUniqueWithoutInternshipInput | SavedInternshipUpsertWithWhereUniqueWithoutInternshipInput[]
+    createMany?: SavedInternshipCreateManyInternshipInputEnvelope
+    set?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
+    disconnect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
+    delete?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
+    connect?: SavedInternshipWhereUniqueInput | SavedInternshipWhereUniqueInput[]
+    update?: SavedInternshipUpdateWithWhereUniqueWithoutInternshipInput | SavedInternshipUpdateWithWhereUniqueWithoutInternshipInput[]
+    updateMany?: SavedInternshipUpdateManyWithWhereWithoutInternshipInput | SavedInternshipUpdateManyWithWhereWithoutInternshipInput[]
+    deleteMany?: SavedInternshipScalarWhereInput | SavedInternshipScalarWhereInput[]
+  }
+
+  export type StudentInternshipUncheckedUpdateManyWithoutInternshipNestedInput = {
+    create?: XOR<StudentInternshipCreateWithoutInternshipInput, StudentInternshipUncheckedCreateWithoutInternshipInput> | StudentInternshipCreateWithoutInternshipInput[] | StudentInternshipUncheckedCreateWithoutInternshipInput[]
+    connectOrCreate?: StudentInternshipCreateOrConnectWithoutInternshipInput | StudentInternshipCreateOrConnectWithoutInternshipInput[]
+    upsert?: StudentInternshipUpsertWithWhereUniqueWithoutInternshipInput | StudentInternshipUpsertWithWhereUniqueWithoutInternshipInput[]
+    createMany?: StudentInternshipCreateManyInternshipInputEnvelope
+    set?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    disconnect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    delete?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    connect?: StudentInternshipWhereUniqueInput | StudentInternshipWhereUniqueInput[]
+    update?: StudentInternshipUpdateWithWhereUniqueWithoutInternshipInput | StudentInternshipUpdateWithWhereUniqueWithoutInternshipInput[]
+    updateMany?: StudentInternshipUpdateManyWithWhereWithoutInternshipInput | StudentInternshipUpdateManyWithWhereWithoutInternshipInput[]
+    deleteMany?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
   }
 
   export type InternshipCreateNestedOneWithoutApplicantsInput = {
@@ -15786,16 +15925,14 @@ export namespace Prisma {
     connect?: InternshipWhereUniqueInput
   }
 
-  export type EnumStudentInternshipStatusFieldUpdateOperationsInput = {
-    set?: $Enums.StudentInternshipStatus
-  }
-
-  export type StudentUpdateOneRequiredWithoutInternshipsNestedInput = {
+  export type StudentCreateNestedOneWithoutInternshipsInput = {
     create?: XOR<StudentCreateWithoutInternshipsInput, StudentUncheckedCreateWithoutInternshipsInput>
     connectOrCreate?: StudentCreateOrConnectWithoutInternshipsInput
-    upsert?: StudentUpsertWithoutInternshipsInput
     connect?: StudentWhereUniqueInput
-    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutInternshipsInput, StudentUpdateWithoutInternshipsInput>, StudentUncheckedUpdateWithoutInternshipsInput>
+  }
+
+  export type EnumStudentInternshipStatusFieldUpdateOperationsInput = {
+    set?: $Enums.StudentInternshipStatus
   }
 
   export type InternshipUpdateOneRequiredWithoutApplicantsNestedInput = {
@@ -15806,10 +15943,12 @@ export namespace Prisma {
     update?: XOR<XOR<InternshipUpdateToOneWithWhereWithoutApplicantsInput, InternshipUpdateWithoutApplicantsInput>, InternshipUncheckedUpdateWithoutApplicantsInput>
   }
 
-  export type StudentCreateNestedOneWithoutSavedInternshipsInput = {
-    create?: XOR<StudentCreateWithoutSavedInternshipsInput, StudentUncheckedCreateWithoutSavedInternshipsInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutSavedInternshipsInput
+  export type StudentUpdateOneRequiredWithoutInternshipsNestedInput = {
+    create?: XOR<StudentCreateWithoutInternshipsInput, StudentUncheckedCreateWithoutInternshipsInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutInternshipsInput
+    upsert?: StudentUpsertWithoutInternshipsInput
     connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutInternshipsInput, StudentUpdateWithoutInternshipsInput>, StudentUncheckedUpdateWithoutInternshipsInput>
   }
 
   export type InternshipCreateNestedOneWithoutSavedByInput = {
@@ -15818,12 +15957,10 @@ export namespace Prisma {
     connect?: InternshipWhereUniqueInput
   }
 
-  export type StudentUpdateOneRequiredWithoutSavedInternshipsNestedInput = {
+  export type StudentCreateNestedOneWithoutSavedInternshipsInput = {
     create?: XOR<StudentCreateWithoutSavedInternshipsInput, StudentUncheckedCreateWithoutSavedInternshipsInput>
     connectOrCreate?: StudentCreateOrConnectWithoutSavedInternshipsInput
-    upsert?: StudentUpsertWithoutSavedInternshipsInput
     connect?: StudentWhereUniqueInput
-    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutSavedInternshipsInput, StudentUpdateWithoutSavedInternshipsInput>, StudentUncheckedUpdateWithoutSavedInternshipsInput>
   }
 
   export type InternshipUpdateOneRequiredWithoutSavedByNestedInput = {
@@ -15834,11 +15971,12 @@ export namespace Prisma {
     update?: XOR<XOR<InternshipUpdateToOneWithWhereWithoutSavedByInput, InternshipUpdateWithoutSavedByInput>, InternshipUncheckedUpdateWithoutSavedByInput>
   }
 
-  export type StudentSkillCreateNestedManyWithoutSkillInput = {
-    create?: XOR<StudentSkillCreateWithoutSkillInput, StudentSkillUncheckedCreateWithoutSkillInput> | StudentSkillCreateWithoutSkillInput[] | StudentSkillUncheckedCreateWithoutSkillInput[]
-    connectOrCreate?: StudentSkillCreateOrConnectWithoutSkillInput | StudentSkillCreateOrConnectWithoutSkillInput[]
-    createMany?: StudentSkillCreateManySkillInputEnvelope
-    connect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
+  export type StudentUpdateOneRequiredWithoutSavedInternshipsNestedInput = {
+    create?: XOR<StudentCreateWithoutSavedInternshipsInput, StudentUncheckedCreateWithoutSavedInternshipsInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutSavedInternshipsInput
+    upsert?: StudentUpsertWithoutSavedInternshipsInput
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutSavedInternshipsInput, StudentUpdateWithoutSavedInternshipsInput>, StudentUncheckedUpdateWithoutSavedInternshipsInput>
   }
 
   export type InternshipSkillCreateNestedManyWithoutSkillInput = {
@@ -15848,7 +15986,7 @@ export namespace Prisma {
     connect?: InternshipSkillWhereUniqueInput | InternshipSkillWhereUniqueInput[]
   }
 
-  export type StudentSkillUncheckedCreateNestedManyWithoutSkillInput = {
+  export type StudentSkillCreateNestedManyWithoutSkillInput = {
     create?: XOR<StudentSkillCreateWithoutSkillInput, StudentSkillUncheckedCreateWithoutSkillInput> | StudentSkillCreateWithoutSkillInput[] | StudentSkillUncheckedCreateWithoutSkillInput[]
     connectOrCreate?: StudentSkillCreateOrConnectWithoutSkillInput | StudentSkillCreateOrConnectWithoutSkillInput[]
     createMany?: StudentSkillCreateManySkillInputEnvelope
@@ -15862,18 +16000,11 @@ export namespace Prisma {
     connect?: InternshipSkillWhereUniqueInput | InternshipSkillWhereUniqueInput[]
   }
 
-  export type StudentSkillUpdateManyWithoutSkillNestedInput = {
+  export type StudentSkillUncheckedCreateNestedManyWithoutSkillInput = {
     create?: XOR<StudentSkillCreateWithoutSkillInput, StudentSkillUncheckedCreateWithoutSkillInput> | StudentSkillCreateWithoutSkillInput[] | StudentSkillUncheckedCreateWithoutSkillInput[]
     connectOrCreate?: StudentSkillCreateOrConnectWithoutSkillInput | StudentSkillCreateOrConnectWithoutSkillInput[]
-    upsert?: StudentSkillUpsertWithWhereUniqueWithoutSkillInput | StudentSkillUpsertWithWhereUniqueWithoutSkillInput[]
     createMany?: StudentSkillCreateManySkillInputEnvelope
-    set?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
-    disconnect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
-    delete?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
     connect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
-    update?: StudentSkillUpdateWithWhereUniqueWithoutSkillInput | StudentSkillUpdateWithWhereUniqueWithoutSkillInput[]
-    updateMany?: StudentSkillUpdateManyWithWhereWithoutSkillInput | StudentSkillUpdateManyWithWhereWithoutSkillInput[]
-    deleteMany?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
   }
 
   export type InternshipSkillUpdateManyWithoutSkillNestedInput = {
@@ -15890,15 +16021,7 @@ export namespace Prisma {
     deleteMany?: InternshipSkillScalarWhereInput | InternshipSkillScalarWhereInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type StudentSkillUncheckedUpdateManyWithoutSkillNestedInput = {
+  export type StudentSkillUpdateManyWithoutSkillNestedInput = {
     create?: XOR<StudentSkillCreateWithoutSkillInput, StudentSkillUncheckedCreateWithoutSkillInput> | StudentSkillCreateWithoutSkillInput[] | StudentSkillUncheckedCreateWithoutSkillInput[]
     connectOrCreate?: StudentSkillCreateOrConnectWithoutSkillInput | StudentSkillCreateOrConnectWithoutSkillInput[]
     upsert?: StudentSkillUpsertWithWhereUniqueWithoutSkillInput | StudentSkillUpsertWithWhereUniqueWithoutSkillInput[]
@@ -15910,6 +16033,14 @@ export namespace Prisma {
     update?: StudentSkillUpdateWithWhereUniqueWithoutSkillInput | StudentSkillUpdateWithWhereUniqueWithoutSkillInput[]
     updateMany?: StudentSkillUpdateManyWithWhereWithoutSkillInput | StudentSkillUpdateManyWithWhereWithoutSkillInput[]
     deleteMany?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type InternshipSkillUncheckedUpdateManyWithoutSkillNestedInput = {
@@ -15926,10 +16057,18 @@ export namespace Prisma {
     deleteMany?: InternshipSkillScalarWhereInput | InternshipSkillScalarWhereInput[]
   }
 
-  export type StudentCreateNestedOneWithoutSkillsInput = {
-    create?: XOR<StudentCreateWithoutSkillsInput, StudentUncheckedCreateWithoutSkillsInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutSkillsInput
-    connect?: StudentWhereUniqueInput
+  export type StudentSkillUncheckedUpdateManyWithoutSkillNestedInput = {
+    create?: XOR<StudentSkillCreateWithoutSkillInput, StudentSkillUncheckedCreateWithoutSkillInput> | StudentSkillCreateWithoutSkillInput[] | StudentSkillUncheckedCreateWithoutSkillInput[]
+    connectOrCreate?: StudentSkillCreateOrConnectWithoutSkillInput | StudentSkillCreateOrConnectWithoutSkillInput[]
+    upsert?: StudentSkillUpsertWithWhereUniqueWithoutSkillInput | StudentSkillUpsertWithWhereUniqueWithoutSkillInput[]
+    createMany?: StudentSkillCreateManySkillInputEnvelope
+    set?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
+    disconnect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
+    delete?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
+    connect?: StudentSkillWhereUniqueInput | StudentSkillWhereUniqueInput[]
+    update?: StudentSkillUpdateWithWhereUniqueWithoutSkillInput | StudentSkillUpdateWithWhereUniqueWithoutSkillInput[]
+    updateMany?: StudentSkillUpdateManyWithWhereWithoutSkillInput | StudentSkillUpdateManyWithWhereWithoutSkillInput[]
+    deleteMany?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
   }
 
   export type SkillCreateNestedOneWithoutStudentsInput = {
@@ -15938,12 +16077,10 @@ export namespace Prisma {
     connect?: SkillWhereUniqueInput
   }
 
-  export type StudentUpdateOneRequiredWithoutSkillsNestedInput = {
+  export type StudentCreateNestedOneWithoutSkillsInput = {
     create?: XOR<StudentCreateWithoutSkillsInput, StudentUncheckedCreateWithoutSkillsInput>
     connectOrCreate?: StudentCreateOrConnectWithoutSkillsInput
-    upsert?: StudentUpsertWithoutSkillsInput
     connect?: StudentWhereUniqueInput
-    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutSkillsInput, StudentUpdateWithoutSkillsInput>, StudentUncheckedUpdateWithoutSkillsInput>
   }
 
   export type SkillUpdateOneRequiredWithoutStudentsNestedInput = {
@@ -15952,6 +16089,14 @@ export namespace Prisma {
     upsert?: SkillUpsertWithoutStudentsInput
     connect?: SkillWhereUniqueInput
     update?: XOR<XOR<SkillUpdateToOneWithWhereWithoutStudentsInput, SkillUpdateWithoutStudentsInput>, SkillUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type StudentUpdateOneRequiredWithoutSkillsNestedInput = {
+    create?: XOR<StudentCreateWithoutSkillsInput, StudentUncheckedCreateWithoutSkillsInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutSkillsInput
+    upsert?: StudentUpsertWithoutSkillsInput
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutSkillsInput, StudentUpdateWithoutSkillsInput>, StudentUncheckedUpdateWithoutSkillsInput>
   }
 
   export type InternshipCreateNestedOneWithoutSkillsInput = {
@@ -16182,6 +16327,17 @@ export namespace Prisma {
     not?: NestedEnumModeFilter<$PrismaModel> | $Enums.Mode
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedEnumInternshipStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.InternshipStatus | EnumInternshipStatusFieldRefInput<$PrismaModel>
     in?: $Enums.InternshipStatus[] | ListEnumInternshipStatusFieldRefInput<$PrismaModel>
@@ -16197,6 +16353,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumModeFilter<$PrismaModel>
     _max?: NestedEnumModeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumInternshipStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -16253,35 +16423,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type StudentCreateWithoutUserInput = {
-    semester?: number | null
-    year?: number | null
-    cgpa?: Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: string | null
-    profileCompleted?: boolean
-    mentor?: MentorCreateNestedOneWithoutStudentsInput
-    internships?: StudentInternshipCreateNestedManyWithoutStudentInput
-    savedInternships?: SavedInternshipCreateNestedManyWithoutStudentInput
-    skills?: StudentSkillCreateNestedManyWithoutStudentInput
-  }
-
-  export type StudentUncheckedCreateWithoutUserInput = {
-    semester?: number | null
-    year?: number | null
-    cgpa?: Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: string | null
-    profileCompleted?: boolean
-    mentorId?: string | null
-    internships?: StudentInternshipUncheckedCreateNestedManyWithoutStudentInput
-    savedInternships?: SavedInternshipUncheckedCreateNestedManyWithoutStudentInput
-    skills?: StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  }
-
-  export type StudentCreateOrConnectWithoutUserInput = {
-    where: StudentWhereUniqueInput
-    create: XOR<StudentCreateWithoutUserInput, StudentUncheckedCreateWithoutUserInput>
-  }
-
   export type MentorCreateWithoutUserInput = {
     designation?: string | null
     experienceYears?: number | null
@@ -16312,39 +16453,33 @@ export namespace Prisma {
     create: XOR<PlacementOfficerCreateWithoutUserInput, PlacementOfficerUncheckedCreateWithoutUserInput>
   }
 
-  export type StudentUpsertWithoutUserInput = {
-    update: XOR<StudentUpdateWithoutUserInput, StudentUncheckedUpdateWithoutUserInput>
+  export type StudentCreateWithoutUserInput = {
+    semester?: number | null
+    year?: number | null
+    cgpa?: Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: string | null
+    profileCompleted?: boolean
+    savedInternships?: SavedInternshipCreateNestedManyWithoutStudentInput
+    internships?: StudentInternshipCreateNestedManyWithoutStudentInput
+    skills?: StudentSkillCreateNestedManyWithoutStudentInput
+    mentor?: MentorCreateNestedOneWithoutStudentsInput
+  }
+
+  export type StudentUncheckedCreateWithoutUserInput = {
+    semester?: number | null
+    year?: number | null
+    cgpa?: Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: string | null
+    profileCompleted?: boolean
+    mentorId?: string | null
+    savedInternships?: SavedInternshipUncheckedCreateNestedManyWithoutStudentInput
+    internships?: StudentInternshipUncheckedCreateNestedManyWithoutStudentInput
+    skills?: StudentSkillUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutUserInput = {
+    where: StudentWhereUniqueInput
     create: XOR<StudentCreateWithoutUserInput, StudentUncheckedCreateWithoutUserInput>
-    where?: StudentWhereInput
-  }
-
-  export type StudentUpdateToOneWithWhereWithoutUserInput = {
-    where?: StudentWhereInput
-    data: XOR<StudentUpdateWithoutUserInput, StudentUncheckedUpdateWithoutUserInput>
-  }
-
-  export type StudentUpdateWithoutUserInput = {
-    semester?: NullableIntFieldUpdateOperationsInput | number | null
-    year?: NullableIntFieldUpdateOperationsInput | number | null
-    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
-    mentor?: MentorUpdateOneWithoutStudentsNestedInput
-    internships?: StudentInternshipUpdateManyWithoutStudentNestedInput
-    savedInternships?: SavedInternshipUpdateManyWithoutStudentNestedInput
-    skills?: StudentSkillUpdateManyWithoutStudentNestedInput
-  }
-
-  export type StudentUncheckedUpdateWithoutUserInput = {
-    semester?: NullableIntFieldUpdateOperationsInput | number | null
-    year?: NullableIntFieldUpdateOperationsInput | number | null
-    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
-    mentorId?: NullableStringFieldUpdateOperationsInput | string | null
-    internships?: StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput
-    savedInternships?: SavedInternshipUncheckedUpdateManyWithoutStudentNestedInput
-    skills?: StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type MentorUpsertWithoutUserInput = {
@@ -16389,54 +16524,59 @@ export namespace Prisma {
     internships?: InternshipUncheckedUpdateManyWithoutPostedByNestedInput
   }
 
-  export type MentorCreateWithoutStudentsInput = {
-    designation?: string | null
-    experienceYears?: number | null
-    user: UserCreateNestedOneWithoutMentorInput
+  export type StudentUpsertWithoutUserInput = {
+    update: XOR<StudentUpdateWithoutUserInput, StudentUncheckedUpdateWithoutUserInput>
+    create: XOR<StudentCreateWithoutUserInput, StudentUncheckedCreateWithoutUserInput>
+    where?: StudentWhereInput
   }
 
-  export type MentorUncheckedCreateWithoutStudentsInput = {
-    userId: string
-    designation?: string | null
-    experienceYears?: number | null
+  export type StudentUpdateToOneWithWhereWithoutUserInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutUserInput, StudentUncheckedUpdateWithoutUserInput>
   }
 
-  export type MentorCreateOrConnectWithoutStudentsInput = {
-    where: MentorWhereUniqueInput
-    create: XOR<MentorCreateWithoutStudentsInput, MentorUncheckedCreateWithoutStudentsInput>
+  export type StudentUpdateWithoutUserInput = {
+    semester?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: NullableIntFieldUpdateOperationsInput | number | null
+    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
+    savedInternships?: SavedInternshipUpdateManyWithoutStudentNestedInput
+    internships?: StudentInternshipUpdateManyWithoutStudentNestedInput
+    skills?: StudentSkillUpdateManyWithoutStudentNestedInput
+    mentor?: MentorUpdateOneWithoutStudentsNestedInput
   }
 
-  export type UserCreateWithoutStudentInput = {
-    id?: string
-    name: string
-    email: string
-    phoneNo?: string | null
-    department?: string | null
-    role: $Enums.Role
-    profileUrl?: string | null
-    isActive?: boolean
-    createdAt?: Date | string
-    mentor?: MentorCreateNestedOneWithoutUserInput
-    placementOfficer?: PlacementOfficerCreateNestedOneWithoutUserInput
+  export type StudentUncheckedUpdateWithoutUserInput = {
+    semester?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: NullableIntFieldUpdateOperationsInput | number | null
+    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mentorId?: NullableStringFieldUpdateOperationsInput | string | null
+    savedInternships?: SavedInternshipUncheckedUpdateManyWithoutStudentNestedInput
+    internships?: StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput
+    skills?: StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
   }
 
-  export type UserUncheckedCreateWithoutStudentInput = {
-    id?: string
-    name: string
-    email: string
-    phoneNo?: string | null
-    department?: string | null
-    role: $Enums.Role
-    profileUrl?: string | null
-    isActive?: boolean
-    createdAt?: Date | string
-    mentor?: MentorUncheckedCreateNestedOneWithoutUserInput
-    placementOfficer?: PlacementOfficerUncheckedCreateNestedOneWithoutUserInput
+  export type SavedInternshipCreateWithoutStudentInput = {
+    savedAt?: Date | string
+    internship: InternshipCreateNestedOneWithoutSavedByInput
   }
 
-  export type UserCreateOrConnectWithoutStudentInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutStudentInput, UserUncheckedCreateWithoutStudentInput>
+  export type SavedInternshipUncheckedCreateWithoutStudentInput = {
+    internshipId: string
+    savedAt?: Date | string
+  }
+
+  export type SavedInternshipCreateOrConnectWithoutStudentInput = {
+    where: SavedInternshipWhereUniqueInput
+    create: XOR<SavedInternshipCreateWithoutStudentInput, SavedInternshipUncheckedCreateWithoutStudentInput>
+  }
+
+  export type SavedInternshipCreateManyStudentInputEnvelope = {
+    data: SavedInternshipCreateManyStudentInput | SavedInternshipCreateManyStudentInput[]
+    skipDuplicates?: boolean
   }
 
   export type StudentInternshipCreateWithoutStudentInput = {
@@ -16465,26 +16605,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SavedInternshipCreateWithoutStudentInput = {
-    savedAt?: Date | string
-    internship: InternshipCreateNestedOneWithoutSavedByInput
-  }
-
-  export type SavedInternshipUncheckedCreateWithoutStudentInput = {
-    internshipId: string
-    savedAt?: Date | string
-  }
-
-  export type SavedInternshipCreateOrConnectWithoutStudentInput = {
-    where: SavedInternshipWhereUniqueInput
-    create: XOR<SavedInternshipCreateWithoutStudentInput, SavedInternshipUncheckedCreateWithoutStudentInput>
-  }
-
-  export type SavedInternshipCreateManyStudentInputEnvelope = {
-    data: SavedInternshipCreateManyStudentInput | SavedInternshipCreateManyStudentInput[]
-    skipDuplicates?: boolean
-  }
-
   export type StudentSkillCreateWithoutStudentInput = {
     skill: SkillCreateNestedOneWithoutStudentsInput
   }
@@ -16501,6 +16621,135 @@ export namespace Prisma {
   export type StudentSkillCreateManyStudentInputEnvelope = {
     data: StudentSkillCreateManyStudentInput | StudentSkillCreateManyStudentInput[]
     skipDuplicates?: boolean
+  }
+
+  export type MentorCreateWithoutStudentsInput = {
+    designation?: string | null
+    experienceYears?: number | null
+    user: UserCreateNestedOneWithoutMentorInput
+  }
+
+  export type MentorUncheckedCreateWithoutStudentsInput = {
+    userId: string
+    designation?: string | null
+    experienceYears?: number | null
+  }
+
+  export type MentorCreateOrConnectWithoutStudentsInput = {
+    where: MentorWhereUniqueInput
+    create: XOR<MentorCreateWithoutStudentsInput, MentorUncheckedCreateWithoutStudentsInput>
+  }
+
+  export type UserCreateWithoutStudentInput = {
+    id?: string
+    name: string
+    email: string
+    phoneNo?: string | null
+    department?: string | null
+    role: $Enums.Role
+    profileUrl?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    userId: string
+    mentor?: MentorCreateNestedOneWithoutUserInput
+    placementOfficer?: PlacementOfficerCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutStudentInput = {
+    id?: string
+    name: string
+    email: string
+    phoneNo?: string | null
+    department?: string | null
+    role: $Enums.Role
+    profileUrl?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    userId: string
+    mentor?: MentorUncheckedCreateNestedOneWithoutUserInput
+    placementOfficer?: PlacementOfficerUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutStudentInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutStudentInput, UserUncheckedCreateWithoutStudentInput>
+  }
+
+  export type SavedInternshipUpsertWithWhereUniqueWithoutStudentInput = {
+    where: SavedInternshipWhereUniqueInput
+    update: XOR<SavedInternshipUpdateWithoutStudentInput, SavedInternshipUncheckedUpdateWithoutStudentInput>
+    create: XOR<SavedInternshipCreateWithoutStudentInput, SavedInternshipUncheckedCreateWithoutStudentInput>
+  }
+
+  export type SavedInternshipUpdateWithWhereUniqueWithoutStudentInput = {
+    where: SavedInternshipWhereUniqueInput
+    data: XOR<SavedInternshipUpdateWithoutStudentInput, SavedInternshipUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type SavedInternshipUpdateManyWithWhereWithoutStudentInput = {
+    where: SavedInternshipScalarWhereInput
+    data: XOR<SavedInternshipUpdateManyMutationInput, SavedInternshipUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type SavedInternshipScalarWhereInput = {
+    AND?: SavedInternshipScalarWhereInput | SavedInternshipScalarWhereInput[]
+    OR?: SavedInternshipScalarWhereInput[]
+    NOT?: SavedInternshipScalarWhereInput | SavedInternshipScalarWhereInput[]
+    studentId?: StringFilter<"SavedInternship"> | string
+    internshipId?: StringFilter<"SavedInternship"> | string
+    savedAt?: DateTimeFilter<"SavedInternship"> | Date | string
+  }
+
+  export type StudentInternshipUpsertWithWhereUniqueWithoutStudentInput = {
+    where: StudentInternshipWhereUniqueInput
+    update: XOR<StudentInternshipUpdateWithoutStudentInput, StudentInternshipUncheckedUpdateWithoutStudentInput>
+    create: XOR<StudentInternshipCreateWithoutStudentInput, StudentInternshipUncheckedCreateWithoutStudentInput>
+  }
+
+  export type StudentInternshipUpdateWithWhereUniqueWithoutStudentInput = {
+    where: StudentInternshipWhereUniqueInput
+    data: XOR<StudentInternshipUpdateWithoutStudentInput, StudentInternshipUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type StudentInternshipUpdateManyWithWhereWithoutStudentInput = {
+    where: StudentInternshipScalarWhereInput
+    data: XOR<StudentInternshipUpdateManyMutationInput, StudentInternshipUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type StudentInternshipScalarWhereInput = {
+    AND?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
+    OR?: StudentInternshipScalarWhereInput[]
+    NOT?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
+    id?: StringFilter<"StudentInternship"> | string
+    studentId?: StringFilter<"StudentInternship"> | string
+    internshipId?: StringFilter<"StudentInternship"> | string
+    status?: EnumStudentInternshipStatusFilter<"StudentInternship"> | $Enums.StudentInternshipStatus
+    certificateUrl?: StringNullableFilter<"StudentInternship"> | string | null
+    appliedAt?: DateTimeFilter<"StudentInternship"> | Date | string
+  }
+
+  export type StudentSkillUpsertWithWhereUniqueWithoutStudentInput = {
+    where: StudentSkillWhereUniqueInput
+    update: XOR<StudentSkillUpdateWithoutStudentInput, StudentSkillUncheckedUpdateWithoutStudentInput>
+    create: XOR<StudentSkillCreateWithoutStudentInput, StudentSkillUncheckedCreateWithoutStudentInput>
+  }
+
+  export type StudentSkillUpdateWithWhereUniqueWithoutStudentInput = {
+    where: StudentSkillWhereUniqueInput
+    data: XOR<StudentSkillUpdateWithoutStudentInput, StudentSkillUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type StudentSkillUpdateManyWithWhereWithoutStudentInput = {
+    where: StudentSkillScalarWhereInput
+    data: XOR<StudentSkillUpdateManyMutationInput, StudentSkillUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type StudentSkillScalarWhereInput = {
+    AND?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
+    OR?: StudentSkillScalarWhereInput[]
+    NOT?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
+    studentId?: StringFilter<"StudentSkill"> | string
+    skillId?: IntFilter<"StudentSkill"> | number
   }
 
   export type MentorUpsertWithoutStudentsInput = {
@@ -16547,6 +16796,7 @@ export namespace Prisma {
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
     mentor?: MentorUpdateOneWithoutUserNestedInput
     placementOfficer?: PlacementOfficerUpdateOneWithoutUserNestedInput
   }
@@ -16561,85 +16811,9 @@ export namespace Prisma {
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
     mentor?: MentorUncheckedUpdateOneWithoutUserNestedInput
     placementOfficer?: PlacementOfficerUncheckedUpdateOneWithoutUserNestedInput
-  }
-
-  export type StudentInternshipUpsertWithWhereUniqueWithoutStudentInput = {
-    where: StudentInternshipWhereUniqueInput
-    update: XOR<StudentInternshipUpdateWithoutStudentInput, StudentInternshipUncheckedUpdateWithoutStudentInput>
-    create: XOR<StudentInternshipCreateWithoutStudentInput, StudentInternshipUncheckedCreateWithoutStudentInput>
-  }
-
-  export type StudentInternshipUpdateWithWhereUniqueWithoutStudentInput = {
-    where: StudentInternshipWhereUniqueInput
-    data: XOR<StudentInternshipUpdateWithoutStudentInput, StudentInternshipUncheckedUpdateWithoutStudentInput>
-  }
-
-  export type StudentInternshipUpdateManyWithWhereWithoutStudentInput = {
-    where: StudentInternshipScalarWhereInput
-    data: XOR<StudentInternshipUpdateManyMutationInput, StudentInternshipUncheckedUpdateManyWithoutStudentInput>
-  }
-
-  export type StudentInternshipScalarWhereInput = {
-    AND?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
-    OR?: StudentInternshipScalarWhereInput[]
-    NOT?: StudentInternshipScalarWhereInput | StudentInternshipScalarWhereInput[]
-    id?: StringFilter<"StudentInternship"> | string
-    studentId?: StringFilter<"StudentInternship"> | string
-    internshipId?: StringFilter<"StudentInternship"> | string
-    status?: EnumStudentInternshipStatusFilter<"StudentInternship"> | $Enums.StudentInternshipStatus
-    certificateUrl?: StringNullableFilter<"StudentInternship"> | string | null
-    appliedAt?: DateTimeFilter<"StudentInternship"> | Date | string
-  }
-
-  export type SavedInternshipUpsertWithWhereUniqueWithoutStudentInput = {
-    where: SavedInternshipWhereUniqueInput
-    update: XOR<SavedInternshipUpdateWithoutStudentInput, SavedInternshipUncheckedUpdateWithoutStudentInput>
-    create: XOR<SavedInternshipCreateWithoutStudentInput, SavedInternshipUncheckedCreateWithoutStudentInput>
-  }
-
-  export type SavedInternshipUpdateWithWhereUniqueWithoutStudentInput = {
-    where: SavedInternshipWhereUniqueInput
-    data: XOR<SavedInternshipUpdateWithoutStudentInput, SavedInternshipUncheckedUpdateWithoutStudentInput>
-  }
-
-  export type SavedInternshipUpdateManyWithWhereWithoutStudentInput = {
-    where: SavedInternshipScalarWhereInput
-    data: XOR<SavedInternshipUpdateManyMutationInput, SavedInternshipUncheckedUpdateManyWithoutStudentInput>
-  }
-
-  export type SavedInternshipScalarWhereInput = {
-    AND?: SavedInternshipScalarWhereInput | SavedInternshipScalarWhereInput[]
-    OR?: SavedInternshipScalarWhereInput[]
-    NOT?: SavedInternshipScalarWhereInput | SavedInternshipScalarWhereInput[]
-    studentId?: StringFilter<"SavedInternship"> | string
-    internshipId?: StringFilter<"SavedInternship"> | string
-    savedAt?: DateTimeFilter<"SavedInternship"> | Date | string
-  }
-
-  export type StudentSkillUpsertWithWhereUniqueWithoutStudentInput = {
-    where: StudentSkillWhereUniqueInput
-    update: XOR<StudentSkillUpdateWithoutStudentInput, StudentSkillUncheckedUpdateWithoutStudentInput>
-    create: XOR<StudentSkillCreateWithoutStudentInput, StudentSkillUncheckedCreateWithoutStudentInput>
-  }
-
-  export type StudentSkillUpdateWithWhereUniqueWithoutStudentInput = {
-    where: StudentSkillWhereUniqueInput
-    data: XOR<StudentSkillUpdateWithoutStudentInput, StudentSkillUncheckedUpdateWithoutStudentInput>
-  }
-
-  export type StudentSkillUpdateManyWithWhereWithoutStudentInput = {
-    where: StudentSkillScalarWhereInput
-    data: XOR<StudentSkillUpdateManyMutationInput, StudentSkillUncheckedUpdateManyWithoutStudentInput>
-  }
-
-  export type StudentSkillScalarWhereInput = {
-    AND?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
-    OR?: StudentSkillScalarWhereInput[]
-    NOT?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
-    studentId?: StringFilter<"StudentSkill"> | string
-    skillId?: IntFilter<"StudentSkill"> | number
   }
 
   export type UserCreateWithoutMentorInput = {
@@ -16652,8 +16826,9 @@ export namespace Prisma {
     profileUrl?: string | null
     isActive?: boolean
     createdAt?: Date | string
-    student?: StudentCreateNestedOneWithoutUserInput
+    userId: string
     placementOfficer?: PlacementOfficerCreateNestedOneWithoutUserInput
+    student?: StudentCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMentorInput = {
@@ -16666,8 +16841,9 @@ export namespace Prisma {
     profileUrl?: string | null
     isActive?: boolean
     createdAt?: Date | string
-    student?: StudentUncheckedCreateNestedOneWithoutUserInput
+    userId: string
     placementOfficer?: PlacementOfficerUncheckedCreateNestedOneWithoutUserInput
+    student?: StudentUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMentorInput = {
@@ -16681,10 +16857,10 @@ export namespace Prisma {
     cgpa?: Decimal | DecimalJsLike | number | string | null
     resumeUrl?: string | null
     profileCompleted?: boolean
-    user: UserCreateNestedOneWithoutStudentInput
-    internships?: StudentInternshipCreateNestedManyWithoutStudentInput
     savedInternships?: SavedInternshipCreateNestedManyWithoutStudentInput
+    internships?: StudentInternshipCreateNestedManyWithoutStudentInput
     skills?: StudentSkillCreateNestedManyWithoutStudentInput
+    user: UserCreateNestedOneWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutMentorInput = {
@@ -16694,8 +16870,8 @@ export namespace Prisma {
     cgpa?: Decimal | DecimalJsLike | number | string | null
     resumeUrl?: string | null
     profileCompleted?: boolean
-    internships?: StudentInternshipUncheckedCreateNestedManyWithoutStudentInput
     savedInternships?: SavedInternshipUncheckedCreateNestedManyWithoutStudentInput
+    internships?: StudentInternshipUncheckedCreateNestedManyWithoutStudentInput
     skills?: StudentSkillUncheckedCreateNestedManyWithoutStudentInput
   }
 
@@ -16730,8 +16906,9 @@ export namespace Prisma {
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUpdateOneWithoutUserNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
     placementOfficer?: PlacementOfficerUpdateOneWithoutUserNestedInput
+    student?: StudentUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorInput = {
@@ -16744,8 +16921,9 @@ export namespace Prisma {
     profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUncheckedUpdateOneWithoutUserNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
     placementOfficer?: PlacementOfficerUncheckedUpdateOneWithoutUserNestedInput
+    student?: StudentUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type StudentUpsertWithWhereUniqueWithoutMentorInput = {
@@ -16777,39 +16955,6 @@ export namespace Prisma {
     mentorId?: StringNullableFilter<"Student"> | string | null
   }
 
-  export type UserCreateWithoutPlacementOfficerInput = {
-    id?: string
-    name: string
-    email: string
-    phoneNo?: string | null
-    department?: string | null
-    role: $Enums.Role
-    profileUrl?: string | null
-    isActive?: boolean
-    createdAt?: Date | string
-    student?: StudentCreateNestedOneWithoutUserInput
-    mentor?: MentorCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutPlacementOfficerInput = {
-    id?: string
-    name: string
-    email: string
-    phoneNo?: string | null
-    department?: string | null
-    role: $Enums.Role
-    profileUrl?: string | null
-    isActive?: boolean
-    createdAt?: Date | string
-    student?: StudentUncheckedCreateNestedOneWithoutUserInput
-    mentor?: MentorUncheckedCreateNestedOneWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutPlacementOfficerInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPlacementOfficerInput, UserUncheckedCreateWithoutPlacementOfficerInput>
-  }
-
   export type InternshipCreateWithoutPostedByInput = {
     id?: string
     title: string
@@ -16819,13 +16964,16 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
     salaryPackage?: string | null
     minCgpa?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.InternshipStatus
     createdAt?: Date | string
-    applicants?: StudentInternshipCreateNestedManyWithoutInternshipInput
-    savedBy?: SavedInternshipCreateNestedManyWithoutInternshipInput
     skills?: InternshipSkillCreateNestedManyWithoutInternshipInput
+    savedBy?: SavedInternshipCreateNestedManyWithoutInternshipInput
+    applicants?: StudentInternshipCreateNestedManyWithoutInternshipInput
   }
 
   export type InternshipUncheckedCreateWithoutPostedByInput = {
@@ -16837,13 +16985,16 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
     salaryPackage?: string | null
     minCgpa?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.InternshipStatus
     createdAt?: Date | string
-    applicants?: StudentInternshipUncheckedCreateNestedManyWithoutInternshipInput
-    savedBy?: SavedInternshipUncheckedCreateNestedManyWithoutInternshipInput
     skills?: InternshipSkillUncheckedCreateNestedManyWithoutInternshipInput
+    savedBy?: SavedInternshipUncheckedCreateNestedManyWithoutInternshipInput
+    applicants?: StudentInternshipUncheckedCreateNestedManyWithoutInternshipInput
   }
 
   export type InternshipCreateOrConnectWithoutPostedByInput = {
@@ -16856,43 +17007,39 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserUpsertWithoutPlacementOfficerInput = {
-    update: XOR<UserUpdateWithoutPlacementOfficerInput, UserUncheckedUpdateWithoutPlacementOfficerInput>
+  export type UserCreateWithoutPlacementOfficerInput = {
+    id?: string
+    name: string
+    email: string
+    phoneNo?: string | null
+    department?: string | null
+    role: $Enums.Role
+    profileUrl?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    userId: string
+    mentor?: MentorCreateNestedOneWithoutUserInput
+    student?: StudentCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPlacementOfficerInput = {
+    id?: string
+    name: string
+    email: string
+    phoneNo?: string | null
+    department?: string | null
+    role: $Enums.Role
+    profileUrl?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    userId: string
+    mentor?: MentorUncheckedCreateNestedOneWithoutUserInput
+    student?: StudentUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPlacementOfficerInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutPlacementOfficerInput, UserUncheckedCreateWithoutPlacementOfficerInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutPlacementOfficerInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPlacementOfficerInput, UserUncheckedUpdateWithoutPlacementOfficerInput>
-  }
-
-  export type UserUpdateWithoutPlacementOfficerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNo?: NullableStringFieldUpdateOperationsInput | string | null
-    department?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUpdateOneWithoutUserNestedInput
-    mentor?: MentorUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutPlacementOfficerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNo?: NullableStringFieldUpdateOperationsInput | string | null
-    department?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUncheckedUpdateOneWithoutUserNestedInput
-    mentor?: MentorUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type InternshipUpsertWithWhereUniqueWithoutPostedByInput = {
@@ -16923,11 +17070,73 @@ export namespace Prisma {
     description?: StringNullableFilter<"Internship"> | string | null
     location?: StringNullableFilter<"Internship"> | string | null
     mode?: EnumModeFilter<"Internship"> | $Enums.Mode
+    duration?: StringFilter<"Internship"> | string
+    applicationDeadline?: DateTimeNullableFilter<"Internship"> | Date | string | null
+    requirement?: StringFilter<"Internship"> | string
     salaryPackage?: StringNullableFilter<"Internship"> | string | null
     minCgpa?: DecimalNullableFilter<"Internship"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFilter<"Internship"> | $Enums.InternshipStatus
     createdAt?: DateTimeFilter<"Internship"> | Date | string
     postedById?: StringFilter<"Internship"> | string
+  }
+
+  export type UserUpsertWithoutPlacementOfficerInput = {
+    update: XOR<UserUpdateWithoutPlacementOfficerInput, UserUncheckedUpdateWithoutPlacementOfficerInput>
+    create: XOR<UserCreateWithoutPlacementOfficerInput, UserUncheckedCreateWithoutPlacementOfficerInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPlacementOfficerInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPlacementOfficerInput, UserUncheckedUpdateWithoutPlacementOfficerInput>
+  }
+
+  export type UserUpdateWithoutPlacementOfficerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNo?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mentor?: MentorUpdateOneWithoutUserNestedInput
+    student?: StudentUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPlacementOfficerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNo?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    profileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mentor?: MentorUncheckedUpdateOneWithoutUserNestedInput
+    student?: StudentUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type InternshipSkillCreateWithoutInternshipInput = {
+    skill: SkillCreateNestedOneWithoutInternshipsInput
+  }
+
+  export type InternshipSkillUncheckedCreateWithoutInternshipInput = {
+    skillId: number
+  }
+
+  export type InternshipSkillCreateOrConnectWithoutInternshipInput = {
+    where: InternshipSkillWhereUniqueInput
+    create: XOR<InternshipSkillCreateWithoutInternshipInput, InternshipSkillUncheckedCreateWithoutInternshipInput>
+  }
+
+  export type InternshipSkillCreateManyInternshipInputEnvelope = {
+    data: InternshipSkillCreateManyInternshipInput | InternshipSkillCreateManyInternshipInput[]
+    skipDuplicates?: boolean
   }
 
   export type PlacementOfficerCreateWithoutInternshipsInput = {
@@ -16941,6 +17150,26 @@ export namespace Prisma {
   export type PlacementOfficerCreateOrConnectWithoutInternshipsInput = {
     where: PlacementOfficerWhereUniqueInput
     create: XOR<PlacementOfficerCreateWithoutInternshipsInput, PlacementOfficerUncheckedCreateWithoutInternshipsInput>
+  }
+
+  export type SavedInternshipCreateWithoutInternshipInput = {
+    savedAt?: Date | string
+    student: StudentCreateNestedOneWithoutSavedInternshipsInput
+  }
+
+  export type SavedInternshipUncheckedCreateWithoutInternshipInput = {
+    studentId: string
+    savedAt?: Date | string
+  }
+
+  export type SavedInternshipCreateOrConnectWithoutInternshipInput = {
+    where: SavedInternshipWhereUniqueInput
+    create: XOR<SavedInternshipCreateWithoutInternshipInput, SavedInternshipUncheckedCreateWithoutInternshipInput>
+  }
+
+  export type SavedInternshipCreateManyInternshipInputEnvelope = {
+    data: SavedInternshipCreateManyInternshipInput | SavedInternshipCreateManyInternshipInput[]
+    skipDuplicates?: boolean
   }
 
   export type StudentInternshipCreateWithoutInternshipInput = {
@@ -16969,95 +17198,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SavedInternshipCreateWithoutInternshipInput = {
-    savedAt?: Date | string
-    student: StudentCreateNestedOneWithoutSavedInternshipsInput
-  }
-
-  export type SavedInternshipUncheckedCreateWithoutInternshipInput = {
-    studentId: string
-    savedAt?: Date | string
-  }
-
-  export type SavedInternshipCreateOrConnectWithoutInternshipInput = {
-    where: SavedInternshipWhereUniqueInput
-    create: XOR<SavedInternshipCreateWithoutInternshipInput, SavedInternshipUncheckedCreateWithoutInternshipInput>
-  }
-
-  export type SavedInternshipCreateManyInternshipInputEnvelope = {
-    data: SavedInternshipCreateManyInternshipInput | SavedInternshipCreateManyInternshipInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type InternshipSkillCreateWithoutInternshipInput = {
-    skill: SkillCreateNestedOneWithoutInternshipsInput
-  }
-
-  export type InternshipSkillUncheckedCreateWithoutInternshipInput = {
-    skillId: number
-  }
-
-  export type InternshipSkillCreateOrConnectWithoutInternshipInput = {
-    where: InternshipSkillWhereUniqueInput
-    create: XOR<InternshipSkillCreateWithoutInternshipInput, InternshipSkillUncheckedCreateWithoutInternshipInput>
-  }
-
-  export type InternshipSkillCreateManyInternshipInputEnvelope = {
-    data: InternshipSkillCreateManyInternshipInput | InternshipSkillCreateManyInternshipInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PlacementOfficerUpsertWithoutInternshipsInput = {
-    update: XOR<PlacementOfficerUpdateWithoutInternshipsInput, PlacementOfficerUncheckedUpdateWithoutInternshipsInput>
-    create: XOR<PlacementOfficerCreateWithoutInternshipsInput, PlacementOfficerUncheckedCreateWithoutInternshipsInput>
-    where?: PlacementOfficerWhereInput
-  }
-
-  export type PlacementOfficerUpdateToOneWithWhereWithoutInternshipsInput = {
-    where?: PlacementOfficerWhereInput
-    data: XOR<PlacementOfficerUpdateWithoutInternshipsInput, PlacementOfficerUncheckedUpdateWithoutInternshipsInput>
-  }
-
-  export type PlacementOfficerUpdateWithoutInternshipsInput = {
-    user?: UserUpdateOneRequiredWithoutPlacementOfficerNestedInput
-  }
-
-  export type PlacementOfficerUncheckedUpdateWithoutInternshipsInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StudentInternshipUpsertWithWhereUniqueWithoutInternshipInput = {
-    where: StudentInternshipWhereUniqueInput
-    update: XOR<StudentInternshipUpdateWithoutInternshipInput, StudentInternshipUncheckedUpdateWithoutInternshipInput>
-    create: XOR<StudentInternshipCreateWithoutInternshipInput, StudentInternshipUncheckedCreateWithoutInternshipInput>
-  }
-
-  export type StudentInternshipUpdateWithWhereUniqueWithoutInternshipInput = {
-    where: StudentInternshipWhereUniqueInput
-    data: XOR<StudentInternshipUpdateWithoutInternshipInput, StudentInternshipUncheckedUpdateWithoutInternshipInput>
-  }
-
-  export type StudentInternshipUpdateManyWithWhereWithoutInternshipInput = {
-    where: StudentInternshipScalarWhereInput
-    data: XOR<StudentInternshipUpdateManyMutationInput, StudentInternshipUncheckedUpdateManyWithoutInternshipInput>
-  }
-
-  export type SavedInternshipUpsertWithWhereUniqueWithoutInternshipInput = {
-    where: SavedInternshipWhereUniqueInput
-    update: XOR<SavedInternshipUpdateWithoutInternshipInput, SavedInternshipUncheckedUpdateWithoutInternshipInput>
-    create: XOR<SavedInternshipCreateWithoutInternshipInput, SavedInternshipUncheckedCreateWithoutInternshipInput>
-  }
-
-  export type SavedInternshipUpdateWithWhereUniqueWithoutInternshipInput = {
-    where: SavedInternshipWhereUniqueInput
-    data: XOR<SavedInternshipUpdateWithoutInternshipInput, SavedInternshipUncheckedUpdateWithoutInternshipInput>
-  }
-
-  export type SavedInternshipUpdateManyWithWhereWithoutInternshipInput = {
-    where: SavedInternshipScalarWhereInput
-    data: XOR<SavedInternshipUpdateManyMutationInput, SavedInternshipUncheckedUpdateManyWithoutInternshipInput>
-  }
-
   export type InternshipSkillUpsertWithWhereUniqueWithoutInternshipInput = {
     where: InternshipSkillWhereUniqueInput
     update: XOR<InternshipSkillUpdateWithoutInternshipInput, InternshipSkillUncheckedUpdateWithoutInternshipInput>
@@ -17082,16 +17222,114 @@ export namespace Prisma {
     skillId?: IntFilter<"InternshipSkill"> | number
   }
 
+  export type PlacementOfficerUpsertWithoutInternshipsInput = {
+    update: XOR<PlacementOfficerUpdateWithoutInternshipsInput, PlacementOfficerUncheckedUpdateWithoutInternshipsInput>
+    create: XOR<PlacementOfficerCreateWithoutInternshipsInput, PlacementOfficerUncheckedCreateWithoutInternshipsInput>
+    where?: PlacementOfficerWhereInput
+  }
+
+  export type PlacementOfficerUpdateToOneWithWhereWithoutInternshipsInput = {
+    where?: PlacementOfficerWhereInput
+    data: XOR<PlacementOfficerUpdateWithoutInternshipsInput, PlacementOfficerUncheckedUpdateWithoutInternshipsInput>
+  }
+
+  export type PlacementOfficerUpdateWithoutInternshipsInput = {
+    user?: UserUpdateOneRequiredWithoutPlacementOfficerNestedInput
+  }
+
+  export type PlacementOfficerUncheckedUpdateWithoutInternshipsInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SavedInternshipUpsertWithWhereUniqueWithoutInternshipInput = {
+    where: SavedInternshipWhereUniqueInput
+    update: XOR<SavedInternshipUpdateWithoutInternshipInput, SavedInternshipUncheckedUpdateWithoutInternshipInput>
+    create: XOR<SavedInternshipCreateWithoutInternshipInput, SavedInternshipUncheckedCreateWithoutInternshipInput>
+  }
+
+  export type SavedInternshipUpdateWithWhereUniqueWithoutInternshipInput = {
+    where: SavedInternshipWhereUniqueInput
+    data: XOR<SavedInternshipUpdateWithoutInternshipInput, SavedInternshipUncheckedUpdateWithoutInternshipInput>
+  }
+
+  export type SavedInternshipUpdateManyWithWhereWithoutInternshipInput = {
+    where: SavedInternshipScalarWhereInput
+    data: XOR<SavedInternshipUpdateManyMutationInput, SavedInternshipUncheckedUpdateManyWithoutInternshipInput>
+  }
+
+  export type StudentInternshipUpsertWithWhereUniqueWithoutInternshipInput = {
+    where: StudentInternshipWhereUniqueInput
+    update: XOR<StudentInternshipUpdateWithoutInternshipInput, StudentInternshipUncheckedUpdateWithoutInternshipInput>
+    create: XOR<StudentInternshipCreateWithoutInternshipInput, StudentInternshipUncheckedCreateWithoutInternshipInput>
+  }
+
+  export type StudentInternshipUpdateWithWhereUniqueWithoutInternshipInput = {
+    where: StudentInternshipWhereUniqueInput
+    data: XOR<StudentInternshipUpdateWithoutInternshipInput, StudentInternshipUncheckedUpdateWithoutInternshipInput>
+  }
+
+  export type StudentInternshipUpdateManyWithWhereWithoutInternshipInput = {
+    where: StudentInternshipScalarWhereInput
+    data: XOR<StudentInternshipUpdateManyMutationInput, StudentInternshipUncheckedUpdateManyWithoutInternshipInput>
+  }
+
+  export type InternshipCreateWithoutApplicantsInput = {
+    id?: string
+    title: string
+    companyName?: string | null
+    companyUrl?: string | null
+    companyLogo?: string | null
+    description?: string | null
+    location?: string | null
+    mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
+    salaryPackage?: string | null
+    minCgpa?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.InternshipStatus
+    createdAt?: Date | string
+    skills?: InternshipSkillCreateNestedManyWithoutInternshipInput
+    postedBy: PlacementOfficerCreateNestedOneWithoutInternshipsInput
+    savedBy?: SavedInternshipCreateNestedManyWithoutInternshipInput
+  }
+
+  export type InternshipUncheckedCreateWithoutApplicantsInput = {
+    id?: string
+    title: string
+    companyName?: string | null
+    companyUrl?: string | null
+    companyLogo?: string | null
+    description?: string | null
+    location?: string | null
+    mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
+    salaryPackage?: string | null
+    minCgpa?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.InternshipStatus
+    createdAt?: Date | string
+    postedById: string
+    skills?: InternshipSkillUncheckedCreateNestedManyWithoutInternshipInput
+    savedBy?: SavedInternshipUncheckedCreateNestedManyWithoutInternshipInput
+  }
+
+  export type InternshipCreateOrConnectWithoutApplicantsInput = {
+    where: InternshipWhereUniqueInput
+    create: XOR<InternshipCreateWithoutApplicantsInput, InternshipUncheckedCreateWithoutApplicantsInput>
+  }
+
   export type StudentCreateWithoutInternshipsInput = {
     semester?: number | null
     year?: number | null
     cgpa?: Decimal | DecimalJsLike | number | string | null
     resumeUrl?: string | null
     profileCompleted?: boolean
-    mentor?: MentorCreateNestedOneWithoutStudentsInput
-    user: UserCreateNestedOneWithoutStudentInput
     savedInternships?: SavedInternshipCreateNestedManyWithoutStudentInput
     skills?: StudentSkillCreateNestedManyWithoutStudentInput
+    mentor?: MentorCreateNestedOneWithoutStudentsInput
+    user: UserCreateNestedOneWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutInternshipsInput = {
@@ -17109,82 +17347,6 @@ export namespace Prisma {
   export type StudentCreateOrConnectWithoutInternshipsInput = {
     where: StudentWhereUniqueInput
     create: XOR<StudentCreateWithoutInternshipsInput, StudentUncheckedCreateWithoutInternshipsInput>
-  }
-
-  export type InternshipCreateWithoutApplicantsInput = {
-    id?: string
-    title: string
-    companyName?: string | null
-    companyUrl?: string | null
-    companyLogo?: string | null
-    description?: string | null
-    location?: string | null
-    mode: $Enums.Mode
-    salaryPackage?: string | null
-    minCgpa?: Decimal | DecimalJsLike | number | string | null
-    status?: $Enums.InternshipStatus
-    createdAt?: Date | string
-    postedBy: PlacementOfficerCreateNestedOneWithoutInternshipsInput
-    savedBy?: SavedInternshipCreateNestedManyWithoutInternshipInput
-    skills?: InternshipSkillCreateNestedManyWithoutInternshipInput
-  }
-
-  export type InternshipUncheckedCreateWithoutApplicantsInput = {
-    id?: string
-    title: string
-    companyName?: string | null
-    companyUrl?: string | null
-    companyLogo?: string | null
-    description?: string | null
-    location?: string | null
-    mode: $Enums.Mode
-    salaryPackage?: string | null
-    minCgpa?: Decimal | DecimalJsLike | number | string | null
-    status?: $Enums.InternshipStatus
-    createdAt?: Date | string
-    postedById: string
-    savedBy?: SavedInternshipUncheckedCreateNestedManyWithoutInternshipInput
-    skills?: InternshipSkillUncheckedCreateNestedManyWithoutInternshipInput
-  }
-
-  export type InternshipCreateOrConnectWithoutApplicantsInput = {
-    where: InternshipWhereUniqueInput
-    create: XOR<InternshipCreateWithoutApplicantsInput, InternshipUncheckedCreateWithoutApplicantsInput>
-  }
-
-  export type StudentUpsertWithoutInternshipsInput = {
-    update: XOR<StudentUpdateWithoutInternshipsInput, StudentUncheckedUpdateWithoutInternshipsInput>
-    create: XOR<StudentCreateWithoutInternshipsInput, StudentUncheckedCreateWithoutInternshipsInput>
-    where?: StudentWhereInput
-  }
-
-  export type StudentUpdateToOneWithWhereWithoutInternshipsInput = {
-    where?: StudentWhereInput
-    data: XOR<StudentUpdateWithoutInternshipsInput, StudentUncheckedUpdateWithoutInternshipsInput>
-  }
-
-  export type StudentUpdateWithoutInternshipsInput = {
-    semester?: NullableIntFieldUpdateOperationsInput | number | null
-    year?: NullableIntFieldUpdateOperationsInput | number | null
-    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
-    mentor?: MentorUpdateOneWithoutStudentsNestedInput
-    user?: UserUpdateOneRequiredWithoutStudentNestedInput
-    savedInternships?: SavedInternshipUpdateManyWithoutStudentNestedInput
-    skills?: StudentSkillUpdateManyWithoutStudentNestedInput
-  }
-
-  export type StudentUncheckedUpdateWithoutInternshipsInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    semester?: NullableIntFieldUpdateOperationsInput | number | null
-    year?: NullableIntFieldUpdateOperationsInput | number | null
-    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
-    mentorId?: NullableStringFieldUpdateOperationsInput | string | null
-    savedInternships?: SavedInternshipUncheckedUpdateManyWithoutStudentNestedInput
-    skills?: StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type InternshipUpsertWithoutApplicantsInput = {
@@ -17207,13 +17369,16 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    skills?: InternshipSkillUpdateManyWithoutInternshipNestedInput
     postedBy?: PlacementOfficerUpdateOneRequiredWithoutInternshipsNestedInput
     savedBy?: SavedInternshipUpdateManyWithoutInternshipNestedInput
-    skills?: InternshipSkillUpdateManyWithoutInternshipNestedInput
   }
 
   export type InternshipUncheckedUpdateWithoutApplicantsInput = {
@@ -17225,13 +17390,98 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     postedById?: StringFieldUpdateOperationsInput | string
-    savedBy?: SavedInternshipUncheckedUpdateManyWithoutInternshipNestedInput
     skills?: InternshipSkillUncheckedUpdateManyWithoutInternshipNestedInput
+    savedBy?: SavedInternshipUncheckedUpdateManyWithoutInternshipNestedInput
+  }
+
+  export type StudentUpsertWithoutInternshipsInput = {
+    update: XOR<StudentUpdateWithoutInternshipsInput, StudentUncheckedUpdateWithoutInternshipsInput>
+    create: XOR<StudentCreateWithoutInternshipsInput, StudentUncheckedCreateWithoutInternshipsInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutInternshipsInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutInternshipsInput, StudentUncheckedUpdateWithoutInternshipsInput>
+  }
+
+  export type StudentUpdateWithoutInternshipsInput = {
+    semester?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: NullableIntFieldUpdateOperationsInput | number | null
+    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
+    savedInternships?: SavedInternshipUpdateManyWithoutStudentNestedInput
+    skills?: StudentSkillUpdateManyWithoutStudentNestedInput
+    mentor?: MentorUpdateOneWithoutStudentsNestedInput
+    user?: UserUpdateOneRequiredWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutInternshipsInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    semester?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: NullableIntFieldUpdateOperationsInput | number | null
+    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mentorId?: NullableStringFieldUpdateOperationsInput | string | null
+    savedInternships?: SavedInternshipUncheckedUpdateManyWithoutStudentNestedInput
+    skills?: StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type InternshipCreateWithoutSavedByInput = {
+    id?: string
+    title: string
+    companyName?: string | null
+    companyUrl?: string | null
+    companyLogo?: string | null
+    description?: string | null
+    location?: string | null
+    mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
+    salaryPackage?: string | null
+    minCgpa?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.InternshipStatus
+    createdAt?: Date | string
+    skills?: InternshipSkillCreateNestedManyWithoutInternshipInput
+    postedBy: PlacementOfficerCreateNestedOneWithoutInternshipsInput
+    applicants?: StudentInternshipCreateNestedManyWithoutInternshipInput
+  }
+
+  export type InternshipUncheckedCreateWithoutSavedByInput = {
+    id?: string
+    title: string
+    companyName?: string | null
+    companyUrl?: string | null
+    companyLogo?: string | null
+    description?: string | null
+    location?: string | null
+    mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
+    salaryPackage?: string | null
+    minCgpa?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.InternshipStatus
+    createdAt?: Date | string
+    postedById: string
+    skills?: InternshipSkillUncheckedCreateNestedManyWithoutInternshipInput
+    applicants?: StudentInternshipUncheckedCreateNestedManyWithoutInternshipInput
+  }
+
+  export type InternshipCreateOrConnectWithoutSavedByInput = {
+    where: InternshipWhereUniqueInput
+    create: XOR<InternshipCreateWithoutSavedByInput, InternshipUncheckedCreateWithoutSavedByInput>
   }
 
   export type StudentCreateWithoutSavedInternshipsInput = {
@@ -17240,10 +17490,10 @@ export namespace Prisma {
     cgpa?: Decimal | DecimalJsLike | number | string | null
     resumeUrl?: string | null
     profileCompleted?: boolean
-    mentor?: MentorCreateNestedOneWithoutStudentsInput
-    user: UserCreateNestedOneWithoutStudentInput
     internships?: StudentInternshipCreateNestedManyWithoutStudentInput
     skills?: StudentSkillCreateNestedManyWithoutStudentInput
+    mentor?: MentorCreateNestedOneWithoutStudentsInput
+    user: UserCreateNestedOneWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutSavedInternshipsInput = {
@@ -17261,82 +17511,6 @@ export namespace Prisma {
   export type StudentCreateOrConnectWithoutSavedInternshipsInput = {
     where: StudentWhereUniqueInput
     create: XOR<StudentCreateWithoutSavedInternshipsInput, StudentUncheckedCreateWithoutSavedInternshipsInput>
-  }
-
-  export type InternshipCreateWithoutSavedByInput = {
-    id?: string
-    title: string
-    companyName?: string | null
-    companyUrl?: string | null
-    companyLogo?: string | null
-    description?: string | null
-    location?: string | null
-    mode: $Enums.Mode
-    salaryPackage?: string | null
-    minCgpa?: Decimal | DecimalJsLike | number | string | null
-    status?: $Enums.InternshipStatus
-    createdAt?: Date | string
-    postedBy: PlacementOfficerCreateNestedOneWithoutInternshipsInput
-    applicants?: StudentInternshipCreateNestedManyWithoutInternshipInput
-    skills?: InternshipSkillCreateNestedManyWithoutInternshipInput
-  }
-
-  export type InternshipUncheckedCreateWithoutSavedByInput = {
-    id?: string
-    title: string
-    companyName?: string | null
-    companyUrl?: string | null
-    companyLogo?: string | null
-    description?: string | null
-    location?: string | null
-    mode: $Enums.Mode
-    salaryPackage?: string | null
-    minCgpa?: Decimal | DecimalJsLike | number | string | null
-    status?: $Enums.InternshipStatus
-    createdAt?: Date | string
-    postedById: string
-    applicants?: StudentInternshipUncheckedCreateNestedManyWithoutInternshipInput
-    skills?: InternshipSkillUncheckedCreateNestedManyWithoutInternshipInput
-  }
-
-  export type InternshipCreateOrConnectWithoutSavedByInput = {
-    where: InternshipWhereUniqueInput
-    create: XOR<InternshipCreateWithoutSavedByInput, InternshipUncheckedCreateWithoutSavedByInput>
-  }
-
-  export type StudentUpsertWithoutSavedInternshipsInput = {
-    update: XOR<StudentUpdateWithoutSavedInternshipsInput, StudentUncheckedUpdateWithoutSavedInternshipsInput>
-    create: XOR<StudentCreateWithoutSavedInternshipsInput, StudentUncheckedCreateWithoutSavedInternshipsInput>
-    where?: StudentWhereInput
-  }
-
-  export type StudentUpdateToOneWithWhereWithoutSavedInternshipsInput = {
-    where?: StudentWhereInput
-    data: XOR<StudentUpdateWithoutSavedInternshipsInput, StudentUncheckedUpdateWithoutSavedInternshipsInput>
-  }
-
-  export type StudentUpdateWithoutSavedInternshipsInput = {
-    semester?: NullableIntFieldUpdateOperationsInput | number | null
-    year?: NullableIntFieldUpdateOperationsInput | number | null
-    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
-    mentor?: MentorUpdateOneWithoutStudentsNestedInput
-    user?: UserUpdateOneRequiredWithoutStudentNestedInput
-    internships?: StudentInternshipUpdateManyWithoutStudentNestedInput
-    skills?: StudentSkillUpdateManyWithoutStudentNestedInput
-  }
-
-  export type StudentUncheckedUpdateWithoutSavedInternshipsInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    semester?: NullableIntFieldUpdateOperationsInput | number | null
-    year?: NullableIntFieldUpdateOperationsInput | number | null
-    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
-    mentorId?: NullableStringFieldUpdateOperationsInput | string | null
-    internships?: StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput
-    skills?: StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type InternshipUpsertWithoutSavedByInput = {
@@ -17359,13 +17533,16 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    skills?: InternshipSkillUpdateManyWithoutInternshipNestedInput
     postedBy?: PlacementOfficerUpdateOneRequiredWithoutInternshipsNestedInput
     applicants?: StudentInternshipUpdateManyWithoutInternshipNestedInput
-    skills?: InternshipSkillUpdateManyWithoutInternshipNestedInput
   }
 
   export type InternshipUncheckedUpdateWithoutSavedByInput = {
@@ -17377,31 +17554,51 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     postedById?: StringFieldUpdateOperationsInput | string
-    applicants?: StudentInternshipUncheckedUpdateManyWithoutInternshipNestedInput
     skills?: InternshipSkillUncheckedUpdateManyWithoutInternshipNestedInput
+    applicants?: StudentInternshipUncheckedUpdateManyWithoutInternshipNestedInput
   }
 
-  export type StudentSkillCreateWithoutSkillInput = {
-    student: StudentCreateNestedOneWithoutSkillsInput
+  export type StudentUpsertWithoutSavedInternshipsInput = {
+    update: XOR<StudentUpdateWithoutSavedInternshipsInput, StudentUncheckedUpdateWithoutSavedInternshipsInput>
+    create: XOR<StudentCreateWithoutSavedInternshipsInput, StudentUncheckedCreateWithoutSavedInternshipsInput>
+    where?: StudentWhereInput
   }
 
-  export type StudentSkillUncheckedCreateWithoutSkillInput = {
-    studentId: string
+  export type StudentUpdateToOneWithWhereWithoutSavedInternshipsInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutSavedInternshipsInput, StudentUncheckedUpdateWithoutSavedInternshipsInput>
   }
 
-  export type StudentSkillCreateOrConnectWithoutSkillInput = {
-    where: StudentSkillWhereUniqueInput
-    create: XOR<StudentSkillCreateWithoutSkillInput, StudentSkillUncheckedCreateWithoutSkillInput>
+  export type StudentUpdateWithoutSavedInternshipsInput = {
+    semester?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: NullableIntFieldUpdateOperationsInput | number | null
+    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internships?: StudentInternshipUpdateManyWithoutStudentNestedInput
+    skills?: StudentSkillUpdateManyWithoutStudentNestedInput
+    mentor?: MentorUpdateOneWithoutStudentsNestedInput
+    user?: UserUpdateOneRequiredWithoutStudentNestedInput
   }
 
-  export type StudentSkillCreateManySkillInputEnvelope = {
-    data: StudentSkillCreateManySkillInput | StudentSkillCreateManySkillInput[]
-    skipDuplicates?: boolean
+  export type StudentUncheckedUpdateWithoutSavedInternshipsInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    semester?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: NullableIntFieldUpdateOperationsInput | number | null
+    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mentorId?: NullableStringFieldUpdateOperationsInput | string | null
+    internships?: StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput
+    skills?: StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type InternshipSkillCreateWithoutSkillInput = {
@@ -17422,20 +17619,22 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type StudentSkillUpsertWithWhereUniqueWithoutSkillInput = {
+  export type StudentSkillCreateWithoutSkillInput = {
+    student: StudentCreateNestedOneWithoutSkillsInput
+  }
+
+  export type StudentSkillUncheckedCreateWithoutSkillInput = {
+    studentId: string
+  }
+
+  export type StudentSkillCreateOrConnectWithoutSkillInput = {
     where: StudentSkillWhereUniqueInput
-    update: XOR<StudentSkillUpdateWithoutSkillInput, StudentSkillUncheckedUpdateWithoutSkillInput>
     create: XOR<StudentSkillCreateWithoutSkillInput, StudentSkillUncheckedCreateWithoutSkillInput>
   }
 
-  export type StudentSkillUpdateWithWhereUniqueWithoutSkillInput = {
-    where: StudentSkillWhereUniqueInput
-    data: XOR<StudentSkillUpdateWithoutSkillInput, StudentSkillUncheckedUpdateWithoutSkillInput>
-  }
-
-  export type StudentSkillUpdateManyWithWhereWithoutSkillInput = {
-    where: StudentSkillScalarWhereInput
-    data: XOR<StudentSkillUpdateManyMutationInput, StudentSkillUncheckedUpdateManyWithoutSkillInput>
+  export type StudentSkillCreateManySkillInputEnvelope = {
+    data: StudentSkillCreateManySkillInput | StudentSkillCreateManySkillInput[]
+    skipDuplicates?: boolean
   }
 
   export type InternshipSkillUpsertWithWhereUniqueWithoutSkillInput = {
@@ -17454,33 +17653,20 @@ export namespace Prisma {
     data: XOR<InternshipSkillUpdateManyMutationInput, InternshipSkillUncheckedUpdateManyWithoutSkillInput>
   }
 
-  export type StudentCreateWithoutSkillsInput = {
-    semester?: number | null
-    year?: number | null
-    cgpa?: Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: string | null
-    profileCompleted?: boolean
-    mentor?: MentorCreateNestedOneWithoutStudentsInput
-    user: UserCreateNestedOneWithoutStudentInput
-    internships?: StudentInternshipCreateNestedManyWithoutStudentInput
-    savedInternships?: SavedInternshipCreateNestedManyWithoutStudentInput
+  export type StudentSkillUpsertWithWhereUniqueWithoutSkillInput = {
+    where: StudentSkillWhereUniqueInput
+    update: XOR<StudentSkillUpdateWithoutSkillInput, StudentSkillUncheckedUpdateWithoutSkillInput>
+    create: XOR<StudentSkillCreateWithoutSkillInput, StudentSkillUncheckedCreateWithoutSkillInput>
   }
 
-  export type StudentUncheckedCreateWithoutSkillsInput = {
-    userId: string
-    semester?: number | null
-    year?: number | null
-    cgpa?: Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: string | null
-    profileCompleted?: boolean
-    mentorId?: string | null
-    internships?: StudentInternshipUncheckedCreateNestedManyWithoutStudentInput
-    savedInternships?: SavedInternshipUncheckedCreateNestedManyWithoutStudentInput
+  export type StudentSkillUpdateWithWhereUniqueWithoutSkillInput = {
+    where: StudentSkillWhereUniqueInput
+    data: XOR<StudentSkillUpdateWithoutSkillInput, StudentSkillUncheckedUpdateWithoutSkillInput>
   }
 
-  export type StudentCreateOrConnectWithoutSkillsInput = {
-    where: StudentWhereUniqueInput
-    create: XOR<StudentCreateWithoutSkillsInput, StudentUncheckedCreateWithoutSkillsInput>
+  export type StudentSkillUpdateManyWithWhereWithoutSkillInput = {
+    where: StudentSkillScalarWhereInput
+    data: XOR<StudentSkillUpdateManyMutationInput, StudentSkillUncheckedUpdateManyWithoutSkillInput>
   }
 
   export type SkillCreateWithoutStudentsInput = {
@@ -17499,39 +17685,33 @@ export namespace Prisma {
     create: XOR<SkillCreateWithoutStudentsInput, SkillUncheckedCreateWithoutStudentsInput>
   }
 
-  export type StudentUpsertWithoutSkillsInput = {
-    update: XOR<StudentUpdateWithoutSkillsInput, StudentUncheckedUpdateWithoutSkillsInput>
+  export type StudentCreateWithoutSkillsInput = {
+    semester?: number | null
+    year?: number | null
+    cgpa?: Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: string | null
+    profileCompleted?: boolean
+    savedInternships?: SavedInternshipCreateNestedManyWithoutStudentInput
+    internships?: StudentInternshipCreateNestedManyWithoutStudentInput
+    mentor?: MentorCreateNestedOneWithoutStudentsInput
+    user: UserCreateNestedOneWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutSkillsInput = {
+    userId: string
+    semester?: number | null
+    year?: number | null
+    cgpa?: Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: string | null
+    profileCompleted?: boolean
+    mentorId?: string | null
+    savedInternships?: SavedInternshipUncheckedCreateNestedManyWithoutStudentInput
+    internships?: StudentInternshipUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutSkillsInput = {
+    where: StudentWhereUniqueInput
     create: XOR<StudentCreateWithoutSkillsInput, StudentUncheckedCreateWithoutSkillsInput>
-    where?: StudentWhereInput
-  }
-
-  export type StudentUpdateToOneWithWhereWithoutSkillsInput = {
-    where?: StudentWhereInput
-    data: XOR<StudentUpdateWithoutSkillsInput, StudentUncheckedUpdateWithoutSkillsInput>
-  }
-
-  export type StudentUpdateWithoutSkillsInput = {
-    semester?: NullableIntFieldUpdateOperationsInput | number | null
-    year?: NullableIntFieldUpdateOperationsInput | number | null
-    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
-    mentor?: MentorUpdateOneWithoutStudentsNestedInput
-    user?: UserUpdateOneRequiredWithoutStudentNestedInput
-    internships?: StudentInternshipUpdateManyWithoutStudentNestedInput
-    savedInternships?: SavedInternshipUpdateManyWithoutStudentNestedInput
-  }
-
-  export type StudentUncheckedUpdateWithoutSkillsInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    semester?: NullableIntFieldUpdateOperationsInput | number | null
-    year?: NullableIntFieldUpdateOperationsInput | number | null
-    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
-    mentorId?: NullableStringFieldUpdateOperationsInput | string | null
-    internships?: StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput
-    savedInternships?: SavedInternshipUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type SkillUpsertWithoutStudentsInput = {
@@ -17556,6 +17736,41 @@ export namespace Prisma {
     internships?: InternshipSkillUncheckedUpdateManyWithoutSkillNestedInput
   }
 
+  export type StudentUpsertWithoutSkillsInput = {
+    update: XOR<StudentUpdateWithoutSkillsInput, StudentUncheckedUpdateWithoutSkillsInput>
+    create: XOR<StudentCreateWithoutSkillsInput, StudentUncheckedCreateWithoutSkillsInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutSkillsInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutSkillsInput, StudentUncheckedUpdateWithoutSkillsInput>
+  }
+
+  export type StudentUpdateWithoutSkillsInput = {
+    semester?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: NullableIntFieldUpdateOperationsInput | number | null
+    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
+    savedInternships?: SavedInternshipUpdateManyWithoutStudentNestedInput
+    internships?: StudentInternshipUpdateManyWithoutStudentNestedInput
+    mentor?: MentorUpdateOneWithoutStudentsNestedInput
+    user?: UserUpdateOneRequiredWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutSkillsInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    semester?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: NullableIntFieldUpdateOperationsInput | number | null
+    cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    profileCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mentorId?: NullableStringFieldUpdateOperationsInput | string | null
+    savedInternships?: SavedInternshipUncheckedUpdateManyWithoutStudentNestedInput
+    internships?: StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
   export type InternshipCreateWithoutSkillsInput = {
     id?: string
     title: string
@@ -17565,13 +17780,16 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
     salaryPackage?: string | null
     minCgpa?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.InternshipStatus
     createdAt?: Date | string
     postedBy: PlacementOfficerCreateNestedOneWithoutInternshipsInput
-    applicants?: StudentInternshipCreateNestedManyWithoutInternshipInput
     savedBy?: SavedInternshipCreateNestedManyWithoutInternshipInput
+    applicants?: StudentInternshipCreateNestedManyWithoutInternshipInput
   }
 
   export type InternshipUncheckedCreateWithoutSkillsInput = {
@@ -17583,13 +17801,16 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
     salaryPackage?: string | null
     minCgpa?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.InternshipStatus
     createdAt?: Date | string
     postedById: string
-    applicants?: StudentInternshipUncheckedCreateNestedManyWithoutInternshipInput
     savedBy?: SavedInternshipUncheckedCreateNestedManyWithoutInternshipInput
+    applicants?: StudentInternshipUncheckedCreateNestedManyWithoutInternshipInput
   }
 
   export type InternshipCreateOrConnectWithoutSkillsInput = {
@@ -17633,13 +17854,16 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     postedBy?: PlacementOfficerUpdateOneRequiredWithoutInternshipsNestedInput
-    applicants?: StudentInternshipUpdateManyWithoutInternshipNestedInput
     savedBy?: SavedInternshipUpdateManyWithoutInternshipNestedInput
+    applicants?: StudentInternshipUpdateManyWithoutInternshipNestedInput
   }
 
   export type InternshipUncheckedUpdateWithoutSkillsInput = {
@@ -17651,13 +17875,16 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     postedById?: StringFieldUpdateOperationsInput | string
-    applicants?: StudentInternshipUncheckedUpdateManyWithoutInternshipNestedInput
     savedBy?: SavedInternshipUncheckedUpdateManyWithoutInternshipNestedInput
+    applicants?: StudentInternshipUncheckedUpdateManyWithoutInternshipNestedInput
   }
 
   export type SkillUpsertWithoutInternshipsInput = {
@@ -17682,6 +17909,11 @@ export namespace Prisma {
     students?: StudentSkillUncheckedUpdateManyWithoutSkillNestedInput
   }
 
+  export type SavedInternshipCreateManyStudentInput = {
+    internshipId: string
+    savedAt?: Date | string
+  }
+
   export type StudentInternshipCreateManyStudentInput = {
     id?: string
     internshipId: string
@@ -17690,13 +17922,23 @@ export namespace Prisma {
     appliedAt?: Date | string
   }
 
-  export type SavedInternshipCreateManyStudentInput = {
-    internshipId: string
-    savedAt?: Date | string
-  }
-
   export type StudentSkillCreateManyStudentInput = {
     skillId: number
+  }
+
+  export type SavedInternshipUpdateWithoutStudentInput = {
+    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    internship?: InternshipUpdateOneRequiredWithoutSavedByNestedInput
+  }
+
+  export type SavedInternshipUncheckedUpdateWithoutStudentInput = {
+    internshipId?: StringFieldUpdateOperationsInput | string
+    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SavedInternshipUncheckedUpdateManyWithoutStudentInput = {
+    internshipId?: StringFieldUpdateOperationsInput | string
+    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StudentInternshipUpdateWithoutStudentInput = {
@@ -17721,21 +17963,6 @@ export namespace Prisma {
     status?: EnumStudentInternshipStatusFieldUpdateOperationsInput | $Enums.StudentInternshipStatus
     certificateUrl?: NullableStringFieldUpdateOperationsInput | string | null
     appliedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SavedInternshipUpdateWithoutStudentInput = {
-    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    internship?: InternshipUpdateOneRequiredWithoutSavedByNestedInput
-  }
-
-  export type SavedInternshipUncheckedUpdateWithoutStudentInput = {
-    internshipId?: StringFieldUpdateOperationsInput | string
-    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SavedInternshipUncheckedUpdateManyWithoutStudentInput = {
-    internshipId?: StringFieldUpdateOperationsInput | string
-    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StudentSkillUpdateWithoutStudentInput = {
@@ -17765,10 +17992,10 @@ export namespace Prisma {
     cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileCompleted?: BoolFieldUpdateOperationsInput | boolean
-    user?: UserUpdateOneRequiredWithoutStudentNestedInput
-    internships?: StudentInternshipUpdateManyWithoutStudentNestedInput
     savedInternships?: SavedInternshipUpdateManyWithoutStudentNestedInput
+    internships?: StudentInternshipUpdateManyWithoutStudentNestedInput
     skills?: StudentSkillUpdateManyWithoutStudentNestedInput
+    user?: UserUpdateOneRequiredWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutMentorInput = {
@@ -17778,8 +18005,8 @@ export namespace Prisma {
     cgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileCompleted?: BoolFieldUpdateOperationsInput | boolean
-    internships?: StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput
     savedInternships?: SavedInternshipUncheckedUpdateManyWithoutStudentNestedInput
+    internships?: StudentInternshipUncheckedUpdateManyWithoutStudentNestedInput
     skills?: StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
   }
 
@@ -17801,6 +18028,9 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     mode: $Enums.Mode
+    duration: string
+    applicationDeadline?: Date | string | null
+    requirement: string
     salaryPackage?: string | null
     minCgpa?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.InternshipStatus
@@ -17816,13 +18046,16 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    applicants?: StudentInternshipUpdateManyWithoutInternshipNestedInput
-    savedBy?: SavedInternshipUpdateManyWithoutInternshipNestedInput
     skills?: InternshipSkillUpdateManyWithoutInternshipNestedInput
+    savedBy?: SavedInternshipUpdateManyWithoutInternshipNestedInput
+    applicants?: StudentInternshipUpdateManyWithoutInternshipNestedInput
   }
 
   export type InternshipUncheckedUpdateWithoutPostedByInput = {
@@ -17834,13 +18067,16 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    applicants?: StudentInternshipUncheckedUpdateManyWithoutInternshipNestedInput
-    savedBy?: SavedInternshipUncheckedUpdateManyWithoutInternshipNestedInput
     skills?: InternshipSkillUncheckedUpdateManyWithoutInternshipNestedInput
+    savedBy?: SavedInternshipUncheckedUpdateManyWithoutInternshipNestedInput
+    applicants?: StudentInternshipUncheckedUpdateManyWithoutInternshipNestedInput
   }
 
   export type InternshipUncheckedUpdateManyWithoutPostedByInput = {
@@ -17852,10 +18088,22 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     mode?: EnumModeFieldUpdateOperationsInput | $Enums.Mode
+    duration?: StringFieldUpdateOperationsInput | string
+    applicationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requirement?: StringFieldUpdateOperationsInput | string
     salaryPackage?: NullableStringFieldUpdateOperationsInput | string | null
     minCgpa?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumInternshipStatusFieldUpdateOperationsInput | $Enums.InternshipStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InternshipSkillCreateManyInternshipInput = {
+    skillId: number
+  }
+
+  export type SavedInternshipCreateManyInternshipInput = {
+    studentId: string
+    savedAt?: Date | string
   }
 
   export type StudentInternshipCreateManyInternshipInput = {
@@ -17866,13 +18114,31 @@ export namespace Prisma {
     appliedAt?: Date | string
   }
 
-  export type SavedInternshipCreateManyInternshipInput = {
-    studentId: string
-    savedAt?: Date | string
+  export type InternshipSkillUpdateWithoutInternshipInput = {
+    skill?: SkillUpdateOneRequiredWithoutInternshipsNestedInput
   }
 
-  export type InternshipSkillCreateManyInternshipInput = {
-    skillId: number
+  export type InternshipSkillUncheckedUpdateWithoutInternshipInput = {
+    skillId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type InternshipSkillUncheckedUpdateManyWithoutInternshipInput = {
+    skillId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SavedInternshipUpdateWithoutInternshipInput = {
+    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    student?: StudentUpdateOneRequiredWithoutSavedInternshipsNestedInput
+  }
+
+  export type SavedInternshipUncheckedUpdateWithoutInternshipInput = {
+    studentId?: StringFieldUpdateOperationsInput | string
+    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SavedInternshipUncheckedUpdateManyWithoutInternshipInput = {
+    studentId?: StringFieldUpdateOperationsInput | string
+    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StudentInternshipUpdateWithoutInternshipInput = {
@@ -17899,51 +18165,12 @@ export namespace Prisma {
     appliedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SavedInternshipUpdateWithoutInternshipInput = {
-    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUpdateOneRequiredWithoutSavedInternshipsNestedInput
-  }
-
-  export type SavedInternshipUncheckedUpdateWithoutInternshipInput = {
-    studentId?: StringFieldUpdateOperationsInput | string
-    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SavedInternshipUncheckedUpdateManyWithoutInternshipInput = {
-    studentId?: StringFieldUpdateOperationsInput | string
-    savedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type InternshipSkillUpdateWithoutInternshipInput = {
-    skill?: SkillUpdateOneRequiredWithoutInternshipsNestedInput
-  }
-
-  export type InternshipSkillUncheckedUpdateWithoutInternshipInput = {
-    skillId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type InternshipSkillUncheckedUpdateManyWithoutInternshipInput = {
-    skillId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type StudentSkillCreateManySkillInput = {
-    studentId: string
-  }
-
   export type InternshipSkillCreateManySkillInput = {
     internshipId: string
   }
 
-  export type StudentSkillUpdateWithoutSkillInput = {
-    student?: StudentUpdateOneRequiredWithoutSkillsNestedInput
-  }
-
-  export type StudentSkillUncheckedUpdateWithoutSkillInput = {
-    studentId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StudentSkillUncheckedUpdateManyWithoutSkillInput = {
-    studentId?: StringFieldUpdateOperationsInput | string
+  export type StudentSkillCreateManySkillInput = {
+    studentId: string
   }
 
   export type InternshipSkillUpdateWithoutSkillInput = {
@@ -17956,6 +18183,18 @@ export namespace Prisma {
 
   export type InternshipSkillUncheckedUpdateManyWithoutSkillInput = {
     internshipId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StudentSkillUpdateWithoutSkillInput = {
+    student?: StudentUpdateOneRequiredWithoutSkillsNestedInput
+  }
+
+  export type StudentSkillUncheckedUpdateWithoutSkillInput = {
+    studentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StudentSkillUncheckedUpdateManyWithoutSkillInput = {
+    studentId?: StringFieldUpdateOperationsInput | string
   }
 
 

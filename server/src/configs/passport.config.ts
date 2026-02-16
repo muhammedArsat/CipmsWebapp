@@ -5,7 +5,7 @@ import {
   GOOGLE_CLIENT_ID,
   GOOGLE_SECRET_ID,
 } from "./env.config.js";
-import { prisma } from "./prisma.Dbconfig.js";
+import prisma from "./prisma.Dbconfig.js";
 
 passport.use(
   new GoogleStrategy(

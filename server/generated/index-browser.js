@@ -129,7 +129,8 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role',
   profileUrl: 'profileUrl',
   isActive: 'isActive',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  userId: 'userId'
 };
 
 exports.Prisma.StudentScalarFieldEnum = {
@@ -161,6 +162,9 @@ exports.Prisma.InternshipScalarFieldEnum = {
   description: 'description',
   location: 'location',
   mode: 'mode',
+  duration: 'duration',
+  applicationDeadline: 'applicationDeadline',
+  requirement: 'requirement',
   salaryPackage: 'salaryPackage',
   minCgpa: 'minCgpa',
   status: 'status',

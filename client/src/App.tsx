@@ -1,9 +1,14 @@
+import { AuthProvider } from "./contexts/AuthContext"
 import RoutePage from "./routes/RoutePage"
-
+import  { Toaster } from 'react-hot-toast'
 const App = () => {
 
   return (
-    <RoutePage />
+    <AuthProvider>
+      <RoutePage />
+      <Toaster/>
+    </AuthProvider>
+
   )
 }
 

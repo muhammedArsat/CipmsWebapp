@@ -1,7 +1,12 @@
 import "express";
-import { User } from "../generated/prisma/client";
+import { User } from "../generated/prisma/client.js";
+
 declare global {
   namespace Express {
-    interface User extends User {}
+    interface Request {
+      user?: User;
+    }
   }
 }
+
+export {};

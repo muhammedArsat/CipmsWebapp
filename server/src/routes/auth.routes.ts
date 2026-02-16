@@ -1,7 +1,8 @@
 import express from "express";
 import passport from "passport";
 import { CLIENT_URL } from "../configs/env.config.js";
-import { googleCallback } from "../controllers/auth.controllers.js";
+import { googleCallback, logout, profile } from "../controllers/auth.controllers.js";
+import { verifyAdmin, verifyMentor, verifyPlacementOfficer, verifyStudent, verifyToken } from "../middlewares/jwt.middleware.js"
 const routes = express.Router();
 
 routes.get(
@@ -21,6 +22,12 @@ routes.get(
   }),
   googleCallback,
 );
+
+
+routes.get("/getMe", verifyToken, profile)
+routes.post("/logout", logout);
+
+
 
 
 export default routes

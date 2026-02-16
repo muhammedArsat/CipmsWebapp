@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated"
@@ -13,7 +7,137 @@ datasource db {
   provider = "postgresql"
 }
 
-//////////////// ENUMS ////////////////
+model User {
+  id               String            @id @default(uuid())
+  name             String
+  email            String            @unique
+  phoneNo          String?
+  department       String?
+  role             Role
+  profileUrl       String?
+  isActive         Boolean           @default(true)
+  createdAt        DateTime          @default(now())
+  userId           String            @unique
+  mentor           Mentor?
+  placementOfficer PlacementOfficer?
+  student          Student?
+
+  @@map("users")
+}
+
+model Student {
+  userId           String              @id
+  semester         Int?
+  year             Int?
+  cgpa             Decimal?            @db.Decimal(3, 2)
+  resumeUrl        String?
+  profileCompleted Boolean             @default(false)
+  mentorId         String?
+  savedInternships SavedInternship[]
+  internships      StudentInternship[]
+  skills           StudentSkill[]
+  mentor           Mentor?             @relation(fields: [mentorId], references: [userId])
+  user             User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("students")
+}
+
+model Mentor {
+  userId          String    @id
+  designation     String?
+  experienceYears Int?
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  students        Student[]
+
+  @@map("mentors")
+}
+
+model PlacementOfficer {
+  userId      String       @id
+  internships Internship[]
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("placement_officers")
+}
+
+model Internship {
+  id            String              @id @default(uuid())
+  title         String
+  companyName   String?
+  companyUrl    String?
+  companyLogo   String?
+  description   String?
+  location      String?
+  mode          Mode
+  duration String
+  applicationDeadline DateTime? 
+  requirement    String
+  salaryPackage String?
+  minCgpa       Decimal?            @db.Decimal(3, 2)
+  status        InternshipStatus    @default(OPEN)
+  createdAt     DateTime            @default(now())
+  postedById    String
+  skills        InternshipSkill[]
+  postedBy      PlacementOfficer    @relation(fields: [postedById], references: [userId])
+  savedBy       SavedInternship[]
+  applicants    StudentInternship[]
+
+  @@map("internships")
+}
+
+model StudentInternship {
+  id             String                  @id @default(uuid())
+  studentId      String
+  internshipId   String
+  status         StudentInternshipStatus @default(APPLIED)
+  certificateUrl String?
+  appliedAt      DateTime                @default(now())
+  internship     Internship              @relation(fields: [internshipId], references: [id])
+  student        Student                 @relation(fields: [studentId], references: [userId])
+
+  @@unique([studentId, internshipId])
+  @@map("student_internships")
+}
+
+model SavedInternship {
+  studentId    String
+  internshipId String
+  savedAt      DateTime   @default(now())
+  internship   Internship @relation(fields: [internshipId], references: [id])
+  student      Student    @relation(fields: [studentId], references: [userId])
+
+  @@id([studentId, internshipId])
+  @@map("saved_internships")
+}
+
+model Skill {
+  id          Int               @id @default(autoincrement())
+  name        String            @unique
+  internships InternshipSkill[]
+  students    StudentSkill[]
+
+  @@map("skills")
+}
+
+model StudentSkill {
+  studentId String
+  skillId   Int
+  skill     Skill   @relation(fields: [skillId], references: [id])
+  student   Student @relation(fields: [studentId], references: [userId])
+
+  @@id([studentId, skillId])
+  @@map("student_skills")
+}
+
+model InternshipSkill {
+  internshipId String
+  skillId      Int
+  internship   Internship @relation(fields: [internshipId], references: [id])
+  skill        Skill      @relation(fields: [skillId], references: [id])
+
+  @@id([internshipId, skillId])
+  @@map("internship_skills")
+}
 
 enum Role {
   ADMIN
@@ -38,160 +162,4 @@ enum StudentInternshipStatus {
   ONGOING
   REJECTED
   COMPLETED
-}
-
-//////////////// USER ////////////////
-
-model User {
-  id         String   @id @default(uuid())
-  name       String
-  email      String   @unique
-  phoneNo    String?
-  department String?
-  role       Role
-  profileUrl String?
-  isActive   Boolean  @default(true)
-  createdAt  DateTime @default(now())
-
-  student          Student?
-  mentor           Mentor?
-  placementOfficer PlacementOfficer?
-
-  @@map("users")
-}
-
-//////////////// STUDENT ////////////////
-
-model Student {
-  userId           String   @id
-  semester         Int?
-  year             Int?
-  cgpa             Decimal? @db.Decimal(3, 2)
-  resumeUrl        String?
-  profileCompleted Boolean  @default(false)
-
-  mentorId String?
-  mentor   Mentor? @relation(fields: [mentorId], references: [userId])
-
-  user             User                @relation(fields: [userId], references: [id], onDelete: Cascade)
-  internships      StudentInternship[]
-  savedInternships SavedInternship[]
-  skills           StudentSkill[]
-
-  @@map("students")
-}
-
-//////////////// MENTOR ////////////////
-
-model Mentor {
-  userId          String  @id
-  designation     String?
-  experienceYears Int?
-
-  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  students Student[]
-
-  @@map("mentors")
-}
-
-//////////////// PLACEMENT OFFICER ////////////////
-
-model PlacementOfficer {
-  userId String @id
-
-  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  internships Internship[]
-
-  @@map("placement_officers")
-}
-
-//////////////// INTERNSHIP ////////////////
-
-model Internship {
-  id            String           @id @default(uuid())
-  title         String
-  companyName   String?
-  companyUrl    String?
-  companyLogo   String?
-  description   String?
-  location      String?
-  mode          Mode
-  salaryPackage String?
-  minCgpa       Decimal?         @db.Decimal(3, 2)
-  status        InternshipStatus @default(OPEN)
-  createdAt     DateTime         @default(now())
-
-  postedById String
-  postedBy   PlacementOfficer @relation(fields: [postedById], references: [userId])
-
-  applicants StudentInternship[]
-  savedBy    SavedInternship[]
-  skills     InternshipSkill[]
-
-  @@map("internships")
-}
-
-//////////////// STUDENT INTERNSHIP ////////////////
-
-model StudentInternship {
-  id             String                  @id @default(uuid())
-  studentId      String
-  internshipId   String
-  status         StudentInternshipStatus @default(APPLIED)
-  certificateUrl String?
-  appliedAt      DateTime                @default(now())
-
-  student    Student    @relation(fields: [studentId], references: [userId])
-  internship Internship @relation(fields: [internshipId], references: [id])
-
-  @@unique([studentId, internshipId])
-  @@map("student_internships")
-}
-
-//////////////// SAVED INTERNSHIP ////////////////
-
-model SavedInternship {
-  studentId    String
-  internshipId String
-  savedAt      DateTime @default(now())
-
-  student    Student    @relation(fields: [studentId], references: [userId])
-  internship Internship @relation(fields: [internshipId], references: [id])
-
-  @@id([studentId, internshipId])
-  @@map("saved_internships")
-}
-
-//////////////// SKILLS ////////////////
-
-model Skill {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-
-  students    StudentSkill[]
-  internships InternshipSkill[]
-
-  @@map("skills")
-}
-
-model StudentSkill {
-  studentId String
-  skillId   Int
-
-  student Student @relation(fields: [studentId], references: [userId])
-  skill   Skill   @relation(fields: [skillId], references: [id])
-
-  @@id([studentId, skillId])
-  @@map("student_skills")
-}
-
-model InternshipSkill {
-  internshipId String
-  skillId      Int
-
-  internship Internship @relation(fields: [internshipId], references: [id])
-  skill      Skill      @relation(fields: [skillId], references: [id])
-
-  @@id([internshipId, skillId])
-  @@map("internship_skills")
 }

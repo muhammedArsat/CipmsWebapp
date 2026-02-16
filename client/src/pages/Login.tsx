@@ -6,6 +6,9 @@ import GoogleLogo from '../assets/google.svg'
 
 const Login = () => {
 
+  const handleLogin = () => {
+    window.location.href = "http://localhost:3000/api/v1/auth/google"
+  }
  
   return (
     <div className="flex justify-center items-center min-h-svh p-2 ">
@@ -23,11 +26,11 @@ const Login = () => {
           <Button fullWidth variant="contained" size="large">Login</Button>
           <Typography className="text-center" variant="subtitle2">Or</Typography>
 
-          <Button variant="outlined" size="large">
+          <Button variant="outlined" size="large" onClick={handleLogin}>
             
             <span className="flex items-center gap-3">
               <img src={GoogleLogo} alt="" className="w-7 h-7" />
-              Sign in with google
+              <Typography variant="button">Sign in with google</Typography>
             </span>
           </Button>
         
@@ -35,8 +38,10 @@ const Login = () => {
       </Card>
 
       <span>
-        <img src={LoginLogo} alt="Loginlogo" className=" lg:fixed -bottom-20 object-contain "/>
+        <img src={LoginLogo} alt="Loginlogo" className=" hidden xl:block lg:fixed bottom-0  md:-bottom-20 -right-15 w-125 object-contain "/>
       </span>
+
+   
     </div>
   )
 }

@@ -18,13 +18,19 @@ export function getTheme (mode:modePros){
       h1: {
         fontWeight: 700,
         fontSize: "2.5rem",
+        fontFamily: "Open sans",
       },
       h2: {
         fontWeight: 600,
         fontSize: "2rem",
+        fontFamily: "Open sans",
       },
       h3: {
         fontWeight: 600,
+        fontFamily: "Open sans",
+      },
+      h4:{
+        fontFamily:"Open sans",
       },
       body1: {
         fontSize: "1rem",
