@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import AuthRoutes from "./routes/auth.routes.js";
 import AdminRoutes from './routes/admin.route.js'
 import PlacementOfficerRoutes from './routes/PlacementOfficer.route.js'
+import DashboardRoutes from './routes/dashboard.route.js'
 import cookieParser from "cookie-parser"
 import passport from "./configs/passport.config.js";
 import cors from "cors";
@@ -20,7 +21,8 @@ app.use(passport.initialize());
 
 app.use("/api/v1/auth", AuthRoutes);
 app.use("/api/v1/admin", AdminRoutes);
-app.use("/api/v1/placementOfficer",PlacementOfficerRoutes)
+app.use("/api/v1/placementOfficer", PlacementOfficerRoutes)
+app.use('/api/v1/dashboard',DashboardRoutes)
 app.use(globalErrorHandler)
 
 export default app;

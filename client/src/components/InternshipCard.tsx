@@ -1,16 +1,34 @@
 import { Box, Button, Paper, Typography, useTheme } from "@mui/material"
-import Google from '../assets/google.svg'
 import Tags from "./Tags"
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined'
-import WorkIcon from '@mui/icons-material/Work'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
+// import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import { InternshipUtils } from "../utils/Internship.utils"
+import { useNavigate } from "react-router-dom"
 
-const InternshipCard = () => {
+interface InternshipCardProps{
+    id:string,
+    companyName: string,
+    companyLogo: string,
+    title:string,
+    location: string,
+    duration: string,
+    deadline: string,
+    salaryPackage: string,
+    status: string
+}
+const InternshipCard = ({id,companyName, companyLogo,title, location, duration,deadline, salaryPackage,status}:InternshipCardProps) => {
     const theme = useTheme()
+    const navigate = useNavigate();
 
+
+
+    const handleClick = () => {
+        navigate(`/internship-detail/${id}`)
+    }
     return (
         <Paper elevation={5} className="w-full md:max-w-80 p-3">
             {/* Header with company and "New" badge */}
@@ -25,8 +43,8 @@ const InternshipCard = () => {
                     alignItems: "center",
                     gap: "10px"
                 }}>
-                    <img src={Google} alt="Google_logo" className="w-9 h-9" />
-                    <Typography color="inherit">Google</Typography>
+                    <img src={companyLogo} alt="Google_logo" className="w-9 h-9 rounded-full" />
+                    <Typography color="inherit" variant="h6" fontWeight="bold">{companyName}</Typography>
                 </Box>
 
                 <Box sx={{
@@ -35,14 +53,14 @@ const InternshipCard = () => {
                     borderRadius: "50px",
                     color: "white"
                 }}>
-                    <Typography variant="body1" color="inherit">New</Typography>
+                    <Typography variant="body1" color="inherit">{status}</Typography>
                 </Box>
             </Box>
 
             {/* Job Title */}
             <Box sx={{ mb: 1.5 }}>
-                <Typography variant="h6" fontWeight="bold">
-                    Fullstack Engineer Intern
+                <Typography variant="h6" fontWeight="semibold">
+                   {title} 
                 </Typography>
             </Box>
 
@@ -53,11 +71,11 @@ const InternshipCard = () => {
                 gap: 0.8,
                 alignItems: "flex-start"
             }}>
-                <Tags icon={<FmdGoodOutlinedIcon fontSize="small" />} value="Remote" />
-                <Tags icon={<CalendarTodayIcon fontSize="small" />} value="3 Months" />
-                <Tags icon={<WorkIcon fontSize="small" />} value="Full-Time" />
-                <Tags icon={<AttachMoneyIcon fontSize="small" />} value="25,000/Month" />
-                <Tags icon={<AccessTimeIcon fontSize="small" />} value="Feb'28" />
+                <Tags icon={<FmdGoodOutlinedIcon fontSize="small" />} value={location} />
+                <Tags icon={<CalendarTodayIcon fontSize="small" />} value={duration} />
+                {/* <Tags icon={<WorkIcon fontSize="small" />} value="Full-Time" /> */}
+                <Tags icon={<CurrencyRupeeIcon fontSize="small" />} value={salaryPackage} />
+                <Tags icon={<AccessTimeIcon fontSize="small" />} value={InternshipUtils.formatDate(deadline)} />
 
             </Box>
 
@@ -84,7 +102,7 @@ const InternshipCard = () => {
                 <span className="border border-neutral-400  dark:border-neutral-500 p-2 rounded-lg">
                     <BookmarkBorderOutlinedIcon/>
                 </span>
-                <Button variant="contained">
+                <Button variant="contained" onClick={handleClick}>
                     View More
                 </Button>
             </Box>

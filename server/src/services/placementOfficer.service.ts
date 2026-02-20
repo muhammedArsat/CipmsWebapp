@@ -21,6 +21,7 @@ interface CreateInternshipData {
   duration:string,
   skills: string[];
   postedById: string;
+  minCgpa:number
 }
 
 interface UpdateInternshipData {
@@ -35,6 +36,7 @@ interface UpdateInternshipData {
   duration:string
   requirements?: string;
   skills: string[];
+  minCgpa:number
 }
 
 export class placementOfficerService {
@@ -78,10 +80,11 @@ export class placementOfficerService {
           duration:data.duration,
           status: InternshipStatus.OPEN,
           postedById: data.postedById,
+          minCgpa:data.minCgpa,
           skills: {
             create: skillIds.map((skillId) => ({
               skill: {
-                connect: { id: Number(skillId) },
+                connect: { id: (skillId) },
               },
             })),
           },
@@ -191,7 +194,11 @@ export class placementOfficerService {
           companyUrl: internship.companyUrl,
           location: internship.location,
           status: internship.status,
-          duration:internship.duration,
+          deadline: internship.applicationDeadline,
+          salaryPackage:internship.salaryPackage,
+          duration: internship.duration,
+          requirements: internship.requirement,
+          description:internship.description,
           skills: internship.skills.map((skill) => skill.skill.name),
           applicationCount: internship._count,
         })),
@@ -282,7 +289,9 @@ export class placementOfficerService {
         if (data.requirements !== undefined)
           updateData.requirement = data.requirements;
         if (data.duration !== undefined)
-            updateData.duration = data.duration
+          updateData.duration = data.duration
+        if (data.minCgpa !== undefined)
+            updateData.minCgpa = data.minCgpa
         if (data.applicationDeadline !== undefined) {
           updateData.applicationDeadline = data.applicationDeadline
             ? new Date(data.applicationDeadline)
@@ -357,6 +366,7 @@ export class placementOfficerService {
         duration:updatedInternship.duration,
         status: updatedInternship.status,
         createdAt: updatedInternship.createdAt,
+        minCgpa : updatedInternship.minCgpa,
         postedBy: updatedInternship.postedBy, // Fixed: Return full postedBy object
         skills: updatedInternship.skills.map((s) => s.skill.name),
         applicantCount: updatedInternship._count.applicants,
@@ -479,6 +489,7 @@ export class placementOfficerService {
          createdAt: internship.createdAt,
          postedBy: internship.postedBy,
          skills: skillName, 
+         minCgpa:internship.minCgpa,
          applicantCount: internship._count.applicants,
        };
       return response;

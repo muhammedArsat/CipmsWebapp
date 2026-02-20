@@ -111,7 +111,7 @@ model SavedInternship {
 }
 
 model Skill {
-  id          Int               @id @default(autoincrement())
+  id          String            @id @default(uuid())
   name        String            @unique
   internships InternshipSkill[]
   students    StudentSkill[]
@@ -121,7 +121,7 @@ model Skill {
 
 model StudentSkill {
   studentId String
-  skillId   Int
+  skillId   String
   skill     Skill   @relation(fields: [skillId], references: [id])
   student   Student @relation(fields: [studentId], references: [userId])
 
@@ -131,7 +131,7 @@ model StudentSkill {
 
 model InternshipSkill {
   internshipId String
-  skillId      Int
+  skillId      String
   internship   Internship @relation(fields: [internshipId], references: [id])
   skill        Skill      @relation(fields: [skillId], references: [id])
 

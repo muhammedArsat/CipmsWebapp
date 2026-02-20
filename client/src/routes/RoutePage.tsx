@@ -6,6 +6,7 @@ import HeaderLayout from '../layouts/HeaderLayout'
 import Users from '../pages/Users'
 import Dashboard from '../pages/Dashboard'
 import NewInternship from '../pages/NewInternship'
+import InternshipDetail from '../pages/InternshipDetail'
 
 const RoutePage = () => {
     return (
@@ -28,6 +29,10 @@ const RoutePage = () => {
 
                     <Route path='/new-internship' element={<ProtectedRoute allowedRoles={[ "PLACEMENT_OFFICER"]} >
                         <NewInternship />
+                    </ProtectedRoute>} />
+
+                    <Route path='/internship-detail/:id' element={<ProtectedRoute allowedRoles={["ADMIN","MENTOR","PLACEMENT_OFFICER","STUDENT"]}>
+                        <InternshipDetail/>
                     </ProtectedRoute>} />
                 </Route>
 

@@ -9929,27 +9929,17 @@ export namespace Prisma {
 
   export type AggregateSkill = {
     _count: SkillCountAggregateOutputType | null
-    _avg: SkillAvgAggregateOutputType | null
-    _sum: SkillSumAggregateOutputType | null
     _min: SkillMinAggregateOutputType | null
     _max: SkillMaxAggregateOutputType | null
   }
 
-  export type SkillAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type SkillSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type SkillMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
   }
 
   export type SkillMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
   }
 
@@ -9959,14 +9949,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type SkillAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type SkillSumAggregateInputType = {
-    id?: true
-  }
 
   export type SkillMinAggregateInputType = {
     id?: true
@@ -10022,18 +10004,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: SkillAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: SkillSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: SkillMinAggregateInputType
@@ -10064,18 +10034,14 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: SkillCountAggregateInputType | true
-    _avg?: SkillAvgAggregateInputType
-    _sum?: SkillSumAggregateInputType
     _min?: SkillMinAggregateInputType
     _max?: SkillMaxAggregateInputType
   }
 
   export type SkillGroupByOutputType = {
-    id: number
+    id: string
     name: string
     _count: SkillCountAggregateOutputType | null
-    _avg: SkillAvgAggregateOutputType | null
-    _sum: SkillSumAggregateOutputType | null
     _min: SkillMinAggregateOutputType | null
     _max: SkillMaxAggregateOutputType | null
   }
@@ -10133,7 +10099,7 @@ export namespace Prisma {
       students: Prisma.$StudentSkillPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       name: string
     }, ExtArgs["result"]["skill"]>
     composites: {}
@@ -10560,7 +10526,7 @@ export namespace Prisma {
    * Fields of the Skill model
    */
   interface SkillFieldRefs {
-    readonly id: FieldRef<"Skill", 'Int'>
+    readonly id: FieldRef<"Skill", 'String'>
     readonly name: FieldRef<"Skill", 'String'>
   }
     
@@ -11022,28 +10988,18 @@ export namespace Prisma {
 
   export type AggregateStudentSkill = {
     _count: StudentSkillCountAggregateOutputType | null
-    _avg: StudentSkillAvgAggregateOutputType | null
-    _sum: StudentSkillSumAggregateOutputType | null
     _min: StudentSkillMinAggregateOutputType | null
     _max: StudentSkillMaxAggregateOutputType | null
   }
 
-  export type StudentSkillAvgAggregateOutputType = {
-    skillId: number | null
-  }
-
-  export type StudentSkillSumAggregateOutputType = {
-    skillId: number | null
-  }
-
   export type StudentSkillMinAggregateOutputType = {
     studentId: string | null
-    skillId: number | null
+    skillId: string | null
   }
 
   export type StudentSkillMaxAggregateOutputType = {
     studentId: string | null
-    skillId: number | null
+    skillId: string | null
   }
 
   export type StudentSkillCountAggregateOutputType = {
@@ -11052,14 +11008,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type StudentSkillAvgAggregateInputType = {
-    skillId?: true
-  }
-
-  export type StudentSkillSumAggregateInputType = {
-    skillId?: true
-  }
 
   export type StudentSkillMinAggregateInputType = {
     studentId?: true
@@ -11115,18 +11063,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: StudentSkillAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: StudentSkillSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: StudentSkillMinAggregateInputType
@@ -11157,18 +11093,14 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: StudentSkillCountAggregateInputType | true
-    _avg?: StudentSkillAvgAggregateInputType
-    _sum?: StudentSkillSumAggregateInputType
     _min?: StudentSkillMinAggregateInputType
     _max?: StudentSkillMaxAggregateInputType
   }
 
   export type StudentSkillGroupByOutputType = {
     studentId: string
-    skillId: number
+    skillId: string
     _count: StudentSkillCountAggregateOutputType | null
-    _avg: StudentSkillAvgAggregateOutputType | null
-    _sum: StudentSkillSumAggregateOutputType | null
     _min: StudentSkillMinAggregateOutputType | null
     _max: StudentSkillMaxAggregateOutputType | null
   }
@@ -11235,7 +11167,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       studentId: string
-      skillId: number
+      skillId: string
     }, ExtArgs["result"]["studentSkill"]>
     composites: {}
   }
@@ -11662,7 +11594,7 @@ export namespace Prisma {
    */
   interface StudentSkillFieldRefs {
     readonly studentId: FieldRef<"StudentSkill", 'String'>
-    readonly skillId: FieldRef<"StudentSkill", 'Int'>
+    readonly skillId: FieldRef<"StudentSkill", 'String'>
   }
     
 
@@ -12083,28 +12015,18 @@ export namespace Prisma {
 
   export type AggregateInternshipSkill = {
     _count: InternshipSkillCountAggregateOutputType | null
-    _avg: InternshipSkillAvgAggregateOutputType | null
-    _sum: InternshipSkillSumAggregateOutputType | null
     _min: InternshipSkillMinAggregateOutputType | null
     _max: InternshipSkillMaxAggregateOutputType | null
   }
 
-  export type InternshipSkillAvgAggregateOutputType = {
-    skillId: number | null
-  }
-
-  export type InternshipSkillSumAggregateOutputType = {
-    skillId: number | null
-  }
-
   export type InternshipSkillMinAggregateOutputType = {
     internshipId: string | null
-    skillId: number | null
+    skillId: string | null
   }
 
   export type InternshipSkillMaxAggregateOutputType = {
     internshipId: string | null
-    skillId: number | null
+    skillId: string | null
   }
 
   export type InternshipSkillCountAggregateOutputType = {
@@ -12113,14 +12035,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type InternshipSkillAvgAggregateInputType = {
-    skillId?: true
-  }
-
-  export type InternshipSkillSumAggregateInputType = {
-    skillId?: true
-  }
 
   export type InternshipSkillMinAggregateInputType = {
     internshipId?: true
@@ -12176,18 +12090,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: InternshipSkillAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: InternshipSkillSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: InternshipSkillMinAggregateInputType
@@ -12218,18 +12120,14 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: InternshipSkillCountAggregateInputType | true
-    _avg?: InternshipSkillAvgAggregateInputType
-    _sum?: InternshipSkillSumAggregateInputType
     _min?: InternshipSkillMinAggregateInputType
     _max?: InternshipSkillMaxAggregateInputType
   }
 
   export type InternshipSkillGroupByOutputType = {
     internshipId: string
-    skillId: number
+    skillId: string
     _count: InternshipSkillCountAggregateOutputType | null
-    _avg: InternshipSkillAvgAggregateOutputType | null
-    _sum: InternshipSkillSumAggregateOutputType | null
     _min: InternshipSkillMinAggregateOutputType | null
     _max: InternshipSkillMaxAggregateOutputType | null
   }
@@ -12296,7 +12194,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       internshipId: string
-      skillId: number
+      skillId: string
     }, ExtArgs["result"]["internshipSkill"]>
     composites: {}
   }
@@ -12723,7 +12621,7 @@ export namespace Prisma {
    */
   interface InternshipSkillFieldRefs {
     readonly internshipId: FieldRef<"InternshipSkill", 'String'>
-    readonly skillId: FieldRef<"InternshipSkill", 'Int'>
+    readonly skillId: FieldRef<"InternshipSkill", 'String'>
   }
     
 
@@ -13920,7 +13818,7 @@ export namespace Prisma {
     AND?: SkillWhereInput | SkillWhereInput[]
     OR?: SkillWhereInput[]
     NOT?: SkillWhereInput | SkillWhereInput[]
-    id?: IntFilter<"Skill"> | number
+    id?: StringFilter<"Skill"> | string
     name?: StringFilter<"Skill"> | string
     internships?: InternshipSkillListRelationFilter
     students?: StudentSkillListRelationFilter
@@ -13934,7 +13832,7 @@ export namespace Prisma {
   }
 
   export type SkillWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     name?: string
     AND?: SkillWhereInput | SkillWhereInput[]
     OR?: SkillWhereInput[]
@@ -13947,17 +13845,15 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     _count?: SkillCountOrderByAggregateInput
-    _avg?: SkillAvgOrderByAggregateInput
     _max?: SkillMaxOrderByAggregateInput
     _min?: SkillMinOrderByAggregateInput
-    _sum?: SkillSumOrderByAggregateInput
   }
 
   export type SkillScalarWhereWithAggregatesInput = {
     AND?: SkillScalarWhereWithAggregatesInput | SkillScalarWhereWithAggregatesInput[]
     OR?: SkillScalarWhereWithAggregatesInput[]
     NOT?: SkillScalarWhereWithAggregatesInput | SkillScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Skill"> | number
+    id?: StringWithAggregatesFilter<"Skill"> | string
     name?: StringWithAggregatesFilter<"Skill"> | string
   }
 
@@ -13966,7 +13862,7 @@ export namespace Prisma {
     OR?: StudentSkillWhereInput[]
     NOT?: StudentSkillWhereInput | StudentSkillWhereInput[]
     studentId?: StringFilter<"StudentSkill"> | string
-    skillId?: IntFilter<"StudentSkill"> | number
+    skillId?: StringFilter<"StudentSkill"> | string
     skill?: XOR<SkillScalarRelationFilter, SkillWhereInput>
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }
@@ -13984,7 +13880,7 @@ export namespace Prisma {
     OR?: StudentSkillWhereInput[]
     NOT?: StudentSkillWhereInput | StudentSkillWhereInput[]
     studentId?: StringFilter<"StudentSkill"> | string
-    skillId?: IntFilter<"StudentSkill"> | number
+    skillId?: StringFilter<"StudentSkill"> | string
     skill?: XOR<SkillScalarRelationFilter, SkillWhereInput>
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }, "studentId_skillId">
@@ -13993,10 +13889,8 @@ export namespace Prisma {
     studentId?: SortOrder
     skillId?: SortOrder
     _count?: StudentSkillCountOrderByAggregateInput
-    _avg?: StudentSkillAvgOrderByAggregateInput
     _max?: StudentSkillMaxOrderByAggregateInput
     _min?: StudentSkillMinOrderByAggregateInput
-    _sum?: StudentSkillSumOrderByAggregateInput
   }
 
   export type StudentSkillScalarWhereWithAggregatesInput = {
@@ -14004,7 +13898,7 @@ export namespace Prisma {
     OR?: StudentSkillScalarWhereWithAggregatesInput[]
     NOT?: StudentSkillScalarWhereWithAggregatesInput | StudentSkillScalarWhereWithAggregatesInput[]
     studentId?: StringWithAggregatesFilter<"StudentSkill"> | string
-    skillId?: IntWithAggregatesFilter<"StudentSkill"> | number
+    skillId?: StringWithAggregatesFilter<"StudentSkill"> | string
   }
 
   export type InternshipSkillWhereInput = {
@@ -14012,7 +13906,7 @@ export namespace Prisma {
     OR?: InternshipSkillWhereInput[]
     NOT?: InternshipSkillWhereInput | InternshipSkillWhereInput[]
     internshipId?: StringFilter<"InternshipSkill"> | string
-    skillId?: IntFilter<"InternshipSkill"> | number
+    skillId?: StringFilter<"InternshipSkill"> | string
     internship?: XOR<InternshipScalarRelationFilter, InternshipWhereInput>
     skill?: XOR<SkillScalarRelationFilter, SkillWhereInput>
   }
@@ -14030,7 +13924,7 @@ export namespace Prisma {
     OR?: InternshipSkillWhereInput[]
     NOT?: InternshipSkillWhereInput | InternshipSkillWhereInput[]
     internshipId?: StringFilter<"InternshipSkill"> | string
-    skillId?: IntFilter<"InternshipSkill"> | number
+    skillId?: StringFilter<"InternshipSkill"> | string
     internship?: XOR<InternshipScalarRelationFilter, InternshipWhereInput>
     skill?: XOR<SkillScalarRelationFilter, SkillWhereInput>
   }, "internshipId_skillId">
@@ -14039,10 +13933,8 @@ export namespace Prisma {
     internshipId?: SortOrder
     skillId?: SortOrder
     _count?: InternshipSkillCountOrderByAggregateInput
-    _avg?: InternshipSkillAvgOrderByAggregateInput
     _max?: InternshipSkillMaxOrderByAggregateInput
     _min?: InternshipSkillMinOrderByAggregateInput
-    _sum?: InternshipSkillSumOrderByAggregateInput
   }
 
   export type InternshipSkillScalarWhereWithAggregatesInput = {
@@ -14050,7 +13942,7 @@ export namespace Prisma {
     OR?: InternshipSkillScalarWhereWithAggregatesInput[]
     NOT?: InternshipSkillScalarWhereWithAggregatesInput | InternshipSkillScalarWhereWithAggregatesInput[]
     internshipId?: StringWithAggregatesFilter<"InternshipSkill"> | string
-    skillId?: IntWithAggregatesFilter<"InternshipSkill"> | number
+    skillId?: StringWithAggregatesFilter<"InternshipSkill"> | string
   }
 
   export type UserCreateInput = {
@@ -14559,42 +14451,45 @@ export namespace Prisma {
   }
 
   export type SkillCreateInput = {
+    id?: string
     name: string
     internships?: InternshipSkillCreateNestedManyWithoutSkillInput
     students?: StudentSkillCreateNestedManyWithoutSkillInput
   }
 
   export type SkillUncheckedCreateInput = {
-    id?: number
+    id?: string
     name: string
     internships?: InternshipSkillUncheckedCreateNestedManyWithoutSkillInput
     students?: StudentSkillUncheckedCreateNestedManyWithoutSkillInput
   }
 
   export type SkillUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     internships?: InternshipSkillUpdateManyWithoutSkillNestedInput
     students?: StudentSkillUpdateManyWithoutSkillNestedInput
   }
 
   export type SkillUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     internships?: InternshipSkillUncheckedUpdateManyWithoutSkillNestedInput
     students?: StudentSkillUncheckedUpdateManyWithoutSkillNestedInput
   }
 
   export type SkillCreateManyInput = {
-    id?: number
+    id?: string
     name: string
   }
 
   export type SkillUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
   }
 
   export type SkillUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
   }
 
@@ -14605,7 +14500,7 @@ export namespace Prisma {
 
   export type StudentSkillUncheckedCreateInput = {
     studentId: string
-    skillId: number
+    skillId: string
   }
 
   export type StudentSkillUpdateInput = {
@@ -14615,12 +14510,12 @@ export namespace Prisma {
 
   export type StudentSkillUncheckedUpdateInput = {
     studentId?: StringFieldUpdateOperationsInput | string
-    skillId?: IntFieldUpdateOperationsInput | number
+    skillId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentSkillCreateManyInput = {
     studentId: string
-    skillId: number
+    skillId: string
   }
 
   export type StudentSkillUpdateManyMutationInput = {
@@ -14629,7 +14524,7 @@ export namespace Prisma {
 
   export type StudentSkillUncheckedUpdateManyInput = {
     studentId?: StringFieldUpdateOperationsInput | string
-    skillId?: IntFieldUpdateOperationsInput | number
+    skillId?: StringFieldUpdateOperationsInput | string
   }
 
   export type InternshipSkillCreateInput = {
@@ -14639,7 +14534,7 @@ export namespace Prisma {
 
   export type InternshipSkillUncheckedCreateInput = {
     internshipId: string
-    skillId: number
+    skillId: string
   }
 
   export type InternshipSkillUpdateInput = {
@@ -14649,12 +14544,12 @@ export namespace Prisma {
 
   export type InternshipSkillUncheckedUpdateInput = {
     internshipId?: StringFieldUpdateOperationsInput | string
-    skillId?: IntFieldUpdateOperationsInput | number
+    skillId?: StringFieldUpdateOperationsInput | string
   }
 
   export type InternshipSkillCreateManyInput = {
     internshipId: string
-    skillId: number
+    skillId: string
   }
 
   export type InternshipSkillUpdateManyMutationInput = {
@@ -14663,7 +14558,7 @@ export namespace Prisma {
 
   export type InternshipSkillUncheckedUpdateManyInput = {
     internshipId?: StringFieldUpdateOperationsInput | string
-    skillId?: IntFieldUpdateOperationsInput | number
+    skillId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -15256,24 +15151,9 @@ export namespace Prisma {
     savedAt?: SortOrder
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type SkillCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-  }
-
-  export type SkillAvgOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type SkillMaxOrderByAggregateInput = {
@@ -15286,26 +15166,6 @@ export namespace Prisma {
     name?: SortOrder
   }
 
-  export type SkillSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
   export type SkillScalarRelationFilter = {
     is?: SkillWhereInput
     isNot?: SkillWhereInput
@@ -15313,15 +15173,11 @@ export namespace Prisma {
 
   export type StudentSkillStudentIdSkillIdCompoundUniqueInput = {
     studentId: string
-    skillId: number
+    skillId: string
   }
 
   export type StudentSkillCountOrderByAggregateInput = {
     studentId?: SortOrder
-    skillId?: SortOrder
-  }
-
-  export type StudentSkillAvgOrderByAggregateInput = {
     skillId?: SortOrder
   }
 
@@ -15335,21 +15191,13 @@ export namespace Prisma {
     skillId?: SortOrder
   }
 
-  export type StudentSkillSumOrderByAggregateInput = {
-    skillId?: SortOrder
-  }
-
   export type InternshipSkillInternshipIdSkillIdCompoundUniqueInput = {
     internshipId: string
-    skillId: number
+    skillId: string
   }
 
   export type InternshipSkillCountOrderByAggregateInput = {
     internshipId?: SortOrder
-    skillId?: SortOrder
-  }
-
-  export type InternshipSkillAvgOrderByAggregateInput = {
     skillId?: SortOrder
   }
 
@@ -15360,10 +15208,6 @@ export namespace Prisma {
 
   export type InternshipSkillMinOrderByAggregateInput = {
     internshipId?: SortOrder
-    skillId?: SortOrder
-  }
-
-  export type InternshipSkillSumOrderByAggregateInput = {
     skillId?: SortOrder
   }
 
@@ -16035,14 +15879,6 @@ export namespace Prisma {
     deleteMany?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type InternshipSkillUncheckedUpdateManyWithoutSkillNestedInput = {
     create?: XOR<InternshipSkillCreateWithoutSkillInput, InternshipSkillUncheckedCreateWithoutSkillInput> | InternshipSkillCreateWithoutSkillInput[] | InternshipSkillUncheckedCreateWithoutSkillInput[]
     connectOrCreate?: InternshipSkillCreateOrConnectWithoutSkillInput | InternshipSkillCreateOrConnectWithoutSkillInput[]
@@ -16396,33 +16232,6 @@ export namespace Prisma {
     _max?: NestedEnumStudentInternshipStatusFilter<$PrismaModel>
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type MentorCreateWithoutUserInput = {
     designation?: string | null
     experienceYears?: number | null
@@ -16610,7 +16419,7 @@ export namespace Prisma {
   }
 
   export type StudentSkillUncheckedCreateWithoutStudentInput = {
-    skillId: number
+    skillId: string
   }
 
   export type StudentSkillCreateOrConnectWithoutStudentInput = {
@@ -16749,7 +16558,7 @@ export namespace Prisma {
     OR?: StudentSkillScalarWhereInput[]
     NOT?: StudentSkillScalarWhereInput | StudentSkillScalarWhereInput[]
     studentId?: StringFilter<"StudentSkill"> | string
-    skillId?: IntFilter<"StudentSkill"> | number
+    skillId?: StringFilter<"StudentSkill"> | string
   }
 
   export type MentorUpsertWithoutStudentsInput = {
@@ -17126,7 +16935,7 @@ export namespace Prisma {
   }
 
   export type InternshipSkillUncheckedCreateWithoutInternshipInput = {
-    skillId: number
+    skillId: string
   }
 
   export type InternshipSkillCreateOrConnectWithoutInternshipInput = {
@@ -17219,7 +17028,7 @@ export namespace Prisma {
     OR?: InternshipSkillScalarWhereInput[]
     NOT?: InternshipSkillScalarWhereInput | InternshipSkillScalarWhereInput[]
     internshipId?: StringFilter<"InternshipSkill"> | string
-    skillId?: IntFilter<"InternshipSkill"> | number
+    skillId?: StringFilter<"InternshipSkill"> | string
   }
 
   export type PlacementOfficerUpsertWithoutInternshipsInput = {
@@ -17670,12 +17479,13 @@ export namespace Prisma {
   }
 
   export type SkillCreateWithoutStudentsInput = {
+    id?: string
     name: string
     internships?: InternshipSkillCreateNestedManyWithoutSkillInput
   }
 
   export type SkillUncheckedCreateWithoutStudentsInput = {
-    id?: number
+    id?: string
     name: string
     internships?: InternshipSkillUncheckedCreateNestedManyWithoutSkillInput
   }
@@ -17726,12 +17536,13 @@ export namespace Prisma {
   }
 
   export type SkillUpdateWithoutStudentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     internships?: InternshipSkillUpdateManyWithoutSkillNestedInput
   }
 
   export type SkillUncheckedUpdateWithoutStudentsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     internships?: InternshipSkillUncheckedUpdateManyWithoutSkillNestedInput
   }
@@ -17819,12 +17630,13 @@ export namespace Prisma {
   }
 
   export type SkillCreateWithoutInternshipsInput = {
+    id?: string
     name: string
     students?: StudentSkillCreateNestedManyWithoutSkillInput
   }
 
   export type SkillUncheckedCreateWithoutInternshipsInput = {
-    id?: number
+    id?: string
     name: string
     students?: StudentSkillUncheckedCreateNestedManyWithoutSkillInput
   }
@@ -17899,12 +17711,13 @@ export namespace Prisma {
   }
 
   export type SkillUpdateWithoutInternshipsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     students?: StudentSkillUpdateManyWithoutSkillNestedInput
   }
 
   export type SkillUncheckedUpdateWithoutInternshipsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     students?: StudentSkillUncheckedUpdateManyWithoutSkillNestedInput
   }
@@ -17923,7 +17736,7 @@ export namespace Prisma {
   }
 
   export type StudentSkillCreateManyStudentInput = {
-    skillId: number
+    skillId: string
   }
 
   export type SavedInternshipUpdateWithoutStudentInput = {
@@ -17970,11 +17783,11 @@ export namespace Prisma {
   }
 
   export type StudentSkillUncheckedUpdateWithoutStudentInput = {
-    skillId?: IntFieldUpdateOperationsInput | number
+    skillId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentSkillUncheckedUpdateManyWithoutStudentInput = {
-    skillId?: IntFieldUpdateOperationsInput | number
+    skillId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentCreateManyMentorInput = {
@@ -18098,7 +17911,7 @@ export namespace Prisma {
   }
 
   export type InternshipSkillCreateManyInternshipInput = {
-    skillId: number
+    skillId: string
   }
 
   export type SavedInternshipCreateManyInternshipInput = {
@@ -18119,11 +17932,11 @@ export namespace Prisma {
   }
 
   export type InternshipSkillUncheckedUpdateWithoutInternshipInput = {
-    skillId?: IntFieldUpdateOperationsInput | number
+    skillId?: StringFieldUpdateOperationsInput | string
   }
 
   export type InternshipSkillUncheckedUpdateManyWithoutInternshipInput = {
-    skillId?: IntFieldUpdateOperationsInput | number
+    skillId?: StringFieldUpdateOperationsInput | string
   }
 
   export type SavedInternshipUpdateWithoutInternshipInput = {

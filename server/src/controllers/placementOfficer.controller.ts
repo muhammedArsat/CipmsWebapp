@@ -43,13 +43,16 @@ export class PlacementOfficerController {
     next: NextFunction,
   ) {
     try {
-      const { id } = req.body;
-
+      const {id} = req.query;
       if (!id) {
         return AppResponse.badRequest(res, "User Id is missing");
       }
 
-      const response = await placementOfficerService.getAllInternshipPosted(id);
+      if (Array.isArray(id)) {
+        return AppResponse.badRequest(res, "Invalid format of Id")
+      }
+
+      const response = await placementOfficerService.getAllInternshipPosted(id as string);
 
       return AppResponse.success(res, "All Internships fetched", response);
     } catch (err) {
@@ -63,7 +66,7 @@ export class PlacementOfficerController {
     next: NextFunction,
   ) {
     try {
-      const { id, userId } = req.body;
+      const { id, userId } = req.query;
 
       if (!id || !userId) {
         return AppResponse.badRequest(
@@ -72,8 +75,8 @@ export class PlacementOfficerController {
         );
       }
       const response = await placementOfficerService.deleteInternship(
-        id,
-        userId,
+        id as string,
+        userId as string,
       );
 
       return AppResponse.success(res, response.message, response.data);
@@ -88,16 +91,17 @@ export class PlacementOfficerController {
     next: NextFunction,
   ) {
     try {
-      const { data, userId, id } = req.body;
-
+      const data = req.body;
+      const {id, userId} = req.query
+    
       if (!data || !userId || !id) {
         return AppResponse.badRequest(res, "Valid fields are missing");
       }
 
       const response = await placementOfficerService.updateInternship(
         data,
-        id,
-        userId,
+        id as string,
+        userId as string,
       );
 
       return AppResponse.success(
@@ -116,7 +120,7 @@ export class PlacementOfficerController {
     next: NextFunction,
   ) {
     try {
-      const { id, userId } = req.body;
+      const { id, userId } = req.query;
 
       if (!id || !userId) {
         return AppResponse.badRequest(
@@ -125,8 +129,12 @@ export class PlacementOfficerController {
         );
       }
 
+      if (Array.isArray(id)) {
+        return AppResponse.badRequest(res, "Id is invalid format")
+      }
+
       const response =
-        await placementOfficerService.getDetailsOfPostedInternship(id, userId);
+        await placementOfficerService.getDetailsOfPostedInternship(id as string, userId as string);
 
       return AppResponse.success(
         res,
