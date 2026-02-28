@@ -21,16 +21,12 @@ export class DashboardService {
     try {
       const stats = await prisma.$transaction(async (tx) => {
         // Total internships posted by user
-        const totalInternships = await tx.internship.count({
-          where: {
-            postedById: userId,
-          },
-        });
+        const totalInternships = await tx.internship.count()
 
         // Active internships (open and not expired)
         const activeInternships = await tx.internship.count({
           where: {
-            postedById: userId,
+            
             status: InternshipStatus.OPEN,
             OR: [
               { applicationDeadline: null }, // No deadline
@@ -42,16 +38,14 @@ export class DashboardService {
         // Expired internships
         const expiredInternships = await tx.internship.count({
           where: {
-            postedById: userId,
+            
             applicationDeadline: { lt: new Date() },
           },
         });
 
         // Fixed: Get applications count properly
         const internshipsWithApplications = await tx.internship.findMany({
-          where: {
-            postedById: userId,
-          },
+          
           include: {
             _count: {
               select: {
@@ -70,9 +64,7 @@ export class DashboardService {
         // Get pending applications (assuming PENDING status exists)
         const pendingApplications = await tx.studentInternship.count({
           where: {
-            internship: {
-              postedById: userId,
-            },
+            
             status: "ONGOING", // Adjust status based on your enum
           },
         });
@@ -83,9 +75,7 @@ export class DashboardService {
 
         const recentApplications = await tx.studentInternship.count({
           where: {
-            internship: {
-              postedById: userId,
-            },
+           
             appliedAt: {
               gte: sevenDaysAgo,
             },
@@ -123,7 +113,7 @@ export class DashboardService {
       // Get internships from last 12 months
       const internships = await prisma.internship.findMany({
         where: {
-          postedById: userId,
+         
           createdAt: {
             gte: twelveMonthsAgo,
           },

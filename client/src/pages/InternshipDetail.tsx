@@ -12,7 +12,7 @@ import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
-
+import LaptopMacIcon from '@mui/icons-material/LaptopMac'
 export interface FetchInternshipData {
     id: string,
     title: string
@@ -81,7 +81,7 @@ const InternshipDetail = () => {
     return (
         <div className="flex flex-col">
             <div className="flex flex-col lg:flex-row justify-center items-start gap-2">
-                <Paper className="basis-3/4 min-h-svh p-2">
+                <Paper className="basis-3/4 min-h-fit p-2">
                     <Typography variant="h6" fontWeight="bold">Description</Typography>
                     <Box
                         dangerouslySetInnerHTML={{
@@ -234,10 +234,10 @@ const InternshipDetail = () => {
                                 variant="body1"
                                 align="center"
                             >
-                                {internship?.companyUrl}
+                                <a href={`${internship?.companyUrl}`} target="_blank"> {internship?.companyUrl}</a> 
                             </Typography>
-
-                            {user?.role === "PLACEMENT_OFFICER" && <Typography
+                           
+                            { <Typography
                                 variant="body1"
                                 align="center"
                             color="inherit">
@@ -253,6 +253,10 @@ const InternshipDetail = () => {
                             <Typography variant="body1" color="inherit" className="flex items-center gap-2">
                                 <FmdGoodOutlinedIcon />
                                 <strong>Location:</strong> {internship?.location}
+                            </Typography>
+                            <Typography variant="body1" color="inherit" className="flex items-center gap-2">
+                                <LaptopMacIcon />
+                                <strong>Mode:</strong> {internship?.mode}
                             </Typography>
                             <Typography variant="body1" color="inherit" className="flex items-center gap-2">
                                 <AccessTimeIcon />
