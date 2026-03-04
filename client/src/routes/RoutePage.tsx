@@ -7,6 +7,7 @@ import Users from '../pages/Users'
 import Dashboard from '../pages/Dashboard'
 import NewInternship from '../pages/NewInternship'
 import InternshipDetail from '../pages/InternshipDetail'
+import Profile from '../pages/Profile'
 
 const RoutePage = () => {
     return (
@@ -34,7 +35,12 @@ const RoutePage = () => {
                     <Route path='/internship-detail/:id' element={<ProtectedRoute allowedRoles={["ADMIN","MENTOR","PLACEMENT_OFFICER","STUDENT"]}>
                         <InternshipDetail/>
                     </ProtectedRoute>} />
+
+                    <Route path='/profile/:id' element={<ProtectedRoute allowedRoles={[ "STUDENT"]}>
+                        <Profile />
+                    </ProtectedRoute>} />
                 </Route>
+                
 
             </Routes>
         </Router>
