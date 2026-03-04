@@ -38,21 +38,39 @@ export class AuthService {
       }
 
       const user = await prisma.user.findUnique({
-        where: { id: id },
+        where: { id: id ,},
         select: {
           id: true,
           name: true,
           email: true,
           profileUrl: true,
           role: true,
+          student: {
+            select: {
+              profileCompleted:true
+            }
+          }
         },
+        
       })
+       if (!user) {
+         throw new AppError("User not found", 404);
+       }
 
-      if (!user) {
-        throw new AppError("User not found", 404)
+      if (user?.role !== "STUDENT") {
+        const { student, ...userWithoutStudent } = user
+        return userWithoutStudent;
       }
-
-      return user
+     
+      console.log(user)
+      return {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        profileCompleted: user.student?.profileCompleted,
+        profileUrl: user.profileUrl,
+        role:user.role
+      }
     } catch (err) {
 
       if (err instanceof Prisma.PrismaClientKnownRequestError) {

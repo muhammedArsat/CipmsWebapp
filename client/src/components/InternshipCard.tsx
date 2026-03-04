@@ -5,24 +5,25 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime'
 // import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import { InternshipUtils } from "../utils/Internship.utils"
 import { useNavigate } from "react-router-dom"
 
-interface InternshipCardProps{
-    id:string,
+interface InternshipCardProps {
+    id: string,
     companyName: string,
     companyLogo: string,
-    title:string,
+    title: string,
     location: string,
     duration: string,
     deadline: string,
     salaryPackage: string,
     status: string
+    match: string | null
 }
-const InternshipCard = ({id,companyName, companyLogo,title, location, duration,deadline, salaryPackage,status}:InternshipCardProps) => {
+const InternshipCard = ({ id, companyName, companyLogo, title, location, duration, deadline, salaryPackage, status, match = null }: InternshipCardProps) => {
     const theme = useTheme()
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
 
 
@@ -47,20 +48,34 @@ const InternshipCard = ({id,companyName, companyLogo,title, location, duration,d
                     <Typography color="inherit" variant="h6" fontWeight="bold">{companyName}</Typography>
                 </Box>
 
-                <Box sx={{
-                    bgcolor: "primary.main",
-                    px: "10px",
-                    borderRadius: "50px",
-                    color: "white"
-                }}>
-                    <Typography variant="body1" color="inherit">{status}</Typography>
+
+                <Box>
+
                 </Box>
+                <div className="flex justify-center items-center gap-2">
+                    {match && <Typography variant="body2" color="white" className="bg-green-500 px-2 rounded-full text-white">
+                        {match}% matched
+
+                    </Typography>
+
+                    }
+                    <Box sx={{
+                        bgcolor: "primary.main",
+                        px: "10px",
+                        borderRadius: "50px",
+                        color: "white"
+                    }}>
+
+                        <Typography variant="body1" color="inherit">{status}</Typography>
+                    </Box>
+                </div>
+               
             </Box>
 
             {/* Job Title */}
             <Box sx={{ mb: 1.5 }}>
                 <Typography variant="h6" fontWeight="semibold">
-                   {title} 
+                    {title}
                 </Typography>
             </Box>
 
@@ -96,12 +111,13 @@ const InternshipCard = ({id,companyName, companyLogo,title, location, duration,d
             <Box sx={{
                 display: 'flex',
                 justifyContent: "space-between",
-                alignItems:"center"
+                alignItems: "center"
             }}>
 
                 <span className="border border-neutral-400  dark:border-neutral-500 p-2 rounded-lg">
-                    <BookmarkBorderOutlinedIcon/>
+                    <BookmarkBorderOutlinedIcon />
                 </span>
+                
                 <Button variant="contained" onClick={handleClick}>
                     View More
                 </Button>

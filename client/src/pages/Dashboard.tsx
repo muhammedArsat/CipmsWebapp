@@ -14,6 +14,7 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined'
 import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlined'
 import DashboardChart from '../components/DashboardCharts'
+import { StudentApi } from "../apis/studentApi"
 
 interface DashboardStats {
   activeInternships: string,
@@ -22,6 +23,20 @@ interface DashboardStats {
   recentApplications: string,
   totalApplications: string,
   totalInternships: string
+}
+
+interface InternshipCardProps{
+
+  title: string,
+  companyName: string,
+  id: string,
+  duration: string,
+  salaryPackage: string,
+  location: string,
+  deadline: string,
+  matchPercentage: string,
+  companyLogo: string,
+  status:string,
 }
 
 interface ChartDataset {
@@ -44,6 +59,23 @@ const Dashboard = () => {
     }
   }
 
+  const [recommended, setRecommended] = useState<InternshipCardProps[]>([])
+
+  const handleRecommendation = async () => {
+    try {
+      
+      const response = await StudentApi.fetchRecommendation(user?.id as string)
+      console.log(response)
+      setRecommended(response.internships)
+    } catch (err: any) {
+      toast.error(err.response.data.message || "Something went wrong")
+    }
+  }
+  useEffect(() => {
+    if (user?.role === "STUDENT") {
+        handleRecommendation()
+      }
+  },[])
   const fetchChartData = async () => {
     try {
       const response = await DashboardApi.getChartData(user?.id as string)
@@ -174,13 +206,28 @@ const Dashboard = () => {
                   salaryPackage={internship.salaryPackage}
                   deadline={internship.deadline}
                   status={internship.status}
+                  match={null}
                 />
               ))
             )}
           </div>
         </Box>
       </>}
-
+      
+      {user?.role === "STUDENT" && <>
+      
+        <Typography variant="h6" fontWeight={"bold"}>
+          Recommended Internships
+        </Typography>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+          {recommended.map((internship, idx) => {
+            return (
+              <InternshipCard key={idx} title={internship?.title} match={internship?.matchPercentage} companyLogo={internship?.companyLogo} location={internship.location} deadline={internship?.deadline} duration={internship?.duration} salaryPackage={internship?.salaryPackage} id={internship?.id} status={internship?.status} companyName={internship.companyName} />
+            )
+          })}
+        </div>
+      </>}
     </div>
   )
 }

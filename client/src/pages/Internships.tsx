@@ -63,6 +63,7 @@ const Internships = () => {
               deadline={internship?.applicationDeadline}
               salaryPackage={internship.salaryPackage}
               status={internship.status}
+              match={null}
             />
           ))
         )}

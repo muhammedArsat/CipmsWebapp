@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { fetchProfileCompletion } from '../apis/authApi'
 import CircularProgress from '@mui/material/CircularProgress'
+import PersonIcon from '@mui/icons-material/Person';
 
 interface sidebarProps {
     open: boolean,
@@ -67,11 +68,19 @@ const menuItems = [
         roles: ['PLACEMENT_OFFICER'],
         icon: <AddIcon />
     },
+    
+    
     {
         name: 'Internships',
         path: '/internships',
         roles: ['ADMIN', 'MENTOR', 'PLACEMENT_OFFICER', 'STUDENT'],
         icon: <WorkIcon />
+    },
+    {
+        name: 'Profile',
+        path: `/profile/${user?.id}`,
+        roles: ['STUDENT'],
+        icon: < PersonIcon />
     }, {
         name: 'Users',
         path: "/users",

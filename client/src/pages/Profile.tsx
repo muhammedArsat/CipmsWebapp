@@ -3,7 +3,8 @@ import { StudentApi } from "../apis/studentApi"
 import { useAuth } from "../contexts/AuthContext"
 import { useEffect, useState } from "react"
 import UploadButton from "../components/UploadButton"
-import { Box, Typography } from "@mui/material"
+import { Box, Typography, TextField, Button } from "@mui/material"
+import Grid from "@mui/material/Grid"
 
 interface ProfileFormData {
   name: string
@@ -29,7 +30,7 @@ interface FormField {
 
 const FORM_FIELDS: FormField[] = [
   { name: "name", label: "Name", disabled: true },
-  { name: "email", label: "Email", disabled: true },
+  { name: "email", label: "Email", type: "email", disabled: true },
   { name: "department", label: "Department", disabled: true },
   {
     name: "phoneNo",
@@ -97,9 +98,18 @@ const Profile = () => {
     try {
       const response = await StudentApi.fetchProfile(user?.id as string)
       console.log(response)
-      setFormData(response)
-      setOriginalData(response)
-      setSkillInput(response.skills?.join(", ") || "")
+
+      // Extract skill names from the nested structure
+      const skillNames = response.skills?.map((item: any) => item.skill.name) || []
+
+      const formattedData = {
+        ...response,
+        skills: skillNames
+      }
+
+      setFormData(formattedData)
+      setOriginalData(formattedData)
+      setSkillInput(skillNames.join(", "))
     } catch (err: any) {
       toast.error(err.response.data.message || "Something went wrong")
     }
@@ -166,15 +176,16 @@ const Profile = () => {
         resumeUrl: resumeUrl
       }
 
-      // await StudentApi.updateProfile(user?.id as string, submissionData)
       console.log("Final submission data:", submissionData)
+      const response = await StudentApi.updateProfile(submissionData)
 
-      toast.success("Profile updated successfully")
+      toast.success(response?.message || "Profile updated successfully")
+
       setOriginalData(submissionData)
       setFormData(submissionData)
       setResumeFile(null)
     } catch (err: any) {
-      toast.error(err.response.data.message || "Failed to update profile")
+      toast.error(err.response?.data?.message || "Failed to update profile")
     } finally {
       setIsLoading(false)
     }
@@ -199,104 +210,110 @@ const Profile = () => {
   }, [])
 
   return (
-    <div className="p-6 w-full">
-      <Typography color="inherit" variant="h4">Profile</Typography>
+    <Box sx={{ p: 3, width: "100%" }}>
+      <Typography variant="h4" sx={{ mb: 3 }}>
+        Profile
+      </Typography>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form className="grid grid-cols-1 md:grid-cols-2 w-full gap-3" onSubmit={handleSubmit}>
+       
           {FORM_FIELDS.map((field) => (
-            <div key={field.name}>
-              <label className="block text-sm font-medium mb-2">
-                {field.label}
-              </label>
-              <input
+            
+              <TextField
+                fullWidth
+                label={field.label}
                 type={field.type || "text"}
-                step={field.type === "number" && field.name === "cgpa" ? "0.01" : undefined}
                 placeholder={field.placeholder}
                 disabled={field.disabled}
-                value={formData[field.name] as any || ""}
+                value={formData[field.name] ?? ""}
                 onChange={(e) => handleInputChange(
                   field.name,
                   field.type === "number" ? (e.target.value ? Number(e.target.value) : null) : e.target.value
                 )}
-                className={`
-                  w-full px-4 py-2 border rounded-lg
-                  ${field.disabled
-                    ? "bg-gray-100 cursor-not-allowed"
-                    : "focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                error={!!errors[field.name]}
+                helperText={errors[field.name]}
+                InputProps={{
+                  inputProps: {
+                    step: field.type === "number" && field.name === "cgpa" ? "0.01" : undefined
                   }
-                  ${errors[field.name] ? "border-red-500" : "border-gray-300"}
-                `}
+                }}
               />
-              {errors[field.name] && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors[field.name]}
-                </p>
-              )}
-            </div>
+          
           ))}
-        </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-2">Skills</label>
-          <input
-            value={skillInput}
-            onChange={(e) => setSkillInput(e.target.value)}
-            placeholder="Add skills (comma separated)"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
+          
+            <TextField
+              fullWidth
+              label="Skills"
+              placeholder="Add skills (comma separated)"
+              value={skillInput}
+              onChange={(e) => setSkillInput(e.target.value)}
+              helperText="Example: JavaScript, React, Node.js, TypeScript"
+            />
+         
+
+         
+            <Box sx={{
+              bgcolor: "background.paper",
+              p: 2,
+              borderRadius: 1,
+              border: 1,
+              borderColor: "divider",
+              display: "flex",
+              flexDirection: "column",
+          alignItems: "center",
+          width: "100%",
+          gridColumn:"1/-1"
+            }}>
+              <Typography variant="subtitle1" sx={{ mb: 2 }}>
+                Resume (PDF)
+              </Typography>
+              <UploadButton onFileSelect={handleResumeUpload} />
+              {resumeFile && (
+                <Typography variant="body2" sx={{ mt: 1, color: "success.main" }}>
+                  Selected: {resumeFile.name}
+                </Typography>
+              )}
+              {!resumeFile && formData.resumeUrl && (
+                <Button
+                  component="a"
+                  href={formData.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ mt: 2 }}
+                  size="small"
+                  variant="text"
+                >
+                  View Current Resume
+                </Button>
+              )}
+            </Box>
+       
+
+       
         
-        </div>
-
-        <Box sx={{
-          bgcolor: "background.paper",
-          p: 2,
-          borderRadius: 1,
-          border: 1,
-          borderColor: "divider",
-          display: "flex",
-          flexDirection: "column",
-          alignItems:"center"
-        }}>
-          <label className="block text-sm font-medium mb-2">Resume (PDF)</label>
-          <UploadButton onFileSelect={handleResumeUpload} />
-          {resumeFile && (
-            <Typography variant="body2" sx={{ mt: 1, color: "success.main" }}>
-              Selected: {resumeFile.name}
-            </Typography>
-          )}
-          {!resumeFile && formData.resumeUrl && (
-            <a
-              href={formData.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-blue-600 hover:underline mt-2 inline-block"
-            >
-              View Current Resume
-            </a>
-          )}
-        </Box>
-
-        <div className="flex gap-4">
-          <button
-            type="submit"
-            disabled={!isDirty || isLoading}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
-          >
-            {isLoading ? "Updating..." : "Update Profile"}
-          </button>
-
-          <button
-            type="button"
-            onClick={handleReset}
-            disabled={!isDirty}
-            className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:cursor-not-allowed transition-colors"
-          >
-            Reset
-          </button>
-        </div>
+        
       </form>
-    </div>
+      <Box sx={{ display: "flex", mt: "10px", gap: 2 }}>
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={!isDirty || isLoading}
+          onClick={handleSubmit}
+        >
+          {isLoading ? "Updating..." : "Update Profile"}
+        </Button>
+
+        <Button
+          type="button"
+          variant="outlined"
+          onClick={handleReset}
+          disabled={!isDirty}
+        >
+          Reset
+        </Button>
+      </Box>
+    </Box>
   )
 }
 

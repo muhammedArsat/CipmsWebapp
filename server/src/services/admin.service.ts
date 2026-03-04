@@ -636,6 +636,7 @@ export class AdminService {
                 },
               },
             });
+            console.log(result)
             results.push(result);
           }
         } catch (error) {
