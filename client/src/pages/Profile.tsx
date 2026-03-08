@@ -4,7 +4,6 @@ import { useAuth } from "../contexts/AuthContext"
 import { useEffect, useState } from "react"
 import UploadButton from "../components/UploadButton"
 import { Box, Typography, TextField, Button } from "@mui/material"
-import Grid from "@mui/material/Grid"
 
 interface ProfileFormData {
   name: string
@@ -97,7 +96,7 @@ const Profile = () => {
   const handleProfileFetch = async () => {
     try {
       const response = await StudentApi.fetchProfile(user?.id as string)
-      console.log(response)
+      // console.log(response)
 
       // Extract skill names from the nested structure
       const skillNames = response.skills?.map((item: any) => item.skill.name) || []
@@ -159,30 +158,56 @@ const Profile = () => {
 
     setIsLoading(true)
     try {
-      let resumeUrl = formData.resumeUrl
+      // Create FormData for multipart/form-data submission
+      const formDataToSend = new FormData()
 
-      // Upload resume file if a new one is selected
+      // Add all form fields to FormData
+      formDataToSend.append("name", formData.name)
+      formDataToSend.append("email", formData.email)
+      formDataToSend.append("department", formData.department)
+      formDataToSend.append("phoneNo", formData.phoneNo)
+      formDataToSend.append("id",user?.id as string )
+      if (formData.cgpa !== null) {
+        formDataToSend.append("cgpa", formData.cgpa.toString())
+      }
+
+      if (formData.semester !== null) {
+        formDataToSend.append("semester", formData.semester.toString())
+      }
+
+      if (formData.year !== null) {
+        formDataToSend.append("year", formData.year.toString())
+      }
+
+      // Add skills as JSON string or individual items
+      formDataToSend.append("skills", JSON.stringify(skillArray))
+
+      // Add profile URL if exists
+      if (formData.profileUrl) {
+        formDataToSend.append("profileUrl", formData.profileUrl)
+      }
+
+      // Add resume file if selected
       if (resumeFile) {
-        const formDataToUpload = new FormData()
-        formDataToUpload.append("resume", resumeFile)
-        // const uploadResponse = await StudentApi.uploadResume(user?.id as string, formDataToUpload)
-        // resumeUrl = uploadResponse.url
-        console.log("Resume file to upload:", resumeFile)
+        formDataToSend.append("resume", resumeFile)
       }
 
-      const submissionData: ProfileFormData = {
-        ...formData,
-        skills: skillArray,
-        resumeUrl: resumeUrl
-      }
+      
 
-      console.log("Final submission data:", submissionData)
-      const response = await StudentApi.updateProfile(submissionData)
+      const response = await StudentApi.updateProfile(formDataToSend)
 
       toast.success(response?.message || "Profile updated successfully")
 
-      setOriginalData(submissionData)
-      setFormData(submissionData)
+      // Update state with new data
+      const updatedData = {
+        ...formData,
+        skills: skillArray,
+        // If backend returns new resume URL, update it
+        resumeUrl: response?.data?.resumeUrl || formData.resumeUrl
+      }
+
+      setOriginalData(updatedData)
+      setFormData(updatedData)
       setResumeFile(null)
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Failed to update profile")
@@ -216,84 +241,77 @@ const Profile = () => {
       </Typography>
 
       <form className="grid grid-cols-1 md:grid-cols-2 w-full gap-3" onSubmit={handleSubmit}>
-       
-          {FORM_FIELDS.map((field) => (
-            
-              <TextField
-                fullWidth
-                label={field.label}
-                type={field.type || "text"}
-                placeholder={field.placeholder}
-                disabled={field.disabled}
-                value={formData[field.name] ?? ""}
-                onChange={(e) => handleInputChange(
-                  field.name,
-                  field.type === "number" ? (e.target.value ? Number(e.target.value) : null) : e.target.value
-                )}
-                error={!!errors[field.name]}
-                helperText={errors[field.name]}
-                InputProps={{
-                  inputProps: {
-                    step: field.type === "number" && field.name === "cgpa" ? "0.01" : undefined
-                  }
-                }}
-              />
-          
-          ))}
+        {FORM_FIELDS.map((field) => (
+          <TextField
+            key={field.name}
+            fullWidth
+            label={field.label}
+            type={field.type || "text"}
+            placeholder={field.placeholder}
+            disabled={field.disabled}
+            value={formData[field.name] ?? ""}
+            onChange={(e) => handleInputChange(
+              field.name,
+              field.type === "number" ? (e.target.value ? Number(e.target.value) : null) : e.target.value
+            )}
+            error={!!errors[field.name]}
+            helperText={errors[field.name]}
+            InputProps={{
+              inputProps: {
+                step: field.type === "number" && field.name === "cgpa" ? "0.01" : undefined
+              }
+            }}
+          />
+        ))}
 
-          
-            <TextField
-              fullWidth
-              label="Skills"
-              placeholder="Add skills (comma separated)"
-              value={skillInput}
-              onChange={(e) => setSkillInput(e.target.value)}
-              helperText="Example: JavaScript, React, Node.js, TypeScript"
-            />
-         
+        <TextField
+          fullWidth
+          label="Skills"
+          placeholder="Add skills (comma separated)"
+          value={skillInput}
+          onChange={(e) => setSkillInput(e.target.value)}
+          helperText="Example: JavaScript, React, Node.js, TypeScript"
+        />
 
-         
-            <Box sx={{
-              bgcolor: "background.paper",
-              p: 2,
-              borderRadius: 1,
-              border: 1,
-              borderColor: "divider",
-              display: "flex",
-              flexDirection: "column",
+        <Box sx={{
+          bgcolor: "background.paper",
+          p: 2,
+          borderRadius: 1,
+          border: 1,
+          borderColor: "divider",
+          display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           width: "100%",
-          gridColumn:"1/-1"
-            }}>
-              <Typography variant="subtitle1" sx={{ mb: 2 }}>
-                Resume (PDF)
-              </Typography>
-              <UploadButton onFileSelect={handleResumeUpload} />
-              {resumeFile && (
-                <Typography variant="body2" sx={{ mt: 1, color: "success.main" }}>
-                  Selected: {resumeFile.name}
-                </Typography>
-              )}
-              {!resumeFile && formData.resumeUrl && (
-                <Button
-                  component="a"
-                  href={formData.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{ mt: 2 }}
-                  size="small"
-                  variant="text"
-                >
-                  View Current Resume
-                </Button>
-              )}
-            </Box>
-       
-
-       
-        
-        
+          gridColumn: "1/-1"
+        }}>
+          <Typography variant="subtitle1" sx={{ mb: 2 }}>
+            Resume (PDF)
+          </Typography>
+          <UploadButton onFileSelect={handleResumeUpload} />
+          {resumeFile && (
+            <Typography variant="body2" sx={{ mt: 1, color: "success.main" }}>
+              Selected: {resumeFile.name}
+            </Typography>
+          )}
+          {!resumeFile && formData.resumeUrl && (
+            // <iframe src={formData.resumeUrl} width="100%" height="600px" />
+            <Button
+              component="a"
+              href={formData.resumeUrl}
+              target="_blank"
+            
+              sx={{ mt: 2 }}
+              size="small"
+              variant="text"
+            >
+              View Current Resume
+            </Button>
+            
+          )}
+        </Box>
       </form>
+
       <Box sx={{ display: "flex", mt: "10px", gap: 2 }}>
         <Button
           type="submit"

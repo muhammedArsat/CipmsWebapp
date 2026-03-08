@@ -5,6 +5,7 @@ import PlacementOfficerRoutes from './routes/PlacementOfficer.route.js'
 import DashboardRoutes from './routes/dashboard.route.js'
 import InternshipRoutes from './routes/internship.route.js'
 import StudentRoutes from './routes/student.route.js'
+import MentorRoutes from './routes/mentor.route.js'
 import cookieParser from "cookie-parser"
 import passport from "./configs/passport.config.js";
 import cors from "cors";
@@ -27,6 +28,7 @@ app.use("/api/v1/placementOfficer", PlacementOfficerRoutes)
 app.use('/api/v1/dashboard', DashboardRoutes)
 app.use("/api/v1/internships", InternshipRoutes)
 app.use("/api/v1/students", StudentRoutes)
+app.use("/api/v1/mentors",MentorRoutes)
 app.use(globalErrorHandler)
 
 export default app;

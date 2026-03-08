@@ -37,39 +37,61 @@ const InternshipCard = ({ id, companyName, companyLogo, title, location, duratio
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                mb: 1
+                mb: 1,
+                gap: 1
             }}>
                 <Box sx={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "10px"
+                    gap: "10px",
+                    minWidth: 0, // Allow flex item to shrink
+                    flex: 1
                 }}>
-                    <img src={companyLogo} alt="Google_logo" className="w-9 h-9 rounded-full" />
-                    <Typography color="inherit" variant="h6" fontWeight="bold">{companyName}</Typography>
-                </Box>
-
-
-                <Box>
-
-                </Box>
-                <div className="flex justify-center items-center gap-2">
-                    {match && <Typography variant="body2" color="white" className="bg-green-500 px-2 rounded-full text-white">
-                        {match}% matched
-
+                    <img src={companyLogo} alt="Company logo" className="w-9 h-9 rounded-full flex-shrink-0" />
+                    <Typography
+                        color="inherit"
+                        variant="subtitle2"
+                        fontWeight="bold"
+                        sx={{
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
+                        }}
+                    >
+                        {companyName}
                     </Typography>
+                </Box>
 
-                    }
+                <Box sx={{
+                    display: 'flex',
+                    gap: 1,
+                    alignItems: 'center',
+                    flexShrink: 0 // Prevent badges from shrinking
+                }}>
+                    {match && (
+                        <Typography
+                            variant="button"
+                            sx={{
+                                bgcolor: 'success.main',
+                                color: 'white',
+                                px: 1,
+                                borderRadius: '50px',
+                                fontSize: '0.75rem',
+                                whiteSpace: 'nowrap'
+                            }}
+                        >
+                            {match}%
+                        </Typography>
+                    )}
                     <Box sx={{
                         bgcolor: "primary.main",
-                        px: "10px",
+                        px: 1,
                         borderRadius: "50px",
                         color: "white"
                     }}>
-
-                        <Typography variant="body1" color="inherit">{status}</Typography>
+                        <Typography variant="body2" color="inherit">{status}</Typography>
                     </Box>
-                </div>
-               
+                </Box>
             </Box>
 
             {/* Job Title */}
@@ -117,7 +139,7 @@ const InternshipCard = ({ id, companyName, companyLogo, title, location, duratio
                 <span className="border border-neutral-400  dark:border-neutral-500 p-2 rounded-lg">
                     <BookmarkBorderOutlinedIcon />
                 </span>
-                
+
                 <Button variant="contained" onClick={handleClick}>
                     View More
                 </Button>

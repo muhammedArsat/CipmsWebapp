@@ -102,6 +102,7 @@ const Dashboard = () => {
     try {
       const id = user?.id
       const response = await PlacementOfficerApi.getAllPostedInternshipByPO(id)
+      console.log(response.data.internships)
       setInternships(response.data.internships)
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Internal server error")
@@ -190,7 +191,7 @@ const Dashboard = () => {
       {user?.role === "PLACEMENT_OFFICER" && <>
         <Box>
           <Typography variant="h6" fontWeight="semibold">Your posted internships</Typography>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3">
             {internships.length <= 0 ? (
               <Typography className="text-center col-span-4">No Internship posted yet</Typography>
             ) : (

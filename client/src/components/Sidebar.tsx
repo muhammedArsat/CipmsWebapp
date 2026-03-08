@@ -15,7 +15,8 @@ import toast from 'react-hot-toast'
 import { fetchProfileCompletion } from '../apis/authApi'
 import CircularProgress from '@mui/material/CircularProgress'
 import PersonIcon from '@mui/icons-material/Person';
-
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile'
+import InboxIcon from '@mui/icons-material/Inbox'
 interface sidebarProps {
     open: boolean,
     toggleSidebar: () => void
@@ -31,7 +32,7 @@ export default function Sidebar({ open, toggleSidebar }: sidebarProps) {
             const response = await fetchProfileCompletion(id as string)
 
 
-            console.log(response)
+            // console.log(response)
             // Extract the actual percentage value from response
             // Adjust based on your API response structure
             if (response.completionPercentage){
@@ -81,11 +82,23 @@ const menuItems = [
         path: `/profile/${user?.id}`,
         roles: ['STUDENT'],
         icon: < PersonIcon />
+    },
+    {
+        name: 'My applications',
+        path: `/my-applications/${user?.id}`,
+        roles: ['STUDENT'],
+        icon: < InsertDriveFileIcon />
     }, {
         name: 'Users',
         path: "/users",
         roles: ['ADMIN'],
         icon: <GroupIcon />
+    },
+    {
+        name: 'Inbox',
+        path: "/inbox",
+        roles: ['MENTOR'],
+        icon: <InboxIcon />
     }
 ]
 

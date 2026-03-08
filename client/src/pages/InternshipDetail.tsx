@@ -13,6 +13,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import LaptopMacIcon from '@mui/icons-material/LaptopMac'
+import ApplyModal from "../components/ApplyModal"
 export interface FetchInternshipData {
     id: string,
     title: string
@@ -40,11 +41,22 @@ const InternshipDetail = () => {
     const theme = useTheme()
     const navigate = useNavigate()
 
+    const [isApplyOpen, setIsApplyOpen] = useState(false)
+
     useEffect(() => {
         fetchInternship()
 
     }, [])
 
+
+    useEffect(() => {
+        
+        if (isApplyOpen) {
+            document.body.style.overflow = "hidden"
+        } else {
+            document.body.style.overflow = ""
+        }
+    },[isApplyOpen])
 
     const handleEdit = () => {
         navigate(`/new-internship?edit=true&id=${id}`)
@@ -292,13 +304,24 @@ const InternshipDetail = () => {
                             </div>}
 
                             {user?.role === "STUDENT" && <>
-                                <Button variant="contained">
+                                <Button variant="contained" onClick={() => setIsApplyOpen((prev) => !prev)}>
                                     Apply Now
                                 </Button>
                             </>}
 
                         </Box>
                     </Box>
+
+                    {isApplyOpen && 
+                    
+                        <div className="inset-0 fixed bg-black/50 backdrop-blur-2xl z-50 flex justify-center items-center" onClick={()=>setIsApplyOpen((prev)=>!prev)}>
+                          
+                            <div onClick={(e)=>e.stopPropagation()}>
+                                <ApplyModal/>
+
+                          </div>
+                    </div>
+                    }
                 </Paper>
             </div>
         </div>

@@ -11,14 +11,17 @@ export class CloudinaryService {
         const uploadStream = cloudinary.uploader.upload_stream(
           {
             folder: `resumes/${userId}`,
-            resource_type: "raw", // For non-image files
+            resource_type: "auto", // For non-image files
             public_id: `resume_${Date.now()}`,
             format: file.originalname.split(".").pop(),
+            access_mode: "public",
+            type:"upload"
           },
           (error, result) => {
             if (error) {
               reject(new AppError("Failed to upload resume", 500));
             } else {
+              console.log(result?.secure_url)
               resolve(result!.secure_url);
             }
           },

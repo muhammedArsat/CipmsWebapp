@@ -40,20 +40,34 @@ export class StudentController {
 
   static async updateProfile(req: Request, res: Response, next: NextFunction) {
     try {
-        const {id} = req.body;
-        const userId = id
-console.log(userId)
+      console.log(req.body)
+      console.log(req.file)
+      const { id } = req.body;
+      
+      const userId = id;
+
       if (!userId) {
         return AppResponse.unauthorized(res, "Unauthorized");
       }
 
+      // When using FormData, req.body contains the text fields
       const { name, phoneNo, department, semester, year, cgpa, skills } =
         req.body;
+
+      // Parse skills if it's sent as JSON string
+      let parsedSkills;
+      if (skills) {
+        try {
+          parsedSkills =
+            typeof skills === "string" ? JSON.parse(skills) : skills;
+        } catch (e) {
+          parsedSkills = Array.isArray(skills) ? skills : [skills];
+        }
+      }
 
       // Handle resume upload if file is provided
       let resumeUrl: string | undefined;
       if (req.file) {
-        // Upload to Cloudinary
         resumeUrl = await CloudinaryService.uploadResume(req.file, userId);
       }
 
@@ -65,7 +79,7 @@ console.log(userId)
         year: year ? Number(year) : undefined,
         cgpa: cgpa ? Number(cgpa) : undefined,
         resumeUrl,
-        skills: skills  ? skills : undefined, // Parse if sent as JSON string
+        skills: parsedSkills,
       });
 
       return AppResponse.success(
@@ -78,78 +92,97 @@ console.log(userId)
     }
   }
 
-//   static async uploadResume(req: Request, res: Response, next: NextFunction) {
-//     try {
-//       const {userId} = req.params
+  static async fetchRecommendedInternships(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    try {
+      const { id } = req.params;
+      if (!id) {
+        return AppResponse.badRequest(res, "User id is missing");
+      }
 
-//       if (!userId) {
-//         return AppResponse.unauthorized(res, "Unauthorized");
-//       }
+      const recommendedInternship = await StudentService.recommendedInternship(
+        id as string,
+      );
 
-//       if (!req.file) {
-//         return AppResponse.badRequest(res, "Resume file is required");
-//       }
-
-//       // Upload to Cloudinary
-//       const resumeUrl = await CloudinaryService.uploadResume(req.file, userId as string);
-
-//       // Update student profile with resume URL
-//       const updatedProfile = await StudentService.updateProfile(userId as string, {
-//         resumeUrl,
-//       });
-
-//       return AppResponse.success(res, "Resume uploaded successfully", {
-//         resumeUrl,
-//         profile: updatedProfile,
-//       });
-//     } catch (err) {
-//       next(err);
-//     }
-//   }
-
-//   static async deleteResume(req: Request, res: Response, next: NextFunction) {
-//     try {
-//       const userId = req.user?.id;
-
-//       if (!userId) {
-//         return AppResponse.unauthorized(res, "Unauthorized");
-//       }
-
-//       // Get current resume URL
-//       const profile = await StudentService.fetchProfileData(userId);
-
-//       if (!profile.resumeUrl) {
-//         return AppResponse.badRequest(res, "No resume found");
-//       }
-
-//       // Delete from Cloudinary
-//       await CloudinaryService.deleteResume(profile.resumeUrl);
-
-//       // Update student profile to remove resume URL
-//       await StudentService.updateProfile(userId, {
-//         resumeUrl: null as any,
-//       });
-
-//       return AppResponse.success(res, "Resume deleted successfully", null);
-//     } catch (err) {
-//       next(err);
-//     }
-    //   }
-    
-    static async fetchRecommendedInternships(req: Request, res: Response, next: NextFunction) {
-        try {
-
-            const { id } = req.params
-            if (!id) {
-                return AppResponse.badRequest(res,"User id is missing")
-            }
-            
-            const recommendedInternship = await StudentService.recommendedInternship(id as string)
-
-            return AppResponse.success(res,"Fetched successfully",recommendedInternship)
-        } catch (err)
-        {
-            next(err)
-        }
+      return AppResponse.success(
+        res,
+        "Fetched successfully",
+        recommendedInternship,
+      );
+    } catch (err) {
+      next(err);
     }
+  }
+
+  static async applyInternship(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    try {
+      // If using FormData
+      const studentId = req.body.studentId; // From auth middleware
+      const internshipId = req.body.internshipId;
+
+      if (!studentId || !internshipId) {
+        return AppResponse.badRequest(
+          res,
+          "Student ID or Internship ID is missing",
+        );
+      }
+
+      const response = await StudentService.applyInternship(
+        studentId,
+        internshipId,
+      );
+      return AppResponse.success(
+        res,
+        "Internship Applied successfully",
+        response,
+      );
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  
+
+  static async fetchAllApplications(req: Request, res: Response, next: NextFunction) {
+    try {
+      
+      const { studentId } = req.params
+      
+      if (!studentId)
+        return AppResponse.badRequest(res, "Invalid format")
+      
+      const data = await StudentService.fetchApplications(studentId as string)
+
+      return AppResponse.success(res,"Applications fetched successfully", data)
+
+    } catch (err) {
+      next(err)
+    }
+  }
+
+
+  static async uploadCertificate(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { applicationId, userId } = req.body
+      const file = req.file
+
+      if (!file) {
+      return AppResponse.badRequest(res, "No file uploaded")
+      }
+      
+      const result = await StudentService.uploadCertificate(applicationId as string,userId as string,file)
+  
+
+      return AppResponse.success(res, "Certificate uploaded successfully",result)
+    } catch (err) {
+      next(err)
+    }
+  }
 }
